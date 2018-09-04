@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PhotoCreator {
+struct PhotoCreator: Codable {
     let identifier: String
     let username: String
     let name: String
@@ -19,7 +19,7 @@ struct PhotoCreator {
     let creatorPhotosURLString: String
 }
 
-struct Photo {
+struct Photo: Codable {
     let identifier: String
     let dateCreated: Date
     let width: Int
@@ -33,7 +33,7 @@ struct Photo {
     let downloadImageLink: String
 }
 
-struct SearchResult {
+struct SearchResult: Codable {
     let totalPhotos: Int
     let totalPages: Int
     let photos: [Photo]
@@ -61,7 +61,12 @@ class RemoteSearchResultFetcher {
     func fetch(completion: @escaping (RemoteSearchResultFetcherResult) -> Void) {
         client.execute(request) { result in
             switch result {
-            case .success(_): break
+            case .success(let data):
+                do {
+                    _ = try JSONSerialization.jsonObject(with: data)
+                } catch {
+                    completion(.error(.mapping))
+                }
             case .error(_): completion(.error(.httpClient))
             }
         }

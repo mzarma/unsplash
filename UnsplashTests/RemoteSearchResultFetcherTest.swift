@@ -43,7 +43,24 @@ class RemoteSearchResultFetcherTest: XCTestCase {
         case .success(_): XCTFail("Should complete with error")
         }
     }
-        
+    
+        func test_completesWithMappingError() {
+            let sut = makeSUT(request: mockRequest())
+            var expectedResult: RemoteSearchResultFetcherResult?
+            var callCount = 0
+            sut.fetch { result in
+                expectedResult = result
+                callCount += 1
+            }
+    
+            client.complete?(.success(invalidJSONData))
+    
+            switch expectedResult! {
+            case .error(let error): XCTAssertEqual(error, .mapping)
+            case .success(_): XCTFail("Should complete with error")
+            }
+        }
+
     // MARK: Helpers
     
     private let client = HTTPClientStub()
