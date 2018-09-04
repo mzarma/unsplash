@@ -22,7 +22,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
         let request = mockRequest()
         let sut = makeSUT(request: request)
         
-        sut.fetch { _ in }
+        sut.fetch(request: request) { _ in }
         
         XCTAssertEqual(client.requests, [request])
     }
@@ -31,7 +31,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
         let sut = makeSUT(request: mockRequest())
         var expectedResult: RemoteSearchResultFetcherResult?
         var callCount = 0
-        sut.fetch { result in
+        sut.fetch(request: mockRequest()) { result in
             expectedResult = result
             callCount += 1
         }
@@ -48,7 +48,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
             let sut = makeSUT(request: mockRequest())
             var expectedResult: RemoteSearchResultFetcherResult?
             var callCount = 0
-            sut.fetch { result in
+            sut.fetch(request: mockRequest()) { result in
                 expectedResult = result
                 callCount += 1
             }
@@ -68,7 +68,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
     private let invalidJSONData = "invalid data".data(using: .utf8)!
     
     private func makeSUT(request: URLRequest) -> RemoteSearchResultFetcher {
-        let sut = RemoteSearchResultFetcher(client: client, request: request)
+        let sut = RemoteSearchResultFetcher(client: client)
         weakSUT = sut
         return sut
     }

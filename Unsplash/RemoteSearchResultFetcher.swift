@@ -8,17 +8,6 @@
 
 import Foundation
 
-struct PhotoCreator: Codable {
-    let identifier: String
-    let username: String
-    let name: String
-    let portfolioURLString: String
-    let smallProfileImageURLString: String
-    let mediumProfileImageURLString: String
-    let largeProfileImageURLString: String
-    let creatorPhotosURLString: String
-}
-
 struct Photo: Codable {
     let identifier: String
     let dateCreated: Date
@@ -26,11 +15,22 @@ struct Photo: Codable {
     let height: Int
     let colorString: String
     let description: String
-    let photoCreator: PhotoCreator
+    let creator: Creator
     let regularImageURLString: String
     let smallImageURLString: String
     let thumbnailImageURLString: String
     let downloadImageLink: String
+    
+    struct Creator: Codable {
+        let identifier: String
+        let username: String
+        let name: String
+        let portfolioURLString: String
+        let smallProfileImageURLString: String
+        let mediumProfileImageURLString: String
+        let largeProfileImageURLString: String
+        let creatorPhotosURLString: String
+    }
 }
 
 struct SearchResult: Codable {
@@ -49,16 +49,24 @@ enum RemoteSearchResultFetcherResult {
     case error(RemoteSearchResultFetcherError)
 }
 
-class RemoteSearchResultFetcher {
-    private let client: HTTPClient
-    private let request: URLRequest
+protocol SearchResultFetcher {
+    associatedtype Request
+    associatedtype Result
     
-    init(client: HTTPClient, request: URLRequest) {
+    func fetch(request: Request, completion: @escaping (Result) -> Void)
+}
+
+final class RemoteSearchResultFetcher: SearchResultFetcher {
+    typealias Request = URLRequest
+    typealias Result = RemoteSearchResultFetcherResult
+    
+    private let client: HTTPClient
+    
+    init(client: HTTPClient) {
         self.client = client
-        self.request = request
     }
     
-    func fetch(completion: @escaping (RemoteSearchResultFetcherResult) -> Void) {
+    func fetch(request: URLRequest, completion: @escaping (RemoteSearchResultFetcherResult) -> Void) {
         client.execute(request) { result in
             switch result {
             case .success(let data):
