@@ -39,81 +39,19 @@ class HTTPClientTest: XCTestCase {
         XCTAssertEqual(dataTask.resumeCount, 1)
     }
     
-    func test_resumesDataTask_() {
-        let sut = makeSUT()
-        let dataTask = URLSessionDataTaskSpy()
-        session.dataTask = dataTask
-        
-        XCTAssertEqual(dataTask.resumeCount, 0)
-        var callCount = 0
-
-        sut.execute(mockRequest()) { _ in
-            callCount += 1
-        }
-        session.complete?(nil, mockHTTPResponse(statusCode: 200), nil)
-
-        XCTAssertEqual(dataTask.resumeCount, 1)
-        XCTAssertEqual(callCount, 1)
-    }
-
     func test_completesWithBadRequestError() {
-        let sut = makeSUT()
-        var expectedResult: HTTPClientResult?
-        var callCount = 0
-        sut.execute(mockRequest()) { result in
-            expectedResult = result
-            callCount += 1
-        }
-        
-        for (times, code) in (400...499).enumerated() {
-            session.complete?(nil, mockHTTPResponse(statusCode: code), mockError())
-            
-            switch expectedResult! {
-            case .success(_): XCTFail("Should fail with error")
-            case .error(let error): XCTAssertEqual(error, HTTPClientError.badRequest)
-                XCTAssertEqual(callCount, times + 1)
-            }
-        }
+        let codes = Array(400...499)
+        assert(expectedError: .badRequest, for: codes)
     }
     
     func test_completesWithServerError() {
-        let sut = makeSUT()
-        var expectedResult: HTTPClientResult?
-        var callCount = 0
-        sut.execute(mockRequest()) { result in
-            expectedResult = result
-            callCount += 1
-        }
-        
-        for (times, code) in (500...599).enumerated() {
-            session.complete?(nil, mockHTTPResponse(statusCode: code), mockError())
-            
-            switch expectedResult! {
-            case .success(_): XCTFail("Should fail with error")
-            case .error(let error): XCTAssertEqual(error, HTTPClientError.server)
-                XCTAssertEqual(callCount, times + 1)
-            }
-        }
+        let codes = Array(500...599)
+        assert(expectedError: .server, for: codes)
     }
     
     func test_completesWithUnknownError() {
-        let sut = makeSUT()
-        var expectedResult: HTTPClientResult?
-        var callCount = 0
-        sut.execute(mockRequest()) { result in
-            expectedResult = result
-            callCount += 1
-        }
-        
-        for (times, code) in [0, 100, 199, 300, 399, 600].enumerated() {
-            session.complete?(nil, mockHTTPResponse(statusCode: code), mockError())
-            
-            switch expectedResult! {
-            case .success(_): XCTFail("Should fail with error")
-            case .error(let error): XCTAssertEqual(error, HTTPClientError.unknown)
-                XCTAssertEqual(callCount, times + 1)
-            }
-        }
+        let codes = [0, 100, 199, 300, 399, 600]
+        assert(expectedError: .unknown, for: codes)
     }
     
     func test_completesWithSuccess() {
@@ -172,6 +110,26 @@ class HTTPClientTest: XCTestCase {
             httpVersion: nil,
             headerFields: nil
             )!
+    }
+    
+    private func assert(expectedError: HTTPClientError, for codes: [Int]) {
+        let sut = makeSUT()
+        var expectedResult: HTTPClientResult?
+        var callCount = 0
+        sut.execute(mockRequest()) { result in
+            expectedResult = result
+            callCount += 1
+        }
+        
+        for (times, code) in codes.enumerated() {
+            session.complete?(nil, mockHTTPResponse(statusCode: code), mockError())
+            
+            switch expectedResult! {
+            case .success(_): XCTFail("Should fail with error")
+            case .error(let error): XCTAssertEqual(error, expectedError)
+            XCTAssertEqual(callCount, times + 1)
+            }
+        }
     }
     
     private class URLSessionSpy: URLSession {
