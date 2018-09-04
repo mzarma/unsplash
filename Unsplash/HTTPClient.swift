@@ -19,7 +19,7 @@ enum HTTPClientResult {
     case error(HTTPClientError)
 }
 
-final class HTTPClient {
+class HTTPClient {
     private let session: URLSession
     
     init(_ session: URLSession) {
