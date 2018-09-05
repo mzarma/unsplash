@@ -72,17 +72,9 @@ class RemoteSearchResultFetcherTest: XCTestCase {
         
         client.complete?(.success(validJSONData()))
         
-        let profileImageURLs = Photo.Creator.ImageURLs(smallProfileImageURLString: "small profile image url", mediumProfileImageURLString: "medium profile image url", largeProfileImageURLString: "large profile image url")
-        let creator = Photo.Creator(identifier: "Ul0QVz12Goo", username: "ugmonk", name: "Jeff Sheldon", portfolioURLString: "portfolio url", imageURLs: profileImageURLs)
-        let imageURLs = Photo.ImageURLs(regular: "regular image url", small: "small image url", thumbnail: "thumbnail image url")
-        let imageLinks = Photo.ImageLinks(download: "download link")
-        let photos = [Photo(identifier: "eOLpJytrbsQ", dateCreatedString: "2014-11-18T14:35:36-05:00", width: 4000, height: 3000, colorString: "#A7A2A1", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)]
-        let expectedSearchResult = SearchResult(totalPhotos: 133, totalPages: 7, photos: photos)
-
-        
         switch expectedResult! {
         case .error(_): XCTFail("Should succeed with search result")
-        case .success(let searchResult): XCTAssertEqual(searchResult, expectedSearchResult)
+        case .success(let searchResult): XCTAssertEqual(searchResult, expectedSearchResult())
         }
     }
 
@@ -94,6 +86,15 @@ class RemoteSearchResultFetcherTest: XCTestCase {
     
     private func validJSONData() -> Data {
         return try! JSONSerialization.data(withJSONObject: validJSON)
+    }
+    
+    private func expectedSearchResult() -> SearchResult {
+        let profileImageURLs = Photo.Creator.ImageURLs(smallProfileImageURLString: "small profile image url", mediumProfileImageURLString: "medium profile image url", largeProfileImageURLString: "large profile image url")
+        let creator = Photo.Creator(identifier: "Ul0QVz12Goo", username: "ugmonk", name: "Jeff Sheldon", portfolioURLString: "portfolio url", imageURLs: profileImageURLs)
+        let imageURLs = Photo.ImageURLs(regular: "regular image url", small: "small image url", thumbnail: "thumbnail image url")
+        let imageLinks = Photo.ImageLinks(download: "download link")
+        let photos = [Photo(identifier: "eOLpJytrbsQ", dateCreatedString: "2014-11-18T14:35:36-05:00", width: 4000, height: 3000, colorString: "#A7A2A1", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)]
+        return SearchResult(totalPhotos: 133, totalPages: 7, photos: photos)
     }
     
     private func makeSUT(request: URLRequest) -> RemoteSearchResultFetcher {

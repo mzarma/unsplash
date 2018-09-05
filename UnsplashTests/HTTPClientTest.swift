@@ -54,6 +54,25 @@ class HTTPClientTest: XCTestCase {
         assert(expectedError: .unknown, for: codes)
     }
     
+    func test_completesWithUnknownErrorWhenResponseIsNil() {
+        let sut = makeSUT()
+        var expectedResult: HTTPClientResult?
+        var callCount = 0
+        sut.execute(mockRequest()) { result in
+            expectedResult = result
+            callCount += 1
+        }
+        
+        session.complete?(nil, nil, mockError())
+        
+        switch expectedResult! {
+        case .success(_): XCTFail("Should fail with error")
+        case .error(let error):
+            XCTAssertEqual(error, .unknown)
+            XCTAssertEqual(callCount, 1)
+        }
+    }
+    
     func test_completesWithSuccess() {
         let sut = makeSUT()
         var expectedResult: HTTPClientResult?
@@ -69,7 +88,7 @@ class HTTPClientTest: XCTestCase {
             session.complete?(expectedData, mockHTTPResponse(statusCode: code), nil)
             
             switch expectedResult! {
-            case .success(let (data)):
+            case .success(let data):
                 XCTAssertEqual(data, expectedData)
                 XCTAssertEqual(callCount, times + 1)
             case .error(_): XCTFail("Should succeed")
