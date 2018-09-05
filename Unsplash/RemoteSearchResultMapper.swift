@@ -9,8 +9,8 @@
 import Foundation
 
 final class RemoteSearchResultMapper {
-    static func map(data: Data) -> SearchResult? {
-        guard let searchResult = try? JSONDecoder().decode(SearchResult.self, from: data) else {
+    static func map(data: Data) -> RemoteSearchResult? {
+        guard let searchResult = try? JSONDecoder().decode(RemoteSearchResult.self, from: data) else {
             return nil
         }
         return searchResult

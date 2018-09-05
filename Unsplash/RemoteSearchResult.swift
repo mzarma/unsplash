@@ -1,5 +1,5 @@
 //
-//  SearchResult.swift
+//  RemoteSearchResult.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 05/09/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SearchResult: Equatable, Codable {
+struct RemoteSearchResult: Equatable, Codable {
     let totalPhotos: Int
     let totalPages: Int
     let photos: [Photo]

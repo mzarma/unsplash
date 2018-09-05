@@ -14,7 +14,7 @@ enum RemoteSearchResultFetcherError {
 }
 
 enum RemoteSearchResultFetcherResult {
-    case success(SearchResult)
+    case success(RemoteSearchResult)
     case error(RemoteSearchResultFetcherError)
 }
 
