@@ -18,15 +18,36 @@ class SinglePhotoViewControllerTest: XCTestCase {
         super.tearDown()
     }
     
-    func test_collectionViewIsViewChild() {
+    // MARK: Layout
+    
+    func test_tableViewIsViewChild() {
         let sut = makeSUT()
-        XCTAssertTrue(sut.collectionView.superview === sut.view)
+        XCTAssertTrue(sut.tableView.superview === sut.view)
     }
+    
+    // MARK: DataSource
+    
+    func test_numberOfRowsInSectionIsTwo() {
+        let sut = makeSUT()
+        let tableView = sut.tableView
+        XCTAssertEqual(tableView.dataSource!.tableView(tableView, numberOfRowsInSection: 0), 2)
+    }
+    
+    // MARK: Delegate
     
     // MARK: Helpers
     
-    private func makeSUT() -> SinglePhotoViewController {
-        let sut = SinglePhotoViewController()
+    private func makeSUT(photo: PresentablePhoto = PresentablePhoto(image: UIImage(), description: ""), photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> SinglePhotoViewController {
+        let dataSourceDelegate = SinglePhotoDataSourceDelegate(
+            photo: photo,
+            photoSelection: photoSelection
+        )
+        
+        let sut = SinglePhotoViewController(
+            dataSource: dataSourceDelegate,
+            delegate: dataSourceDelegate
+        )
+        
         weakSUT = sut
         _ = sut.view
         return sut

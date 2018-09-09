@@ -9,26 +9,33 @@
 import UIKit
 
 class SinglePhotoViewController: UIViewController {
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        return collectionView
-    }()
-        
+    let tableView = UITableView()
+    
+    private var dataSource: UITableViewDataSource!
+    private var delegate: UITableViewDelegate!
+    
+    convenience init(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
+        self.init()
+        self.dataSource = dataSource
+        self.delegate = delegate
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCollectionView()
+        setupTableView()
     }
     
-    private func setupCollectionView() {
+    private func setupTableView() {
         
-        view.addSubview(collectionView)
+        tableView.dataSource = dataSource
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8).isActive = true
+        view.addSubview(tableView)
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
