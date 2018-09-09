@@ -20,17 +20,17 @@ class SinglePhotoViewControllerTest: XCTestCase {
     
     // MARK: Layout
     
-    func test_tableViewIsViewChild() {
+    func test_collectionViewIsViewChild() {
         let sut = makeSUT()
-        XCTAssertTrue(sut.tableView.superview === sut.view)
+        XCTAssertTrue(sut.collectionView.superview === sut.view)
     }
     
     // MARK: DataSource
     
-    func test_numberOfRowsInSectionIsTwo() {
+    func test_numberOfItemsInSectionIsEqualToOne() {
         let sut = makeSUT()
-        let tableView = sut.tableView
-        XCTAssertEqual(tableView.dataSource!.tableView(tableView, numberOfRowsInSection: 0), 2)
+        let collectionView = sut.collectionView
+        XCTAssertEqual(collectionView.dataSource!.collectionView(collectionView, numberOfItemsInSection: 0), 1)
     }
     
     // MARK: Delegate

@@ -9,12 +9,17 @@
 import UIKit
 
 class SinglePhotoViewController: UIViewController {
-    let tableView = UITableView()
     
-    private var dataSource: UITableViewDataSource!
-    private var delegate: UITableViewDelegate!
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collectionView
+    }()
+
+    private var dataSource: UICollectionViewDataSource!
+    private var delegate: UICollectionViewDelegateFlowLayout!
     
-    convenience init(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
+    convenience init(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegateFlowLayout) {
         self.init()
         self.dataSource = dataSource
         self.delegate = delegate
@@ -28,14 +33,14 @@ class SinglePhotoViewController: UIViewController {
     
     private func setupTableView() {
         
-        tableView.dataSource = dataSource
+        collectionView.dataSource = dataSource
         
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }

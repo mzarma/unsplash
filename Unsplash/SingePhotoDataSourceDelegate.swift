@@ -13,7 +13,7 @@ struct PresentablePhoto {
     let description: String
 }
 
-class SinglePhotoDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+class SinglePhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     private let photo: PresentablePhoto
     private let photoSelection: (PresentablePhoto) -> Void
@@ -23,11 +23,11 @@ class SinglePhotoDataSourceDelegate: NSObject, UITableViewDataSource, UITableVie
         self.photoSelection = photoSelection
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
     }
 }
