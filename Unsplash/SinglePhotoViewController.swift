@@ -28,14 +28,16 @@ class SinglePhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
+        setupCollectionView()
     }
     
-    private func setupTableView() {
-        
+    private func setupCollectionView() {
+        view.addSubview(collectionView)
+
         collectionView.dataSource = dataSource
         
-        view.addSubview(collectionView)
+        let nib = UINib(nibName: "PhotoCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "PhotoCell")
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

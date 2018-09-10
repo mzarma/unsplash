@@ -28,6 +28,9 @@ class SinglePhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        cell.photoImage = photo.image
+        cell.text = photo.description
+        return cell
     }
 }
