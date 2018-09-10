@@ -11,6 +11,8 @@ import XCTest
 
 class URLRequestFactoryTest: XCTestCase {
     
+    // Search URLRequest
+    
     func test_createsSearchURLRequest_withGetHTTPMethod() {
         let request = SUT.search(parameters: params())
 
@@ -34,6 +36,27 @@ class URLRequestFactoryTest: XCTestCase {
         
         XCTAssertEqual(request1.url?.query, "page=4&query=a%20term&client_id=\(accessKey)")
         XCTAssertEqual(request2.url?.query, "page=2&query=anotherTerm&client_id=\(accessKey)")
+    }
+    
+    // Random URLRequest
+    
+    func test_createsRandomRequest_withGetHTTPMethod() {
+        let request = SUT.random()
+        XCTAssertEqual(request.httpMethod, "GET")
+    }
+    
+    func test_createsRandomURLRequest_withCorrectPath() {
+        let request = SUT.random()
+
+        XCTAssertEqual(request.url?.scheme, "https")
+        XCTAssertEqual(request.url?.host, "api.unsplash.com")
+        XCTAssertEqual(request.url?.path, "/photos/random")
+    }
+
+    func test_createsRandomURLRequest_withCorrectQueryItems() {
+        let request = SUT.random()
+
+        XCTAssertEqual(request.url?.query, "client_id=\(accessKey)")
     }
     
     // MARK: Helpers

@@ -16,6 +16,7 @@ struct SearchParameters {
 final class URLRequestFactory {
     private static let baseURLString = "https://api.unsplash.com"
     private static let searchPhotosPath = "/search/photos"
+    private static let randomPhotoPath = "/photos/random"
     private static let accessKey = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Info", ofType: "plist")!)!["AccessKey"] as! String
         
     static func search(parameters: SearchParameters) -> URLRequest {
@@ -26,6 +27,14 @@ final class URLRequestFactory {
         let term =  URLQueryItem(name: "query", value: parameters.term)
         let key = URLQueryItem(name: "client_id", value: accessKey)
         components.queryItems = [page, term, key]
+        
+        return URLRequest(url: components.url!)
+    }
+    
+    static func random() -> URLRequest {
+        var components = URLComponents(string: baseURLString)!
+        components.path = randomPhotoPath
+        components.queryItems = [URLQueryItem(name: "client_id", value: accessKey)]
         
         return URLRequest(url: components.url!)
     }
