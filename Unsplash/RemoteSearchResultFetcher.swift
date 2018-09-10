@@ -39,7 +39,7 @@ final class RemoteSearchResultFetcher: SearchResultFetcher {
         client.execute(request) { result in
             switch result {
             case .success(let data):
-                if let searchResult = RemoteSearchResultMapper.map(data: data) {
+                if let searchResult = RemoteSearchResultFetcher.map(data: data) {
                     completion(.success(searchResult))
                 } else {
                     completion(.error(.mapping))
@@ -47,5 +47,9 @@ final class RemoteSearchResultFetcher: SearchResultFetcher {
             case .error(_): completion(.error(.httpClient))
             }
         }
+    }
+    
+    static private func map(data: Data) -> RemoteSearchResult? {
+        return try? JSONDecoder().decode(RemoteSearchResult.self, from: data) 
     }
 }

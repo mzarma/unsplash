@@ -25,7 +25,7 @@ class SinglePhotoViewControllerTest: XCTestCase {
         XCTAssertTrue(sut.collectionView.superview === sut.view)
     }
     
-    // MARK: DataSource
+    // MARK: UICollectionViewDataSource
     
     func test_numberOfItemsInSectionIsEqualToOne() {
         let sut = makeSUT()
@@ -46,7 +46,7 @@ class SinglePhotoViewControllerTest: XCTestCase {
         XCTAssertEqual(cell.text, description)
     }
 
-    // MARK: Delegate
+    // MARK: UICollectionViewDelegateFlowLayout
     
     func test_triggersPhotoSelection() {
         let image = UIImage()
