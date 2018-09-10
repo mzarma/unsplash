@@ -48,6 +48,28 @@ class SinglePhotoViewControllerTest: XCTestCase {
 
     // MARK: Delegate
     
+    func test_triggersPhotoSelection() {
+        let image = UIImage()
+        let description = "a description"
+        let photo = PresentablePhoto(image: image, description: description)
+
+        var callCount = 0
+        var expectedPhoto: PresentablePhoto?
+        
+        let sut = makeSUT(photo: photo) { photo in
+            callCount += 1
+            expectedPhoto = photo
+        }
+        let collectionView = sut.collectionView
+        
+        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+        
+        XCTAssertEqual(callCount, 1)
+        XCTAssertEqual(expectedPhoto?.image, image)
+        XCTAssertEqual(expectedPhoto?.description, description)
+    }
+
+    
     // MARK: Helpers
     
     private func makeSUT(photo: PresentablePhoto = PresentablePhoto(image: UIImage(), description: ""), photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> SinglePhotoViewController {

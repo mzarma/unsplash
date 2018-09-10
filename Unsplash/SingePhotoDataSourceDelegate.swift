@@ -33,4 +33,8 @@ class SinglePhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICol
         cell.text = photo.description
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        photoSelection(photo)
+    }
 }

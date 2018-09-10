@@ -35,6 +35,7 @@ class SinglePhotoViewController: UIViewController {
         view.addSubview(collectionView)
 
         collectionView.dataSource = dataSource
+        collectionView.delegate = delegate
         
         let nib = UINib(nibName: "PhotoCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "PhotoCell")
