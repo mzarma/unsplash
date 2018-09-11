@@ -8,14 +8,9 @@
 
 import Foundation
 
-enum RemoteSearchResultFetcherError {
+enum RemoteSearchResultFetcherError: Error {
     case httpClient
     case mapping
-}
-
-enum RemoteSearchResultFetcherResult {
-    case success(RemoteSearchResultResponse)
-    case error(RemoteSearchResultFetcherError)
 }
 
 protocol SearchResultFetcher {
@@ -26,16 +21,16 @@ protocol SearchResultFetcher {
 }
 
 final class RemoteSearchResultFetcher: SearchResultFetcher {
-    typealias Request = URLRequest
-    typealias Result = RemoteSearchResultFetcherResult
-    
+    typealias Input = URLRequest
+    typealias Output = Result<RemoteSearchResultResponse, RemoteSearchResultFetcherError>
+
     private let client: HTTPClient
     
     init(client: HTTPClient) {
         self.client = client
     }
     
-    func fetch(request: URLRequest, completion: @escaping (RemoteSearchResultFetcherResult) -> Void) {
+    func fetch(request: Input, completion: @escaping (Output) -> Void) {
         client.execute(request) { result in
             switch result {
             case .success(let data):

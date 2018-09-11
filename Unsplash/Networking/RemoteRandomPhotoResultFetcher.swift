@@ -1,5 +1,5 @@
 //
-//  RemoteRandomResultFetcher.swift
+//  RemoteRandomPhotoResultFetcher.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 11/09/2018.
@@ -8,14 +8,9 @@
 
 import Foundation
 
-enum RemoteRandomResultFetcherError {
+enum RemoteRandomResultFetcherError: Error {
     case httpClient
     case mapping
-}
-
-enum RemoteRandomResultFetcherResult {
-    case success(RemotePhotoResponse)
-    case error(RemoteRandomResultFetcherError)
 }
 
 protocol RandomResultFetcher {
@@ -25,9 +20,9 @@ protocol RandomResultFetcher {
     func fetch(request: Request, completion: @escaping (Result) -> Void)
 }
 
-final class RemoteRandomResultFetcher: RandomResultFetcher {
-    typealias Request = URLRequest
-    typealias Result = RemoteRandomResultFetcherResult
+final class RemoteRandomPhotoResultFetcher: RandomResultFetcher {
+    typealias Input = URLRequest
+    typealias Output = Result<RemotePhotoResponse, RemoteRandomResultFetcherError>
     
     private let client: HTTPClient
     
@@ -35,11 +30,11 @@ final class RemoteRandomResultFetcher: RandomResultFetcher {
         self.client = client
     }
     
-    func fetch(request: URLRequest, completion: @escaping (RemoteRandomResultFetcherResult) -> Void) {
+    func fetch(request: Input, completion: @escaping (Output) -> Void) {
         client.execute(request) { result in
             switch result {
             case .success(let data):
-                if let photo = RemoteRandomResultFetcher.map(data: data) {
+                if let photo = RemoteRandomPhotoResultFetcher.map(data: data) {
                     completion(.success(photo))
                 } else {
                     completion(.error(.mapping))

@@ -29,7 +29,7 @@ class RemotePhotoFetcherTest: XCTestCase {
     
     func test_completesWithError() {
         let sut = makeSUT(request: mockRequest())
-        var expectedResult: PhotoFetcherResult?
+        var expectedResult: SUT.Output?
         var callCount = 0
         sut.fetch(request: mockRequest()) { result in
             expectedResult = result
@@ -46,7 +46,7 @@ class RemotePhotoFetcherTest: XCTestCase {
     
     func test_completesWithCorectData() {
         let sut = makeSUT(request: mockRequest())
-        var expectedResult: PhotoFetcherResult?
+        var expectedResult: SUT.Output?
         var callCount = 0
         sut.fetch(request: mockRequest()) { result in
             expectedResult = result
@@ -66,31 +66,11 @@ class RemotePhotoFetcherTest: XCTestCase {
     
     private let client = HTTPClientStub()
 
+    private typealias SUT = RemotePhotoFetcher
+    
     private func makeSUT(request: URLRequest) -> RemotePhotoFetcher {
         let sut = RemotePhotoFetcher(client: client)
         weakSUT = sut
         return sut
-    }
-    
-    private func mockRequest() -> URLRequest {
-        return URLRequest(url: mockURL())
-    }
-    
-    private func mockURL() -> URL {
-        return URL(string: "https://a-mock.url")!
-    }
-    
-    private class HTTPClientStub: HTTPClient {
-        convenience init() {
-            self.init(URLSession.shared)
-        }
-        
-        var requests = [URLRequest]()
-        var complete: ((HTTPClientResult) -> Void)?
-        
-        override func execute(_ request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            requests.append(request)
-            complete = completion
-        }
     }
 }

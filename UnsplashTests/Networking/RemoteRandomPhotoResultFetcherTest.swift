@@ -1,5 +1,5 @@
 //
-//  RemoteRandomResultFetcherTest.swift
+//  RemoteRandomPhotoResultFetcherTest.swift
 //  UnsplashTests
 //
 //  Created by Michail Zarmakoupis on 11/09/2018.
@@ -9,8 +9,8 @@
 import XCTest
 @testable import Unsplash
 
-class RemoteRandomResultFetcherTest: XCTestCase {
-    private weak var weakSUT: RemoteRandomResultFetcher?
+class RemoteRandomPhotoResultFetcherTest: XCTestCase {
+    private weak var weakSUT: RemoteRandomPhotoResultFetcher?
     
     override func tearDown() {
         XCTAssertNil(weakSUT)
@@ -29,7 +29,7 @@ class RemoteRandomResultFetcherTest: XCTestCase {
 
     func test_completesWithHTTPClientError() {
         let sut = makeSUT(request: mockRequest())
-        var expectedResult: RemoteRandomResultFetcherResult?
+        var expectedResult: SUT.Output?
         var callCount = 0
         sut.fetch(request: mockRequest()) { result in
             expectedResult = result
@@ -46,7 +46,7 @@ class RemoteRandomResultFetcherTest: XCTestCase {
 
     func test_completesWithMappingError() {
         let sut = makeSUT(request: mockRequest())
-        var expectedResult: RemoteRandomResultFetcherResult?
+        var expectedResult: SUT.Output?
         var callCount = 0
         sut.fetch(request: mockRequest()) { result in
             expectedResult = result
@@ -63,7 +63,7 @@ class RemoteRandomResultFetcherTest: XCTestCase {
 
     func test_completesWithRemoteRandomPhoto() {
         let sut = makeSUT(request: mockRequest())
-        var expextedResult: RemoteRandomResultFetcherResult?
+        var expextedResult: SUT.Output?
         var callCount = 0
         sut.fetch(request: mockRequest()) { result in
             expextedResult = result
@@ -95,32 +95,12 @@ class RemoteRandomResultFetcherTest: XCTestCase {
         return RemotePhotoResponse(identifier: "Dwu85P9SOIk", dateCreatedString: "2016-05-03T11:00:28-04:00", width: 2448, height: 3264, colorString: "#6E633A", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)
     }
     
-    private func makeSUT(request: URLRequest) -> RemoteRandomResultFetcher {
-        let sut = RemoteRandomResultFetcher(client: client)
+    private typealias SUT = RemoteRandomPhotoResultFetcher
+    
+    private func makeSUT(request: URLRequest) -> RemoteRandomPhotoResultFetcher {
+        let sut = RemoteRandomPhotoResultFetcher(client: client)
         weakSUT = sut
         return sut
-    }
-    
-    private func mockRequest() -> URLRequest {
-        return URLRequest(url: mockURL())
-    }
-    
-    private func mockURL() -> URL {
-        return URL(string: "https://a-mock.url")!
-    }
-    
-    private class HTTPClientStub: HTTPClient {
-        convenience init() {
-            self.init(URLSession.shared)
-        }
-        
-        var requests = [URLRequest]()
-        var complete: ((HTTPClientResult) -> Void)?
-        
-        override func execute(_ request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            requests.append(request)
-            complete = completion
-        }
     }
     
     private let validJSON: [String: Any] =

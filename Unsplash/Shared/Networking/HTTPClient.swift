@@ -8,25 +8,23 @@
 
 import Foundation
 
-enum HTTPClientError {
+enum HTTPClientError: Error {
     case badRequest
     case server
     case unknown
 }
 
-enum HTTPClientResult {
-    case success(Data)
-    case error(HTTPClientError)
-}
-
 class HTTPClient {
+    typealias Input = URLRequest
+    typealias Output = Result<Data, HTTPClientError>
+    
     private let session: URLSession
     
     init(_ session: URLSession) {
         self.session = session
     }
     
-    func execute(_ request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
+    func execute(_ request: Input, completion: @escaping (Output) -> Void) {
         session.dataTask(with: request) { data, response, error in
             if let response = response as? HTTPURLResponse {
                 if let data = data, response.statusCode > 199, response.statusCode < 300 {

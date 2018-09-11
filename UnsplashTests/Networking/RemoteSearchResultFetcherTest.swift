@@ -29,7 +29,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
     
     func test_completesWithHTTPClientError() {
         let sut = makeSUT(request: mockRequest())
-        var expectedResult: RemoteSearchResultFetcherResult?
+        var expectedResult: SUT.Output?
         var callCount = 0
         sut.fetch(request: mockRequest()) { result in
             expectedResult = result
@@ -46,7 +46,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
     
     func test_completesWithMappingError() {
         let sut = makeSUT(request: mockRequest())
-        var expectedResult: RemoteSearchResultFetcherResult?
+        var expectedResult: SUT.Output?
         var callCount = 0
         sut.fetch(request: mockRequest()) { result in
             expectedResult = result
@@ -63,7 +63,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
     
     func test_completesWithSearchResult() {
         let sut = makeSUT(request: mockRequest())
-        var expectedResult: RemoteSearchResultFetcherResult?
+        var expectedResult: SUT.Output?
         var callCount = 0
         sut.fetch(request: mockRequest()) { result in
             expectedResult = result
@@ -97,34 +97,14 @@ class RemoteSearchResultFetcherTest: XCTestCase {
         return RemoteSearchResultResponse(totalPhotos: 133, totalPages: 7, photos: photos)
     }
     
+    private typealias SUT = RemoteSearchResultFetcher
+    
     private func makeSUT(request: URLRequest) -> RemoteSearchResultFetcher {
         let sut = RemoteSearchResultFetcher(client: client)
         weakSUT = sut
         return sut
     }
-    
-    private func mockRequest() -> URLRequest {
-        return URLRequest(url: mockURL())
-    }
-    
-    private func mockURL() -> URL {
-        return URL(string: "https://a-mock.url")!
-    }
-    
-    private class HTTPClientStub: HTTPClient {
-        convenience init() {
-            self.init(URLSession.shared)
-        }
         
-        var requests = [URLRequest]()
-        var complete: ((HTTPClientResult) -> Void)?
-        
-        override func execute(_ request: URLRequest, completion: @escaping (HTTPClientResult) -> Void) {
-            requests.append(request)
-            complete = completion
-        }
-    }
-    
     private let validJSON: [String: Any] =
         [
             "total": 133,

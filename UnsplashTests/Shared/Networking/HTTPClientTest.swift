@@ -56,7 +56,7 @@ class HTTPClientTest: XCTestCase {
     
     func test_completesWithUnknownErrorWhenResponseIsNil() {
         let sut = makeSUT()
-        var expectedResult: HTTPClientResult?
+        var expectedResult: Result<Data, HTTPClientError>?
         var callCount = 0
         sut.execute(mockRequest()) { result in
             expectedResult = result
@@ -75,7 +75,7 @@ class HTTPClientTest: XCTestCase {
     
     func test_completesWithSuccess() {
         let sut = makeSUT()
-        var expectedResult: HTTPClientResult?
+        var expectedResult: Result<Data, HTTPClientError>?
         var callCount = 0
         sut.execute(mockRequest()) { result in
             expectedResult = result
@@ -133,7 +133,7 @@ class HTTPClientTest: XCTestCase {
     
     private func assert(expectedError: HTTPClientError, for codes: [Int]) {
         let sut = makeSUT()
-        var expectedResult: HTTPClientResult?
+        var expectedResult: Result<Data, HTTPClientError>?
         var callCount = 0
         sut.execute(mockRequest()) { result in
             expectedResult = result
