@@ -88,11 +88,11 @@ class RemoteRandomResultFetcherTest: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: validJSON)
     }
     
-    private func expectedPhoto() -> RemoteRandomPhoto {
-        let creator = RemoteRandomPhoto.Creator(identifier: "QPxL2MGqfrw", username: "exampleuser", name: "Joe Example", portfolioURLString: "https://example.com/")
-        let imageURLs = RemoteRandomPhoto.ImageURLs(regular: "regular image url", small: "small image url", thumbnail: "thumbnail image url")
-        let imageLinks = RemoteRandomPhoto.ImageLinks(download: "download link")
-        return RemoteRandomPhoto(identifier: "Dwu85P9SOIk", dateCreatedString: "2016-05-03T11:00:28-04:00", width: 2448, height: 3264, colorString: "#6E633A", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)
+    private func expectedPhoto() -> Photo {
+        let creator = Photo.Creator(identifier: "QPxL2MGqfrw", username: "exampleuser", name: "Joe Example", portfolioURLString: "https://example.com/", imageURLs: nil)
+        let imageURLs = Photo.ImageURLs(regular: "regular image url", small: "small image url", thumbnail: "thumbnail image url")
+        let imageLinks = Photo.ImageLinks(download: "download link")
+        return Photo(identifier: "Dwu85P9SOIk", dateCreatedString: "2016-05-03T11:00:28-04:00", width: 2448, height: 3264, colorString: "#6E633A", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)
     }
     
     private func makeSUT(request: URLRequest) -> RemoteRandomResultFetcher {

@@ -36,7 +36,7 @@ struct Photo: Equatable, Codable {
         let username: String
         let name: String
         let portfolioURLString: String?
-        let imageURLs: ImageURLs
+        let imageURLs: ImageURLs?
         
         enum CodingKeys: String, CodingKey {
             case identifier = "id"
