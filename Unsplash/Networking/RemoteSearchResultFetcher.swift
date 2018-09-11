@@ -14,7 +14,7 @@ enum RemoteSearchResultFetcherError {
 }
 
 enum RemoteSearchResultFetcherResult {
-    case success(RemoteSearchResult)
+    case success(RemoteSearchResultResponse)
     case error(RemoteSearchResultFetcherError)
 }
 
@@ -49,7 +49,7 @@ final class RemoteSearchResultFetcher: SearchResultFetcher {
         }
     }
     
-    static private func map(data: Data) -> RemoteSearchResult? {
-        return try? JSONDecoder().decode(RemoteSearchResult.self, from: data) 
+    static private func map(data: Data) -> RemoteSearchResultResponse? {
+        return try? JSONDecoder().decode(RemoteSearchResultResponse.self, from: data) 
     }
 }

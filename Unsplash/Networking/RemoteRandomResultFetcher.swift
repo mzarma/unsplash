@@ -14,7 +14,7 @@ enum RemoteRandomResultFetcherError {
 }
 
 enum RemoteRandomResultFetcherResult {
-    case success(Photo)
+    case success(RemotePhotoResponse)
     case error(RemoteRandomResultFetcherError)
 }
 
@@ -49,7 +49,7 @@ final class RemoteRandomResultFetcher: RandomResultFetcher {
         }
     }
     
-    static private func map(data: Data) -> Photo? {
-        return try? JSONDecoder().decode(Photo.self, from: data)
+    static private func map(data: Data) -> RemotePhotoResponse? {
+        return try? JSONDecoder().decode(RemotePhotoResponse.self, from: data)
     }
 }

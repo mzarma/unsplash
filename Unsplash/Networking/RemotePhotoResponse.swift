@@ -1,5 +1,5 @@
 //
-//  Photo.swift
+//  RemotePhotoResponse.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 05/09/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Photo: Equatable, Codable {
+struct RemotePhotoResponse: Equatable, Codable {
     let identifier: String
     let dateCreatedString: String
     let width: Int

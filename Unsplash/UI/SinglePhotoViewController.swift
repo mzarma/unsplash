@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SinglePhotoViewController: UIViewController {
+final class SinglePhotoViewController: UIViewController {
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
