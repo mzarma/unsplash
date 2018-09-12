@@ -9,17 +9,19 @@
 import UIKit
 
 struct PresentablePhoto {
-    let image: UIImage
     let description: String
 }
 
-class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+final class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    private let photo: PresentablePhoto
+    var photo: PresentablePhoto?
+    var image: UIImage?
+    
+    private let noPhotoText: String
     private let photoSelection: (PresentablePhoto) -> Void
     
-    init(photo: PresentablePhoto, photoSelection: @escaping (PresentablePhoto) -> Void) {
-        self.photo = photo
+    init(noPhotoText: String, photoSelection: @escaping (PresentablePhoto) -> Void) {
+        self.noPhotoText = noPhotoText
         self.photoSelection = photoSelection
     }
     
@@ -28,13 +30,28 @@ class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
-        cell.photoImage = photo.image
-        cell.text = photo.description
-        return cell
+        if let photo = photo, let image = image {
+            return configuredPhotoCell(collectionView, at: indexPath, image: image, description: photo.description)
+        } else {
+            return configuredNoPhotoCell(collectionView, at: indexPath)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let photo = photo, image != nil else { return }
         photoSelection(photo)
+    }
+    
+    private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, image: UIImage, description: String) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        cell.photoImage = image
+        cell.text = description
+        return cell
+    }
+    
+    private func configuredNoPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoPhotoCell", for: indexPath) as! NoPhotoCell
+        cell.text = noPhotoText
+        return cell
     }
 }

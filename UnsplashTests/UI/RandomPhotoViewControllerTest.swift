@@ -32,12 +32,34 @@ class RandomPhotoViewControllerTest: XCTestCase {
         let collectionView = sut.collectionView
         XCTAssertEqual(collectionView.dataSource!.collectionView(collectionView, numberOfItemsInSection: 0), 1)
     }
+    
+    func test_showsNoPhotoCell_whenNoPresentablePhoto() {
+        let image = UIImage()
+        let noPhotoText = "No Photos"
+        let sut = makeSUT(with: nil, image: image, noPhotoText: noPhotoText)
+        let collectionView = sut.collectionView
+        let indexPath = IndexPath(item: 0, section: 0)
+        let cell = collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath) as! NoPhotoCell
+        
+        XCTAssertEqual(cell.text, noPhotoText)
+    }
+    
+    func test_showsNoPhotoCell_whenNoImage() {
+        let photo = PresentablePhoto(description: description)
+        let noPhotoText = "No Photos"
+        let sut = makeSUT(with: photo, image: nil, noPhotoText: noPhotoText)
+        let collectionView = sut.collectionView
+        let indexPath = IndexPath(item: 0, section: 0)
+        let cell = collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath) as! NoPhotoCell
+        
+        XCTAssertEqual(cell.text, noPhotoText)
+    }
 
-    func test_cellForItemAtIndexpath() {
+    func test_photoCellForItemAtIndexpath() {
         let image = UIImage()
         let description = "a description"
-        let photo = PresentablePhoto(image: image, description: description)
-        let sut = makeSUT(photo: photo)
+        let photo = PresentablePhoto(description: description)
+        let sut = makeSUT(with: photo, image: image)
         let collectionView = sut.collectionView
         let indexPath = IndexPath(item: 0, section: 0)
         let cell = collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath) as! PhotoCell
@@ -48,15 +70,43 @@ class RandomPhotoViewControllerTest: XCTestCase {
 
     // MARK: UICollectionViewDelegateFlowLayout
     
-    func test_triggersPhotoSelection() {
+    func test_doesNotTriggerPhotoSelection_whenNoPresentablePhoto() {
         let image = UIImage()
+        var callCount = 0
+        
+        let sut = makeSUT(with: nil, image: image) { photo in
+            callCount += 1
+        }
+        
+        let collectionView = sut.collectionView
+        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+        
+        XCTAssertEqual(callCount, 0)
+    }
+    
+    func test_doesNotTriggerPhotoSelection_whenNoImage() {
+        let photo = PresentablePhoto(description: description)
+        var callCount = 0
+        
+        let sut = makeSUT(with: photo, image: nil) { photo in
+            callCount += 1
+        }
+        
+        let collectionView = sut.collectionView
+        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+        
+        XCTAssertEqual(callCount, 0)
+    }
+    
+    func test_triggersPhotoSelection() {
         let description = "a description"
-        let photo = PresentablePhoto(image: image, description: description)
+        let photo = PresentablePhoto(description: description)
+        let image = UIImage()
 
         var callCount = 0
         var expectedPhoto: PresentablePhoto?
         
-        let sut = makeSUT(photo: photo) { photo in
+        let sut = makeSUT(with: photo, image: image) { photo in
             callCount += 1
             expectedPhoto = photo
         }
@@ -65,18 +115,20 @@ class RandomPhotoViewControllerTest: XCTestCase {
         collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
         
         XCTAssertEqual(callCount, 1)
-        XCTAssertEqual(expectedPhoto?.image, image)
         XCTAssertEqual(expectedPhoto?.description, description)
     }
 
     
     // MARK: Helpers
-    
-    private func makeSUT(photo: PresentablePhoto = PresentablePhoto(image: UIImage(), description: ""), photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> RandomPhotoViewController {
+        
+    private func makeSUT(with photo: PresentablePhoto? = nil, image: UIImage? = nil, noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> RandomPhotoViewController {
         let dataSourceDelegate = RandomPhotoDataSourceDelegate(
-            photo: photo,
+            noPhotoText: noPhotoText,
             photoSelection: photoSelection
         )
+        
+        dataSourceDelegate.photo = photo
+        dataSourceDelegate.image = image
         
         let sut = RandomPhotoViewController(
             dataSource: dataSourceDelegate,

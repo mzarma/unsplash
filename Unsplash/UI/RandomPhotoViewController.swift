@@ -37,8 +37,10 @@ final class RandomPhotoViewController: UIViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         
-        let nib = UINib(nibName: "PhotoCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "PhotoCell")
+        let photoCellNib = UINib(nibName: "PhotoCell", bundle: nil)
+        collectionView.register(photoCellNib, forCellWithReuseIdentifier: "PhotoCell")
+        let noPhotoCellNib = UINib(nibName: "NoPhotoCell", bundle: nil)
+        collectionView.register(noPhotoCellNib, forCellWithReuseIdentifier: "NoPhotoCell")
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
