@@ -99,7 +99,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
         sut.selectItem()
 
         XCTAssertEqual(callCount, 1)
-        XCTAssertEqual(expectedPhoto?.description, "a description")
+        XCTAssertEqual(expectedPhoto, photo)
     }
     
     // MARK: Helpers
