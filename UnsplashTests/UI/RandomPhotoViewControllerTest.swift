@@ -28,100 +28,83 @@ class RandomPhotoViewControllerTest: XCTestCase {
     // MARK: UICollectionViewDataSource
     
     func test_numberOfItemsInSectionIsEqualToOne() {
-        let sut = makeSUT()
-        let collectionView = sut.collectionView
-        XCTAssertEqual(collectionView.dataSource!.collectionView(collectionView, numberOfItemsInSection: 0), 1)
+        XCTAssertEqual(makeSUT().numberOfItems(), 1)
     }
     
     func test_showsNoPhotoCell_whenNoPresentablePhoto() {
-        let image = UIImage()
-        let noPhotoText = "No Photos"
-        let sut = makeSUT(with: nil, image: image, noPhotoText: noPhotoText)
-        let collectionView = sut.collectionView
-        let indexPath = IndexPath(item: 0, section: 0)
-        let cell = collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath) as! NoPhotoCell
+        let sut = makeSUT(photo: nil, image: UIImage(), noPhotoText: "No Photos")
         
-        XCTAssertEqual(cell.text, noPhotoText)
+        let cell = sut.noPhotoCell()
+        
+        XCTAssertEqual(cell.text, "No Photos")
     }
     
     func test_showsNoPhotoCell_whenNoImage() {
-        let photo = PresentablePhoto(description: description)
-        let noPhotoText = "No Photos"
-        let sut = makeSUT(with: photo, image: nil, noPhotoText: noPhotoText)
-        let collectionView = sut.collectionView
-        let indexPath = IndexPath(item: 0, section: 0)
-        let cell = collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath) as! NoPhotoCell
+        let photo = PresentablePhoto(description: "")
+        let sut = makeSUT(photo: photo, image: nil, noPhotoText: "No Photos")
         
-        XCTAssertEqual(cell.text, noPhotoText)
+        let cell = sut.noPhotoCell()
+        
+        XCTAssertEqual(cell.text, "No Photos")
     }
 
     func test_photoCellForItemAtIndexpath() {
         let image = UIImage()
-        let description = "a description"
-        let photo = PresentablePhoto(description: description)
-        let sut = makeSUT(with: photo, image: image)
-        let collectionView = sut.collectionView
-        let indexPath = IndexPath(item: 0, section: 0)
-        let cell = collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath) as! PhotoCell
+        let photo = PresentablePhoto(description: "a description")
+        let sut = makeSUT(photo: photo, image: image)
+
+        let cell = sut.photoCell()
         
         XCTAssertEqual(cell.photoImage, image)
-        XCTAssertEqual(cell.text, description)
+        XCTAssertEqual(cell.text, "a description")
     }
 
     // MARK: UICollectionViewDelegateFlowLayout
     
     func test_doesNotTriggerPhotoSelection_whenNoPresentablePhoto() {
-        let image = UIImage()
         var callCount = 0
+        let sut = makeSUT(photo: nil, image: UIImage()) { _ in callCount += 1 }
         
-        let sut = makeSUT(with: nil, image: image) { photo in
-            callCount += 1
-        }
+        XCTAssertEqual(callCount, 0)
         
-        let collectionView = sut.collectionView
-        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+        sut.selectItem()
         
         XCTAssertEqual(callCount, 0)
     }
     
     func test_doesNotTriggerPhotoSelection_whenNoImage() {
-        let photo = PresentablePhoto(description: description)
         var callCount = 0
+        let photo = PresentablePhoto(description: description)
+        let sut = makeSUT(photo: photo, image: nil) { _ in callCount += 1 }
         
-        let sut = makeSUT(with: photo, image: nil) { photo in
-            callCount += 1
-        }
+        XCTAssertEqual(callCount, 0)
         
-        let collectionView = sut.collectionView
-        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
-        
+        sut.selectItem()
+
         XCTAssertEqual(callCount, 0)
     }
     
     func test_triggersPhotoSelection() {
-        let description = "a description"
-        let photo = PresentablePhoto(description: description)
-        let image = UIImage()
-
         var callCount = 0
         var expectedPhoto: PresentablePhoto?
+        let photo = PresentablePhoto(description: "a description")
         
-        let sut = makeSUT(with: photo, image: image) { photo in
+        let sut = makeSUT(photo: photo, image: UIImage()) { photo in
             callCount += 1
             expectedPhoto = photo
         }
-        let collectionView = sut.collectionView
         
-        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
-        
-        XCTAssertEqual(callCount, 1)
-        XCTAssertEqual(expectedPhoto?.description, description)
-    }
+        XCTAssertEqual(callCount, 0)
 
+        sut.selectItem()
+
+        XCTAssertEqual(callCount, 1)
+        XCTAssertEqual(expectedPhoto?.description, "a description")
+    }
     
     // MARK: Helpers
         
-    private func makeSUT(with photo: PresentablePhoto? = nil, image: UIImage? = nil, noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> RandomPhotoViewController {
+    private func makeSUT(photo: PresentablePhoto? = nil, image: UIImage? = nil, noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> RandomPhotoViewController {
         let dataSourceDelegate = RandomPhotoDataSourceDelegate(
             noPhotoText: noPhotoText,
             photoSelection: photoSelection
@@ -138,5 +121,27 @@ class RandomPhotoViewControllerTest: XCTestCase {
         weakSUT = sut
         sut.loadViewIfNeeded()
         return sut
+    }
+}
+
+extension RandomPhotoViewController {
+    func numberOfItems() -> Int {
+        return collectionView.dataSource!.collectionView(collectionView, numberOfItemsInSection: 0)
+    }
+    
+    func noPhotoCell() -> NoPhotoCell {
+        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: onlyCell) as! NoPhotoCell
+    }
+    
+    func photoCell() -> PhotoCell {
+        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: onlyCell) as! PhotoCell
+    }
+    
+    func selectItem() {
+        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: onlyCell)
+    }
+    
+    var onlyCell: IndexPath {
+        return IndexPath(item: 0, section: 0)
     }
 }
