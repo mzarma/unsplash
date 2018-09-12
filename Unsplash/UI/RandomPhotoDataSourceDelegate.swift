@@ -1,5 +1,5 @@
 //
-//  SingePhotoDataSourceDelegate.swift
+//  RandomPhotoDataSourceDelegate.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 07/09/2018.
@@ -13,7 +13,7 @@ struct PresentablePhoto {
     let description: String
 }
 
-class SinglePhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     private let photo: PresentablePhoto
     private let photoSelection: (PresentablePhoto) -> Void

@@ -1,5 +1,5 @@
 //
-//  SinglePhotoViewController.swift
+//  RandomPhotoViewController.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 07/09/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SinglePhotoViewController: UIViewController {
+final class RandomPhotoViewController: UIViewController {
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

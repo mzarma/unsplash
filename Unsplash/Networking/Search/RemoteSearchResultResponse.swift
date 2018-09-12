@@ -11,7 +11,7 @@ import Foundation
 struct RemoteSearchResultResponse: Equatable, Codable {
     let totalPhotos: Int
     let totalPages: Int
-    let photos: [RemotePhotoResponse]
+    let photos: [RemoteSearchResultPhotoResponse]
     
     enum CodingKeys: String, CodingKey {
         case totalPhotos = "total"

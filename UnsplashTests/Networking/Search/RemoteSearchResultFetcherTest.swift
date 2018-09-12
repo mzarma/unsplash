@@ -89,11 +89,11 @@ class RemoteSearchResultFetcherTest: XCTestCase {
     }
     
     private func expectedSearchResult() -> RemoteSearchResultResponse {
-        let profileImageURLs = RemotePhotoResponse.Creator.ImageURLs(smallProfileImageURLString: "small profile image url", mediumProfileImageURLString: "medium profile image url", largeProfileImageURLString: "large profile image url")
-        let creator = RemotePhotoResponse.Creator(identifier: "Ul0QVz12Goo", username: "ugmonk", name: "Jeff Sheldon", portfolioURLString: "portfolio url", imageURLs: profileImageURLs)
-        let imageURLs = RemotePhotoResponse.ImageURLs(regular: "regular image url", small: "small image url", thumbnail: "thumbnail image url")
-        let imageLinks = RemotePhotoResponse.ImageLinks(download: "download link")
-        let photos = [RemotePhotoResponse(identifier: "eOLpJytrbsQ", dateCreatedString: "2014-11-18T14:35:36-05:00", width: 4000, height: 3000, colorString: "#A7A2A1", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)]
+        let profileImageURLs = RemoteSearchResultPhotoResponse.Creator.ImageURLs(smallProfileImageURLString: "small profile image url", mediumProfileImageURLString: "medium profile image url", largeProfileImageURLString: "large profile image url")
+        let creator = RemoteSearchResultPhotoResponse.Creator(identifier: "Ul0QVz12Goo", username: "ugmonk", name: "Jeff Sheldon", portfolioURLString: "portfolio url", imageURLs: profileImageURLs)
+        let imageURLs = RemoteSearchResultPhotoResponse.ImageURLs(regular: "regular image url", small: "small image url", thumbnail: "thumbnail image url")
+        let imageLinks = RemoteSearchResultPhotoResponse.ImageLinks(download: "download link")
+        let photos = [RemoteSearchResultPhotoResponse(identifier: "eOLpJytrbsQ", dateCreatedString: "2014-11-18T14:35:36-05:00", width: 4000, height: 3000, colorString: "#A7A2A1", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)]
         return RemoteSearchResultResponse(totalPhotos: 133, totalPages: 7, photos: photos)
     }
     

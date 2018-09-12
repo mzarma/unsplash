@@ -1,5 +1,5 @@
 //
-//  SinglePhotoViewControllerTest.swift
+//  RandomPhotoViewControllerTest.swift
 //  UnsplashTests
 //
 //  Created by Michail Zarmakoupis on 07/09/2018.
@@ -9,8 +9,8 @@
 import XCTest
 @testable import Unsplash
 
-class SinglePhotoViewControllerTest: XCTestCase {
-    private weak var weakSUT: SinglePhotoViewController?
+class RandomPhotoViewControllerTest: XCTestCase {
+    private weak var weakSUT: RandomPhotoViewController?
     
     override func tearDown() {
         XCTAssertNil(weakSUT)
@@ -72,13 +72,13 @@ class SinglePhotoViewControllerTest: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(photo: PresentablePhoto = PresentablePhoto(image: UIImage(), description: ""), photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> SinglePhotoViewController {
-        let dataSourceDelegate = SinglePhotoDataSourceDelegate(
+    private func makeSUT(photo: PresentablePhoto = PresentablePhoto(image: UIImage(), description: ""), photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> RandomPhotoViewController {
+        let dataSourceDelegate = RandomPhotoDataSourceDelegate(
             photo: photo,
             photoSelection: photoSelection
         )
         
-        let sut = SinglePhotoViewController(
+        let sut = RandomPhotoViewController(
             dataSource: dataSourceDelegate,
             delegate: dataSourceDelegate
         )
