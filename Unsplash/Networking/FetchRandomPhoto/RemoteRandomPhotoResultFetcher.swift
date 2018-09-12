@@ -13,14 +13,14 @@ enum RemoteRandomResultFetcherError: Error {
     case mapping
 }
 
-protocol RandomResultFetcher {
+protocol RandomPhotoResultFetcher {
     associatedtype Request
     associatedtype Result
     
     func fetch(request: Request, completion: @escaping (Result) -> Void)
 }
 
-final class RemoteRandomPhotoResultFetcher: RandomResultFetcher {
+final class RemoteRandomPhotoResultFetcher: RandomPhotoResultFetcher {
     typealias Input = URLRequest
     typealias Output = Result<RemoteRandomPhotoResponse, RemoteRandomResultFetcherError>
     
