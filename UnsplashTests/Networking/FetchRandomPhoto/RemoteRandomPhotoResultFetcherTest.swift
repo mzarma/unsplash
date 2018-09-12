@@ -88,11 +88,11 @@ class RemoteRandomPhotoResultFetcherTest: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: validJSON)
     }
     
-    private func expectedPhoto() -> RemotePhotoResponse {
-        let creator = RemotePhotoResponse.Creator(identifier: "QPxL2MGqfrw", username: "exampleuser", name: "Joe Example", portfolioURLString: "https://example.com/", imageURLs: nil)
-        let imageURLs = RemotePhotoResponse.ImageURLs(regular: "regular image url", small: "small image url", thumbnail: "thumbnail image url")
-        let imageLinks = RemotePhotoResponse.ImageLinks(download: "download link")
-        return RemotePhotoResponse(identifier: "Dwu85P9SOIk", dateCreatedString: "2016-05-03T11:00:28-04:00", width: 2448, height: 3264, colorString: "#6E633A", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)
+    private func expectedPhoto() -> RemoteRandomPhotoResponse {
+        let creator = RemoteRandomPhotoResponse.Creator(identifier: "QPxL2MGqfrw", username: "exampleuser", name: "Joe Example", portfolioURLString: "https://example.com/")
+        let imageURLs = RemoteRandomPhotoResponse.ImageURLs(regular: "regular image url", small: "small image url", thumbnail: "thumbnail image url")
+        let imageLinks = RemoteRandomPhotoResponse.ImageLinks(download: "download link")
+        return RemoteRandomPhotoResponse(identifier: "Dwu85P9SOIk", dateCreatedString: "2016-05-03T11:00:28-04:00", width: 2448, height: 3264, colorString: "#6E633A", description: "A man drinking a coffee.", creator: creator, imageURLs: imageURLs, imageLinks: imageLinks)
     }
     
     private typealias SUT = RemoteRandomPhotoResultFetcher

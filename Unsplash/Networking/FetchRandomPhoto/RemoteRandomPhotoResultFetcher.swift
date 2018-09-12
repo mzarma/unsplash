@@ -22,7 +22,7 @@ protocol RandomResultFetcher {
 
 final class RemoteRandomPhotoResultFetcher: RandomResultFetcher {
     typealias Input = URLRequest
-    typealias Output = Result<RemotePhotoResponse, RemoteRandomResultFetcherError>
+    typealias Output = Result<RemoteRandomPhotoResponse, RemoteRandomResultFetcherError>
     
     private let client: HTTPClient
     
@@ -44,7 +44,7 @@ final class RemoteRandomPhotoResultFetcher: RandomResultFetcher {
         }
     }
     
-    static private func map(data: Data) -> RemotePhotoResponse? {
-        return try? JSONDecoder().decode(RemotePhotoResponse.self, from: data)
+    static private func map(data: Data) -> RemoteRandomPhotoResponse? {
+        return try? JSONDecoder().decode(RemoteRandomPhotoResponse.self, from: data)
     }
 }
