@@ -123,25 +123,3 @@ class RandomPhotoViewControllerTest: XCTestCase {
         return sut
     }
 }
-
-extension RandomPhotoViewController {
-    func numberOfItems() -> Int {
-        return collectionView.dataSource!.collectionView(collectionView, numberOfItemsInSection: 0)
-    }
-    
-    func noPhotoCell() -> NoPhotoCell {
-        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: onlyCell) as! NoPhotoCell
-    }
-    
-    func photoCell() -> PhotoCell {
-        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: onlyCell) as! PhotoCell
-    }
-    
-    func selectItem() {
-        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: onlyCell)
-    }
-    
-    var onlyCell: IndexPath {
-        return IndexPath(item: 0, section: 0)
-    }
-}

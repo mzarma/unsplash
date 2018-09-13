@@ -32,9 +32,9 @@ final class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let photo = photo, let image = image {
             return configuredPhotoCell(collectionView, at: indexPath, image: image, description: photo.description)
-        } else {
-            return configuredNoPhotoCell(collectionView, at: indexPath)
         }
+        
+        return configuredNoPhotoCell(collectionView, at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
