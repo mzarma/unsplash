@@ -19,19 +19,18 @@ class RemoteRandomPhotoResultFetcherTest: XCTestCase {
     }
     
     func test_hasClientThatExecutesCorrectRequest() {
-        let request = mockRequest()
-        let sut = makeSUT(request: request)
+        let sut = makeSUT()
 
-        sut.fetch(request: request) { _ in }
+        sut.fetch { _ in }
 
-        XCTAssertEqual(client.requests, [request])
+        XCTAssertEqual(client.requests, [URLRequestFactory.random()])
     }
 
     func test_completesWithHTTPClientError() {
-        let sut = makeSUT(request: mockRequest())
+        let sut = makeSUT()
         var expectedResult: SUT.Output?
         var callCount = 0
-        sut.fetch(request: mockRequest()) { result in
+        sut.fetch { result in
             expectedResult = result
             callCount += 1
         }
@@ -45,10 +44,10 @@ class RemoteRandomPhotoResultFetcherTest: XCTestCase {
     }
 
     func test_completesWithMappingError() {
-        let sut = makeSUT(request: mockRequest())
+        let sut = makeSUT()
         var expectedResult: SUT.Output?
         var callCount = 0
-        sut.fetch(request: mockRequest()) { result in
+        sut.fetch { result in
             expectedResult = result
             callCount += 1
         }
@@ -62,10 +61,10 @@ class RemoteRandomPhotoResultFetcherTest: XCTestCase {
     }
 
     func test_completesWithRemoteRandomPhoto() {
-        let sut = makeSUT(request: mockRequest())
+        let sut = makeSUT()
         var expextedResult: SUT.Output?
         var callCount = 0
-        sut.fetch(request: mockRequest()) { result in
+        sut.fetch { result in
             expextedResult = result
             callCount += 1
         }
@@ -97,7 +96,7 @@ class RemoteRandomPhotoResultFetcherTest: XCTestCase {
     
     private typealias SUT = RemoteRandomPhotoResultFetcher
     
-    private func makeSUT(request: URLRequest) -> RemoteRandomPhotoResultFetcher {
+    private func makeSUT() -> RemoteRandomPhotoResultFetcher {
         let sut = RemoteRandomPhotoResultFetcher(client: client)
         weakSUT = sut
         return sut

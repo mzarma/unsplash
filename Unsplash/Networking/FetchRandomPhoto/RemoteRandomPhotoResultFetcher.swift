@@ -14,14 +14,12 @@ enum RemoteRandomResultFetcherError: Error {
 }
 
 protocol RandomPhotoResultFetcher {
-    associatedtype Request
     associatedtype Result
     
-    func fetch(request: Request, completion: @escaping (Result) -> Void)
+    func fetch(_ completion: @escaping (Result) -> Void)
 }
 
 final class RemoteRandomPhotoResultFetcher: RandomPhotoResultFetcher {
-    typealias Input = URLRequest
     typealias Output = Result<RemoteRandomPhotoResponse, RemoteRandomResultFetcherError>
     
     private let client: HTTPClient
@@ -30,8 +28,8 @@ final class RemoteRandomPhotoResultFetcher: RandomPhotoResultFetcher {
         self.client = client
     }
     
-    func fetch(request: Input, completion: @escaping (Output) -> Void) {
-        client.execute(request) { result in
+    func fetch(_ completion: @escaping (Output) -> Void) {
+        client.execute(URLRequestFactory.random()) { result in
             switch result {
             case .success(let data):
                 if let photo = RemoteRandomPhotoResultFetcher.map(data: data) {
