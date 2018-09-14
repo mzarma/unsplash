@@ -36,6 +36,7 @@
 		05E75B67214BB34600E37F39 /* RemoteSearchResultFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5C214BB34600E37F39 /* RemoteSearchResultFetcherTest.swift */; };
 		05E75B68214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5E214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift */; };
 		05E75B69214BB34600E37F39 /* URLRequestFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5F214BB34600E37F39 /* URLRequestFactoryTest.swift */; };
+		7876D4C54B07C4DAE37392FE /* Pods_Unsplash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EBECAC48307CBC204BF9A4 /* Pods_Unsplash.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,9 @@
 		05E75B5C214BB34600E37F39 /* RemoteSearchResultFetcherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteSearchResultFetcherTest.swift; sourceTree = "<group>"; };
 		05E75B5E214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRandomPhotoResultFetcherTest.swift; sourceTree = "<group>"; };
 		05E75B5F214BB34600E37F39 /* URLRequestFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestFactoryTest.swift; sourceTree = "<group>"; };
+		6ED25A25AEB2FA1513CC4BAD /* Pods-Unsplash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unsplash/Pods-Unsplash.release.xcconfig"; sourceTree = "<group>"; };
+		A9EBECAC48307CBC204BF9A4 /* Pods_Unsplash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2B806E66B857BCD9A609726 /* Pods-Unsplash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unsplash/Pods-Unsplash.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7876D4C54B07C4DAE37392FE /* Pods_Unsplash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +113,8 @@
 				05198553214BB28000D9D094 /* Unsplash */,
 				05198568214BB28100D9D094 /* UnsplashTests */,
 				05198552214BB28000D9D094 /* Products */,
+				AD55AFABC1AD25B10EF7E820 /* Pods */,
+				9D396B812C5A0685AA3A542F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -309,6 +316,23 @@
 			path = FetchRandomPhoto;
 			sourceTree = "<group>";
 		};
+		9D396B812C5A0685AA3A542F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A9EBECAC48307CBC204BF9A4 /* Pods_Unsplash.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD55AFABC1AD25B10EF7E820 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F2B806E66B857BCD9A609726 /* Pods-Unsplash.debug.xcconfig */,
+				6ED25A25AEB2FA1513CC4BAD /* Pods-Unsplash.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -316,9 +340,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0519856E214BB28100D9D094 /* Build configuration list for PBXNativeTarget "Unsplash" */;
 			buildPhases = (
+				18CCB2CF0E44C7A346353462 /* [CP] Check Pods Manifest.lock */,
 				0519854D214BB28000D9D094 /* Sources */,
 				0519854E214BB28000D9D094 /* Frameworks */,
 				0519854F214BB28000D9D094 /* Resources */,
+				96249FEAA3CEB29EBB8F16A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -406,6 +432,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18CCB2CF0E44C7A346353462 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Unsplash-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96249FEAA3CEB29EBB8F16A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Unsplash/Pods-Unsplash-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unsplash/Pods-Unsplash-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0519854D214BB28000D9D094 /* Sources */ = {
@@ -585,16 +650,14 @@
 		};
 		0519856F214BB28100D9D094 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2B806E66B857BCD9A609726 /* Pods-Unsplash.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCK9FU72KZ;
 				INFOPLIST_FILE = Unsplash/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -605,16 +668,14 @@
 		};
 		05198570214BB28100D9D094 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6ED25A25AEB2FA1513CC4BAD /* Pods-Unsplash.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCK9FU72KZ;
 				INFOPLIST_FILE = Unsplash/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -630,11 +691,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCK9FU72KZ;
 				INFOPLIST_FILE = unsplashTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplashTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -651,11 +708,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCK9FU72KZ;
 				INFOPLIST_FILE = unsplashTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplashTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
