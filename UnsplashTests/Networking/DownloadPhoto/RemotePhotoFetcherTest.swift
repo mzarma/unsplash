@@ -10,7 +10,7 @@ import XCTest
 @testable import Unsplash
 
 class RemotePhotoFetcherTest: XCTestCase {
-    private weak var weakSUT: RemotePhotoFetcher?
+    private weak var weakSUT: PhotoDownloader?
     
     override func tearDown() {
         XCTAssertNil(weakSUT)
@@ -66,10 +66,10 @@ class RemotePhotoFetcherTest: XCTestCase {
     
     private let client = HTTPClientStub()
 
-    private typealias SUT = RemotePhotoFetcher
+    private typealias SUT = PhotoDownloader
     
-    private func makeSUT(request: URLRequest) -> RemotePhotoFetcher {
-        let sut = RemotePhotoFetcher(client: client)
+    private func makeSUT(request: URLRequest) -> PhotoDownloader {
+        let sut = PhotoDownloader(client: client)
         weakSUT = sut
         return sut
     }

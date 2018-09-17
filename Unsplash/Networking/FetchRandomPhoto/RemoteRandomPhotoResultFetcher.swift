@@ -8,9 +8,8 @@
 
 import Foundation
 
-enum RemoteRandomResultFetcherError: Error {
-    case httpClient
-    case mapping
+enum RandomPhotoResultFetcherError: Error {
+    case remote
 }
 
 protocol RandomPhotoResultFetcher {
@@ -20,7 +19,7 @@ protocol RandomPhotoResultFetcher {
 }
 
 final class RemoteRandomPhotoResultFetcher: RandomPhotoResultFetcher {
-    typealias Output = Result<RemoteRandomPhotoResponse, RemoteRandomResultFetcherError>
+    typealias Output = Result<RemoteRandomPhotoResponse, RandomPhotoResultFetcherError>
     
     private let client: HTTPClient
     
@@ -35,9 +34,9 @@ final class RemoteRandomPhotoResultFetcher: RandomPhotoResultFetcher {
                 if let photo = RemoteRandomPhotoResultFetcher.map(data: data) {
                     completion(.success(photo))
                 } else {
-                    completion(.error(.mapping))
+                    completion(.error(.remote))
                 }
-            case .error(_): completion(.error(.httpClient))
+            case .error(_): completion(.error(.remote))
             }
         }
     }

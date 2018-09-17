@@ -20,7 +20,7 @@ class PhoneUIFactoryTest: XCTestCase {
     func test_makeRandomPhotoView_showsNoPhotoCell_whenFetchingFails() {
         let randomView = makeRandomPhotoView()
         
-        randomPhotoFetcher.complete?(.error(.fetching))
+        randomPhotoFetcher.complete?(.error(.remote))
         
         XCTAssertEqual(randomPhotoFetcher.fetchCallCount, 1)
         XCTAssertEqual(randomView.numberOfItems(), 1)
@@ -50,7 +50,7 @@ class PhoneUIFactoryTest: XCTestCase {
         XCTAssertEqual(randomPhotoFetcher.fetchCallCount, 1)
         XCTAssertEqual(photoFetcher.requests, [URLRequest(url: URL(string: url)!)])
 
-        photoFetcher.complete?(.error(.fetching))
+        photoFetcher.complete?(.error(.remote))
 
         XCTAssertEqual(randomView.numberOfItems(), 1)
         XCTAssertEqual(randomView.noPhotoCell().text, "No photo")
@@ -101,7 +101,7 @@ class PhoneUIFactoryTest: XCTestCase {
             selectedPhoto = photo
         }
         
-        randomPhotoFetcher.complete?(.error(.fetching))
+        randomPhotoFetcher.complete?(.error(.remote))
         
         XCTAssertEqual(randomPhotoFetcher.fetchCallCount, 1)
         XCTAssertEqual(randomView.numberOfItems(), 1)
@@ -185,7 +185,7 @@ class PhoneUIFactoryTest: XCTestCase {
         var fetchCallCount = 0
         var complete: ((Result) -> Void)?
         
-        func fetch(_ completion: @escaping (Result<CorePhoto, RandomPhotoFetcherResultError>) -> Void) {
+        func fetch(_ completion: @escaping (Result<CorePhoto, RandomPhotoResultFetcherError>) -> Void) {
             fetchCallCount += 1
             complete = completion
         }

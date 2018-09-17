@@ -38,7 +38,7 @@ class RemoteRandomPhotoResultFetcherTest: XCTestCase {
         client.complete?(.error(.unknown))
 
         switch expectedResult! {
-        case .error(let error): XCTAssertEqual(error, .httpClient)
+        case .error(let error): XCTAssertEqual(error, .remote)
         case .success(_): XCTFail("Should complete with error")
         }
     }
@@ -55,7 +55,7 @@ class RemoteRandomPhotoResultFetcherTest: XCTestCase {
         client.complete?(.success(invalidJSONData))
 
         switch expectedResult! {
-        case .error(let error): XCTAssertEqual(error, .mapping)
+        case .error(let error): XCTAssertEqual(error, .remote)
         case .success(_): XCTFail("Should complete with error")
         }
     }
