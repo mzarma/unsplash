@@ -37,6 +37,8 @@ final class RandomPhotoViewController: UIViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         
+        collectionView.backgroundColor = .white
+        
         let photoCellNib = UINib(nibName: "PhotoCell", bundle: nil)
         collectionView.register(photoCellNib, forCellWithReuseIdentifier: "PhotoCell")
         let noPhotoCellNib = UINib(nibName: "NoPhotoCell", bundle: nil)

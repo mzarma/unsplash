@@ -42,6 +42,10 @@ final class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource,
         photoSelection(photo)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+    }
+    
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, image: UIImage, description: String) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         cell.photoImage = image
