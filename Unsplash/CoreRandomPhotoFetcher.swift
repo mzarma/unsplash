@@ -21,16 +21,21 @@ final class CoreRandomPhotoFetcher<R: RandomPhotoResultFetcher>: RandomPhotoResu
         fetcher.fetch { [weak self] result in
             guard let sSelf = self else { return }
             switch result {
-            case .success(let response): completion(.success(sSelf.map(response)))
+            case .success(let response):
+                guard let mappedResponse = sSelf.map(response) else {
+                    return completion(.error(.mapping))
+                }
+                completion(.success(mappedResponse))
             case .error(let error): completion(.error(error))
             }
         }
     }
     
-    func map(_ response: RemoteRandomPhotoResponse) -> CoreRandomPhoto {
+    func map(_ response: RemoteRandomPhotoResponse) -> CoreRandomPhoto? {
+        guard let dateCreatedString = ISO8601DateFormatter().date(from: response.dateCreatedString) else { return nil }
         return CoreRandomPhoto(
             identifier: response.identifier,
-            dateCreated: ISO8601DateFormatter().date(from: response.dateCreatedString)!,
+            dateCreated: dateCreatedString,
             width: response.width,
             height: response.height,
             colorString: response.colorString,

@@ -35,6 +35,23 @@ class CoreRandomPhotoFetcherTest: XCTestCase {
         }
     }
     
+    func test_completesWithMappingError_whenInvalidDateString() {
+        let sut = makeSUT()
+        var expectedResult: SUT.Output?
+        
+        sut.fetch { result in
+            expectedResult = result
+        }
+        
+        randomPhotoFetcher.complete?(.success(randomPhotoResponse(dateCreatedString: "invalid date string")))
+        
+        XCTAssertEqual(randomPhotoFetcher.fetchCallCount, 1)
+        switch expectedResult! {
+        case .success(_): XCTFail("Should fail with mapping error")
+        case .error(let error): XCTAssertEqual(error, .mapping)
+        }
+    }
+    
     func test_completesWithCoreRandomPhoto_whenRandomPhotoResultFetcherCompletesWithSuccess() {
         let sut = makeSUT()
         var expectedResult: SUT.Output?
@@ -43,7 +60,7 @@ class CoreRandomPhotoFetcherTest: XCTestCase {
             expectedResult = result
         }
         
-        randomPhotoFetcher.complete?(.success(randomPhotoResponse()))
+        randomPhotoFetcher.complete?(.success(randomPhotoResponse(dateCreatedString: "2016-05-03T11:00:28-04:00")))
         
         XCTAssertEqual(randomPhotoFetcher.fetchCallCount, 1)
         switch expectedResult! {
@@ -63,7 +80,7 @@ class CoreRandomPhotoFetcherTest: XCTestCase {
         return sut
     }
     
-    private func randomPhotoResponse() -> RemoteRandomPhotoResponse {
+    private func randomPhotoResponse(dateCreatedString: String) -> RemoteRandomPhotoResponse {
         let creator = RemoteRandomPhotoResponse.Creator(
             identifier: "creator identifier",
             username: "creator username",
@@ -79,7 +96,7 @@ class CoreRandomPhotoFetcherTest: XCTestCase {
         
         return RemoteRandomPhotoResponse(
             identifier: "identifier",
-            dateCreatedString: "2016-05-03T11:00:28-04:00",
+            dateCreatedString: dateCreatedString,
             width: 120,
             height: 150,
             colorString: "color",

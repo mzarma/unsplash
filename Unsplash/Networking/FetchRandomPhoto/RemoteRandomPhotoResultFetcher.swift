@@ -10,6 +10,7 @@ import Foundation
 
 enum RandomPhotoResultFetcherError: Error {
     case remote
+    case mapping
 }
 
 protocol RandomPhotoResultFetcher {
