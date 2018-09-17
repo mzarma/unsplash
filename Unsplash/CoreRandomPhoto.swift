@@ -1,14 +1,14 @@
 //
-//  GeneralPhoto.swift
+//  CoreRandomPhoto.swift
 //  Unsplash
 //
-//  Created by Michail Zarmakoupis on 12/09/2018.
+//  Created by Michail Zarmakoupis on 17/09/2018.
 //  Copyright © 2018 Michail Zarmakoupis. All rights reserved.
 //
 
 import Foundation
 
-struct GeneralPhoto {
+struct CoreRandomPhoto {
     let identifier: String
     let dateCreated: Date
     let width: Int
@@ -19,9 +19,6 @@ struct GeneralPhoto {
     let creatorUsername: String
     let creatorName: String
     let creatorPortfolioURLString: String?
-    let creatorSmallProfileImageURLString: String?
-    let creatorMediumProfileImageURLString: String?
-    let creatorLargeProfileImageURLString: String?
     let regularImageURLString: String
     let smallImageURLString: String
     let thumbnailImageURLString: String

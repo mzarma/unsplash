@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		056FFF92214FA52C005F0077 /* CoreRandomPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */; };
 		05E75B38214BB31E00E37F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E75B1A214BB31D00E37F39 /* Assets.xcassets */; };
 		05E75B39214BB31E00E37F39 /* RemotePhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B1D214BB31D00E37F39 /* RemotePhotoFetcher.swift */; };
 		05E75B3A214BB31E00E37F39 /* RemoteSearchResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B1F214BB31D00E37F39 /* RemoteSearchResultResponse.swift */; };
@@ -15,7 +16,7 @@
 		05E75B3D214BB31E00E37F39 /* RemoteRandomPhotoResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B23214BB31D00E37F39 /* RemoteRandomPhotoResultFetcher.swift */; };
 		05E75B3E214BB31E00E37F39 /* RemoteRandomPhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B24214BB31D00E37F39 /* RemoteRandomPhotoResponse.swift */; };
 		05E75B3F214BB31E00E37F39 /* URLRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B25214BB31D00E37F39 /* URLRequestFactory.swift */; };
-		05E75B40214BB31E00E37F39 /* GeneralPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B26214BB31E00E37F39 /* GeneralPhoto.swift */; };
+		05E75B40214BB31E00E37F39 /* CorePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B26214BB31E00E37F39 /* CorePhoto.swift */; };
 		05E75B41214BB31E00E37F39 /* RandomPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B28214BB31E00E37F39 /* RandomPhotoViewController.swift */; };
 		05E75B42214BB31E00E37F39 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B29214BB31E00E37F39 /* PhotoCell.swift */; };
 		05E75B43214BB31E00E37F39 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E75B2A214BB31E00E37F39 /* PhotoCell.xib */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		05198551214BB28000D9D094 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05198565214BB28100D9D094 /* UnsplashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhoto.swift; sourceTree = "<group>"; };
 		05E75B1A214BB31D00E37F39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Unsplash/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		05E75B1D214BB31D00E37F39 /* RemotePhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemotePhotoFetcher.swift; sourceTree = "<group>"; };
 		05E75B1F214BB31D00E37F39 /* RemoteSearchResultResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteSearchResultResponse.swift; sourceTree = "<group>"; };
@@ -60,7 +62,7 @@
 		05E75B23214BB31D00E37F39 /* RemoteRandomPhotoResultFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRandomPhotoResultFetcher.swift; sourceTree = "<group>"; };
 		05E75B24214BB31D00E37F39 /* RemoteRandomPhotoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRandomPhotoResponse.swift; sourceTree = "<group>"; };
 		05E75B25214BB31D00E37F39 /* URLRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestFactory.swift; sourceTree = "<group>"; };
-		05E75B26214BB31E00E37F39 /* GeneralPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralPhoto.swift; path = Unsplash/GeneralPhoto.swift; sourceTree = SOURCE_ROOT; };
+		05E75B26214BB31E00E37F39 /* CorePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CorePhoto.swift; path = Unsplash/CorePhoto.swift; sourceTree = SOURCE_ROOT; };
 		05E75B28214BB31E00E37F39 /* RandomPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomPhotoViewController.swift; sourceTree = "<group>"; };
 		05E75B29214BB31E00E37F39 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		05E75B2A214BB31E00E37F39 /* PhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
@@ -132,7 +134,8 @@
 			children = (
 				05E75B37214BB31E00E37F39 /* AppDelegate.swift */,
 				05E75B1A214BB31D00E37F39 /* Assets.xcassets */,
-				05E75B26214BB31E00E37F39 /* GeneralPhoto.swift */,
+				05E75B26214BB31E00E37F39 /* CorePhoto.swift */,
+				056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */,
 				05E75B30214BB31E00E37F39 /* Info.plist */,
 				05E75B35214BB31E00E37F39 /* Main */,
 				05E75B1B214BB31D00E37F39 /* Networking */,
@@ -479,6 +482,7 @@
 			files = (
 				05E75B3E214BB31E00E37F39 /* RemoteRandomPhotoResponse.swift in Sources */,
 				05E75B3A214BB31E00E37F39 /* RemoteSearchResultResponse.swift in Sources */,
+				056FFF92214FA52C005F0077 /* CoreRandomPhoto.swift in Sources */,
 				05E75B49214BB31E00E37F39 /* HTTPClient.swift in Sources */,
 				05E75B39214BB31E00E37F39 /* RemotePhotoFetcher.swift in Sources */,
 				05E75B4A214BB31E00E37F39 /* Result.swift in Sources */,
@@ -489,7 +493,7 @@
 				05E75B42214BB31E00E37F39 /* PhotoCell.swift in Sources */,
 				05E75B4B214BB31E00E37F39 /* PhoneUIFactory.swift in Sources */,
 				05E75B46214BB31E00E37F39 /* RandomPhotoDataSourceDelegate.swift in Sources */,
-				05E75B40214BB31E00E37F39 /* GeneralPhoto.swift in Sources */,
+				05E75B40214BB31E00E37F39 /* CorePhoto.swift in Sources */,
 				05E75B3F214BB31E00E37F39 /* URLRequestFactory.swift in Sources */,
 				05E75B3B214BB31E00E37F39 /* RemoteSearchResultFetcher.swift in Sources */,
 				05E75B44214BB31E00E37F39 /* NoPhotoCell.swift in Sources */,
@@ -657,8 +661,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCK9FU72KZ;
 				INFOPLIST_FILE = Unsplash/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplash;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.Unsplash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -675,8 +682,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCK9FU72KZ;
 				INFOPLIST_FILE = Unsplash/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplash;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.Unsplash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -690,8 +700,12 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCK9FU72KZ;
-				INFOPLIST_FILE = unsplashTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				INFOPLIST_FILE = UnsplashTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplashTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -707,8 +721,12 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCK9FU72KZ;
-				INFOPLIST_FILE = unsplashTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				INFOPLIST_FILE = UnsplashTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplashTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

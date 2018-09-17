@@ -153,8 +153,8 @@ class PhoneUIFactoryTest: XCTestCase {
     
     private func makePhoto(
         description: String = "",
-        regularImageURLString: String = "") -> GeneralPhoto {
-        return GeneralPhoto(
+        regularImageURLString: String = "") -> CorePhoto {
+        return CorePhoto(
             identifier: "",
             dateCreated: Date(),
             width: 0,
@@ -185,7 +185,7 @@ class PhoneUIFactoryTest: XCTestCase {
         var fetchCallCount = 0
         var complete: ((Result) -> Void)?
         
-        func fetch(_ completion: @escaping (Result<GeneralPhoto, RandomPhotoFetcherResultError>) -> Void) {
+        func fetch(_ completion: @escaping (Result<CorePhoto, RandomPhotoFetcherResultError>) -> Void) {
             fetchCallCount += 1
             complete = completion
         }

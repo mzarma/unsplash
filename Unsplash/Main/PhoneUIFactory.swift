@@ -20,7 +20,7 @@ protocol RandomPhotoViewFactory {
     func makeRandomPhotoView(_ selected: @escaping (PresentablePhoto) -> Void) -> UIViewController
 }
 
-final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: RandomPhotoViewFactory where R.Result == Result<GeneralPhoto, RandomPhotoFetcherResultError>, P.Request == URLRequest, P.Response == Result<Data,PhotoFetcherError>  {
+final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: RandomPhotoViewFactory where R.Result == Result<CorePhoto, RandomPhotoFetcherResultError>, P.Request == URLRequest, P.Response == Result<Data,PhotoFetcherError>  {
     
     private let randomPhotoFetcher: R
     private let photoFetcher: P
