@@ -678,6 +678,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				Unsplash_AccessKey = adf9a380fed8c1f791255e7355090fed252fca50a982dd9e11c8f2e4e91b5e1b;
 			};
 			name = Debug;
 		};
@@ -698,6 +699,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				Unsplash_AccessKey = adf9a380fed8c1f791255e7355090fed252fca50a982dd9e11c8f2e4e91b5e1b;
 			};
 			name = Release;
 		};
