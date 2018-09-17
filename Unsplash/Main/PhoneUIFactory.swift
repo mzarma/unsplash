@@ -17,7 +17,7 @@ enum PhotoFetcherError: Error {
 }
 
 protocol RandomPhotoViewFactory {
-    func makeRandomPhotoView(_ selected: @escaping (PresentablePhoto) -> Void) -> UIViewController
+    func makeRandomPhotoView(_ selected: @escaping (PresentableRandomPhoto) -> Void) -> UIViewController
 }
 
 final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: RandomPhotoViewFactory where R.Result == Result<CorePhoto, RandomPhotoFetcherResultError>, P.Request == URLRequest, P.Response == Result<Data,PhotoFetcherError>  {
@@ -30,7 +30,7 @@ final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: Random
         self.photoFetcher = photoFetcher
     }
     
-    func makeRandomPhotoView(_ selected: @escaping (PresentablePhoto) -> Void) -> UIViewController {
+    func makeRandomPhotoView(_ selected: @escaping (PresentableRandomPhoto) -> Void) -> UIViewController {
         let dataSourceDelegate = RandomPhotoDataSourceDelegate(noPhotoText: "No photo") { photo in
             selected(photo)
         }
@@ -46,7 +46,7 @@ final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: Random
                     switch result {
                     case .success(let data):
                         guard let image = UIImage(data: data) else { return }
-                        dataSourceDelegate.photo = PresentablePhoto(description: photo.description)
+                        dataSourceDelegate.photo = PresentableRandomPhoto(description: photo.description)
                         dataSourceDelegate.image = image
                     case .error(_): break
                     }

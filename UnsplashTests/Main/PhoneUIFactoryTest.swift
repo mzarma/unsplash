@@ -94,7 +94,7 @@ class PhoneUIFactoryTest: XCTestCase {
     
     func test_makeRandomPhotoView_doesNotDelegateSelection_whenShowingNoPhotoCellAndUserSelectsItem() {
         var callCount = 0
-        var selectedPhoto: PresentablePhoto?
+        var selectedPhoto: PresentableRandomPhoto?
         
         let randomView = makeRandomPhotoView() { photo in
             callCount += 1
@@ -115,7 +115,7 @@ class PhoneUIFactoryTest: XCTestCase {
     
     func test_makeRandomPhotoView_delegatesSelection_whenShowingPhotoCellAndUserSelectsItem() {
         var callCount = 0
-        var selectedPhoto: PresentablePhoto?
+        var selectedPhoto: PresentableRandomPhoto?
 
         let randomView = makeRandomPhotoView() { photo in
             callCount += 1
@@ -123,7 +123,7 @@ class PhoneUIFactoryTest: XCTestCase {
         }
 
         let photo = makePhoto(description: "a description", regularImageURLString: "https://a-photo-url.com")
-        let presentablePhoto = PresentablePhoto(description: "a description")
+        let presentablePhoto = PresentableRandomPhoto(description: "a description")
 
         randomPhotoFetcher.complete?(.success(photo))
         photoFetcher.complete?(.success(UIImagePNGRepresentation(testImage())!))
@@ -144,7 +144,7 @@ class PhoneUIFactoryTest: XCTestCase {
         return PhoneUIFactory(randomPhotoFetcher, photoFetcher)
     }
     
-    private func makeRandomPhotoView(_ selected: @escaping (PresentablePhoto) -> Void = { _ in }) -> RandomPhotoViewController {
+    private func makeRandomPhotoView(_ selected: @escaping (PresentableRandomPhoto) -> Void = { _ in }) -> RandomPhotoViewController {
         let sut = makeSUT()
         let randomView = sut.makeRandomPhotoView(selected) as! RandomPhotoViewController
         randomView.loadViewIfNeeded()

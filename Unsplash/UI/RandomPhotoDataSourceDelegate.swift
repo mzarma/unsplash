@@ -8,19 +8,19 @@
 
 import UIKit
 
-struct PresentablePhoto: Equatable {
+struct PresentableRandomPhoto: Equatable {
     let description: String
 }
 
 final class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var photo: PresentablePhoto?
+    var photo: PresentableRandomPhoto?
     var image: UIImage?
     
     private let noPhotoText: String
-    private let photoSelection: (PresentablePhoto) -> Void
+    private let photoSelection: (PresentableRandomPhoto) -> Void
     
-    init(noPhotoText: String, photoSelection: @escaping (PresentablePhoto) -> Void) {
+    init(noPhotoText: String, photoSelection: @escaping (PresentableRandomPhoto) -> Void) {
         self.noPhotoText = noPhotoText
         self.photoSelection = photoSelection
     }

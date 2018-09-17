@@ -40,7 +40,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
     }
     
     func test_showsNoPhotoCell_whenNoImage() {
-        let photo = PresentablePhoto(description: "")
+        let photo = PresentableRandomPhoto(description: "")
         let sut = makeSUT(photo: photo, image: nil, noPhotoText: "No Photos")
         
         let cell = sut.noPhotoCell()
@@ -50,7 +50,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
 
     func test_photoCellForItemAtIndexpath() {
         let image = UIImage()
-        let photo = PresentablePhoto(description: "a description")
+        let photo = PresentableRandomPhoto(description: "a description")
         let sut = makeSUT(photo: photo, image: image)
 
         let cell = sut.photoCell()
@@ -74,7 +74,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
     
     func test_doesNotTriggerPhotoSelection_whenNoImage() {
         var callCount = 0
-        let photo = PresentablePhoto(description: description)
+        let photo = PresentableRandomPhoto(description: description)
         let sut = makeSUT(photo: photo, image: nil) { _ in callCount += 1 }
         
         XCTAssertEqual(callCount, 0)
@@ -86,8 +86,8 @@ class RandomPhotoViewControllerTest: XCTestCase {
     
     func test_triggersPhotoSelection() {
         var callCount = 0
-        var expectedPhoto: PresentablePhoto?
-        let photo = PresentablePhoto(description: "a description")
+        var expectedPhoto: PresentableRandomPhoto?
+        let photo = PresentableRandomPhoto(description: "a description")
         
         let sut = makeSUT(photo: photo, image: UIImage()) { photo in
             callCount += 1
@@ -104,7 +104,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
     
     // MARK: Helpers
         
-    private func makeSUT(photo: PresentablePhoto? = nil, image: UIImage? = nil, noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> RandomPhotoViewController {
+    private func makeSUT(photo: PresentableRandomPhoto? = nil, image: UIImage? = nil, noPhotoText: String = "", photoSelection: @escaping (PresentableRandomPhoto) -> Void = { _ in }) -> RandomPhotoViewController {
         let dataSourceDelegate = RandomPhotoDataSourceDelegate(
             noPhotoText: noPhotoText,
             photoSelection: photoSelection
