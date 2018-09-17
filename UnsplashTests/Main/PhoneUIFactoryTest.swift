@@ -153,8 +153,8 @@ class PhoneUIFactoryTest: XCTestCase {
     
     private func makePhoto(
         description: String = "",
-        regularImageURLString: String = "") -> CorePhoto {
-        return CorePhoto(
+        regularImageURLString: String = "") -> CoreRandomPhoto {
+        return CoreRandomPhoto(
             identifier: "",
             dateCreated: Date(),
             width: 0,
@@ -165,9 +165,6 @@ class PhoneUIFactoryTest: XCTestCase {
             creatorUsername: "",
             creatorName: "",
             creatorPortfolioURLString: nil,
-            creatorSmallProfileImageURLString: nil,
-            creatorMediumProfileImageURLString: nil,
-            creatorLargeProfileImageURLString: nil,
             regularImageURLString: regularImageURLString,
             smallImageURLString: "",
             thumbnailImageURLString: "",
@@ -185,7 +182,7 @@ class PhoneUIFactoryTest: XCTestCase {
         var fetchCallCount = 0
         var complete: ((Result) -> Void)?
         
-        func fetch(_ completion: @escaping (Result<CorePhoto, RandomPhotoResultFetcherError>) -> Void) {
+        func fetch(_ completion: @escaping (Result<CoreRandomPhoto, RandomPhotoResultFetcherError>) -> Void) {
             fetchCallCount += 1
             complete = completion
         }
