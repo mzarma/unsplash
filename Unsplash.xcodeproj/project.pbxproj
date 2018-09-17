@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		056FFF92214FA52C005F0077 /* CoreRandomPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */; };
+		056FFF94214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */; };
+		056FFF96214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */; };
 		05E75B38214BB31E00E37F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E75B1A214BB31D00E37F39 /* Assets.xcassets */; };
 		05E75B39214BB31E00E37F39 /* PhotoDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B1D214BB31D00E37F39 /* PhotoDownloader.swift */; };
 		05E75B3A214BB31E00E37F39 /* RemoteSearchResultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B1F214BB31D00E37F39 /* RemoteSearchResultResponse.swift */; };
@@ -54,6 +56,8 @@
 		05198551214BB28000D9D094 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05198565214BB28100D9D094 /* UnsplashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhoto.swift; sourceTree = "<group>"; };
+		056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhotoFetcher.swift; sourceTree = "<group>"; };
+		056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhotoFetcherTest.swift; sourceTree = "<group>"; };
 		05E75B1A214BB31D00E37F39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Unsplash/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		05E75B1D214BB31D00E37F39 /* PhotoDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDownloader.swift; sourceTree = "<group>"; };
 		05E75B1F214BB31D00E37F39 /* RemoteSearchResultResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteSearchResultResponse.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				05E75B1A214BB31D00E37F39 /* Assets.xcassets */,
 				05E75B26214BB31E00E37F39 /* CorePhoto.swift */,
 				056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */,
+				056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */,
 				05E75B30214BB31E00E37F39 /* Info.plist */,
 				05E75B35214BB31E00E37F39 /* Main */,
 				05E75B1B214BB31D00E37F39 /* Networking */,
@@ -153,6 +158,7 @@
 				05E75B58214BB34600E37F39 /* Networking */,
 				05E75B4F214BB34600E37F39 /* Shared */,
 				05E75B54214BB34600E37F39 /* UI */,
+				056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */,
 			);
 			path = UnsplashTests;
 			sourceTree = "<group>";
@@ -480,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				056FFF94214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift in Sources */,
 				05E75B3E214BB31E00E37F39 /* RemoteRandomPhotoResponse.swift in Sources */,
 				05E75B3A214BB31E00E37F39 /* RemoteSearchResultResponse.swift in Sources */,
 				056FFF92214FA52C005F0077 /* CoreRandomPhoto.swift in Sources */,
@@ -508,6 +515,7 @@
 				05E75B67214BB34600E37F39 /* RemoteSearchResultFetcherTest.swift in Sources */,
 				05E75B62214BB34600E37F39 /* HTTPClientStub.swift in Sources */,
 				05E75B68214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift in Sources */,
+				056FFF96214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift in Sources */,
 				05E75B61214BB34600E37F39 /* HTTPClientTest.swift in Sources */,
 				05E75B66214BB34600E37F39 /* RemotePhotoFetcherTest.swift in Sources */,
 				05E75B60214BB34600E37F39 /* PhoneUIFactoryTest.swift in Sources */,
