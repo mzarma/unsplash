@@ -18,11 +18,31 @@ final class CoreRandomPhotoFetcher<R: RandomPhotoResultFetcher>: RandomPhotoResu
     }
     
     func fetch(_ completion: @escaping (Output) -> Void) {
-        fetcher.fetch { result in
+        fetcher.fetch { [weak self] result in
+            guard let sSelf = self else { return }
             switch result {
-            case .success(_): break
+            case .success(let response): completion(.success(sSelf.map(response)))
             case .error(let error): completion(.error(error))
             }
         }
+    }
+    
+    func map(_ response: RemoteRandomPhotoResponse) -> CoreRandomPhoto {
+        return CoreRandomPhoto(
+            identifier: response.identifier,
+            dateCreated: ISO8601DateFormatter().date(from: response.dateCreatedString)!,
+            width: response.width,
+            height: response.height,
+            colorString: response.colorString,
+            description: response.description,
+            creatorIdentifier: response.creator.identifier,
+            creatorUsername: response.creator.username,
+            creatorName: response.creator.name,
+            creatorPortfolioURLString: response.creator.portfolioURLString,
+            regularImageURLString: response.imageURLs.regular,
+            smallImageURLString: response.imageURLs.small,
+            thumbnailImageURLString: response.imageURLs.thumbnail,
+            downloadImageLink: response.imageLinks.download
+        )
     }
 }

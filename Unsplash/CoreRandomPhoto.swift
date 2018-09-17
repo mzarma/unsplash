@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CoreRandomPhoto {
+struct CoreRandomPhoto: Equatable {
     let identifier: String
     let dateCreated: Date
     let width: Int
