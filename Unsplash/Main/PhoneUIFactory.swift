@@ -44,6 +44,9 @@ final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: Random
                         guard let image = UIImage(data: data) else { return }
                         dataSourceDelegate.photo = PresentableRandomPhoto(description: photo.description)
                         dataSourceDelegate.image = image
+                        DispatchQueue.main.async {
+                            viewController.collectionView.reloadData()
+                        }
                     case .error(_): break
                     }
                 }
