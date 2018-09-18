@@ -394,10 +394,11 @@
 				TargetAttributes = {
 					05198550214BB28000D9D094 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1000;
 					};
 					05198564214BB28100D9D094 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = 05198550214BB28000D9D094;
 					};
 				};
@@ -676,7 +677,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.Unsplash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				Unsplash_AccessKey = adf9a380fed8c1f791255e7355090fed252fca50a982dd9e11c8f2e4e91b5e1b;
 			};
@@ -697,7 +698,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.Unsplash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				Unsplash_AccessKey = adf9a380fed8c1f791255e7355090fed252fca50a982dd9e11c8f2e4e91b5e1b;
 			};
@@ -718,7 +719,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplashTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Unsplash.app/Unsplash";
 			};
@@ -739,7 +740,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mzarmakoupis.unsplashTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Unsplash.app/Unsplash";
 			};

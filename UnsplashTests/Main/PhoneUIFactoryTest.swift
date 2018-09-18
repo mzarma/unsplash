@@ -78,7 +78,7 @@ class PhoneUIFactoryTest: XCTestCase {
         let url = "https://a-photo-url.com"
         let photo = makePhoto(description: "a description", regularImageURLString: url)
         let image = testImage()
-        let validImageData = UIImagePNGRepresentation(image)!
+        let validImageData = image.pngData()!
         
         randomPhotoFetcher.complete?(.success(photo))
         
@@ -88,7 +88,7 @@ class PhoneUIFactoryTest: XCTestCase {
         photoFetcher.complete?(.success(validImageData))
         
         XCTAssertEqual(randomView.numberOfItems(), 1)
-        XCTAssertEqual(UIImagePNGRepresentation(randomView.photoCell().photoImage!), validImageData)
+        XCTAssertEqual(randomView.photoCell().photoImage!.pngData(), validImageData)
         XCTAssertEqual(randomView.photoCell().text, "a description")
     }
     
@@ -126,7 +126,7 @@ class PhoneUIFactoryTest: XCTestCase {
         let presentablePhoto = PresentableRandomPhoto(description: "a description")
 
         randomPhotoFetcher.complete?(.success(photo))
-        photoFetcher.complete?(.success(UIImagePNGRepresentation(testImage())!))
+        photoFetcher.complete?(.success(testImage().pngData()!))
 
         randomView.selectItem()
 
