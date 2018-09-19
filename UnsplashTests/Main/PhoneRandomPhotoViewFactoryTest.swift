@@ -1,5 +1,5 @@
 //
-//  PhoneUIFactoryTest.swift
+//  PhoneRandomPhotoViewFactoryTest.swift
 //  UnsplashTests
 //
 //  Created by Michail Zarmakoupis on 13/09/2018.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Unsplash
 
-class PhoneUIFactoryTest: XCTestCase {
+class PhoneRandomPhotoViewFactoryTest: XCTestCase {
     
     func test_randomPhotoView_startsWithNoPhotoText() {
         let randomView = makeRandomPhotoView()
@@ -137,10 +137,10 @@ class PhoneUIFactoryTest: XCTestCase {
     
     private let randomPhotoFetcher = RandomPhotoResultFetcherSpy()
     private let photoFetcher = PhotoFetcherSpy()
-    private typealias SUT = PhoneUIFactory<RandomPhotoResultFetcherSpy, PhotoFetcherSpy>
+    private typealias SUT = PhoneRandomPhotoViewFactory<RandomPhotoResultFetcherSpy, PhotoFetcherSpy>
     
     private func makeSUT() -> SUT {
-        return PhoneUIFactory(randomPhotoFetcher, photoFetcher)
+        return PhoneRandomPhotoViewFactory(randomPhotoFetcher, photoFetcher)
     }
     
     private func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void = { _ in }) -> RandomPhotoViewController {

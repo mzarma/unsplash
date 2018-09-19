@@ -1,5 +1,5 @@
 //
-//  PhoneUIFactory.swift
+//  PhoneRandomPhotoViewFactory.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 13/09/2018.
@@ -12,7 +12,7 @@ enum PhotoFetcherError: Error {
     case remote
 }
 
-final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: RandomPhotoViewFactory where R.Result == Result<CoreRandomPhoto, RandomPhotoResultFetcherError>, P.Request == URLRequest, P.Response == Result<Data,PhotoFetcherError>  {
+final class PhoneRandomPhotoViewFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: RandomPhotoViewFactory where R.Result == Result<CoreRandomPhoto, RandomPhotoResultFetcherError>, P.Request == URLRequest, P.Response == Result<Data,PhotoFetcherError>  {
     
     private let randomPhotoFetcher: R
     private let photoFetcher: P
