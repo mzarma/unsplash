@@ -38,7 +38,7 @@ final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: Random
                     switch result {
                     case .success(let data):
                         guard let image = UIImage(data: data) else { return }
-                        dataSourceDelegate.photo = PresentableRandomPhoto(description: photo.description)
+                        dataSourceDelegate.photo = RandomPhotoPresenter.presentablePhoto(from: photo)
                         dataSourceDelegate.image = image
                         DispatchQueue.main.async {
                             viewController.collectionView.reloadData()

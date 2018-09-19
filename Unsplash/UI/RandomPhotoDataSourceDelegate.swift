@@ -8,10 +8,6 @@
 
 import UIKit
 
-struct PresentableRandomPhoto: Equatable {
-    let description: String
-}
-
 final class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var photo: PresentableRandomPhoto?

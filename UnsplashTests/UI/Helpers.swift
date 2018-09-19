@@ -30,3 +30,22 @@ extension RandomPhotoViewController {
         return IndexPath(item: 0, section: 0)
     }
 }
+
+func presentablePhoto(description: String = "", regularImageURLString: String = "") -> PresentableRandomPhoto {
+    return PresentableRandomPhoto(
+        identifier: "",
+        dateCreated: "",
+        width: 0,
+        height: 0,
+        colorString: "",
+        description: description,
+        creatorIdentifier: "",
+        creatorUsername: "",
+        creatorName: "",
+        creatorPortfolioURLString: "",
+        regularImageURLString: regularImageURLString,
+        smallImageURLString: "",
+        thumbnailImageURLString: "",
+        downloadImageLink: ""
+    )
+}

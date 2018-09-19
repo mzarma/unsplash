@@ -10,6 +10,8 @@
 		056FFF92214FA52C005F0077 /* CoreRandomPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */; };
 		056FFF94214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */; };
 		056FFF96214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */; };
+		05C1248521522B81008EBA67 /* PresentableRandomPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1248421522B81008EBA67 /* PresentableRandomPhoto.swift */; };
+		05C12487215232A5008EBA67 /* RandomPhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C12486215232A5008EBA67 /* RandomPhotoPresenter.swift */; };
 		05E1533C21513A910033BC3C /* RandomPhotoFlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E1533B21513A910033BC3C /* RandomPhotoFlowTest.swift */; };
 		05E1533E21513B8E0033BC3C /* RandomPhotoFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E1533D21513B8E0033BC3C /* RandomPhotoFlow.swift */; };
 		05E75B38214BB31E00E37F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E75B1A214BB31D00E37F39 /* Assets.xcassets */; };
@@ -60,6 +62,8 @@
 		056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhoto.swift; sourceTree = "<group>"; };
 		056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhotoFetcher.swift; sourceTree = "<group>"; };
 		056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhotoFetcherTest.swift; sourceTree = "<group>"; };
+		05C1248421522B81008EBA67 /* PresentableRandomPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableRandomPhoto.swift; sourceTree = "<group>"; };
+		05C12486215232A5008EBA67 /* RandomPhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoPresenter.swift; sourceTree = "<group>"; };
 		05E1533B21513A910033BC3C /* RandomPhotoFlowTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoFlowTest.swift; sourceTree = "<group>"; };
 		05E1533D21513B8E0033BC3C /* RandomPhotoFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoFlow.swift; sourceTree = "<group>"; };
 		05E75B1A214BB31D00E37F39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Unsplash/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -146,6 +150,8 @@
 				056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */,
 				056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */,
 				05E1533D21513B8E0033BC3C /* RandomPhotoFlow.swift */,
+				05C1248421522B81008EBA67 /* PresentableRandomPhoto.swift */,
+				05C12486215232A5008EBA67 /* RandomPhotoPresenter.swift */,
 				05E75B30214BB31E00E37F39 /* Info.plist */,
 				05E75B35214BB31E00E37F39 /* Main */,
 				05E75B1B214BB31D00E37F39 /* Networking */,
@@ -493,6 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C12487215232A5008EBA67 /* RandomPhotoPresenter.swift in Sources */,
 				056FFF94214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift in Sources */,
 				05E75B3E214BB31E00E37F39 /* RemoteRandomPhotoResponse.swift in Sources */,
 				05E75B3A214BB31E00E37F39 /* RemoteSearchResultResponse.swift in Sources */,
@@ -508,6 +515,7 @@
 				05E1533E21513B8E0033BC3C /* RandomPhotoFlow.swift in Sources */,
 				05E75B4B214BB31E00E37F39 /* PhoneUIFactory.swift in Sources */,
 				05E75B46214BB31E00E37F39 /* RandomPhotoDataSourceDelegate.swift in Sources */,
+				05C1248521522B81008EBA67 /* PresentableRandomPhoto.swift in Sources */,
 				05E75B40214BB31E00E37F39 /* CorePhoto.swift in Sources */,
 				05E75B3F214BB31E00E37F39 /* URLRequestFactory.swift in Sources */,
 				05E75B3B214BB31E00E37F39 /* RemoteSearchResultFetcher.swift in Sources */,
