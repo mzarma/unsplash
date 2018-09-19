@@ -9,11 +9,11 @@
 import UIKit
 
 protocol RandomPhotoViewFactory {
-    func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void) -> UIViewController
+    func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto, UIImage) -> Void) -> UIViewController
 }
 
 protocol RandomPhotoDetailViewFactory {
-    func makeRandomPhotoDetailView(for photo: CoreRandomPhoto) -> UIViewController
+    func makeRandomPhotoDetailView(for photo: CoreRandomPhoto, image: UIImage) -> UIViewController
 }
 
 final class RandomPhotoFlow {
@@ -30,9 +30,9 @@ final class RandomPhotoFlow {
     }
     
     func start() {
-        let photoView = photoViewFactory.makeRandomPhotoView { [weak self] photo in
+        let photoView = photoViewFactory.makeRandomPhotoView { [weak self] (photo, image) in
             guard let sSelf = self else { return }
-            let photoDetailView = sSelf.photoDetailViewFactory.makeRandomPhotoDetailView(for: photo)
+            let photoDetailView = sSelf.photoDetailViewFactory.makeRandomPhotoDetailView(for: photo, image: image)
             sSelf.navigationController.pushViewController(photoDetailView, animated: true)
         }
         navigationController.setViewControllers([photoView], animated: false)

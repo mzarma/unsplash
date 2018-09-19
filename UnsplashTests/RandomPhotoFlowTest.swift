@@ -38,7 +38,8 @@ class RandomPhotoFlowTest: XCTestCase {
         XCTAssertEqual(navigationController.viewControllers, [photoView])
         
         let photo = coreRandomPhoto()
-        photoViewFactory.select?(photo)
+        let image = UIImage()
+        photoViewFactory.select?(photo, image)
         
         XCTAssertEqual(navigationController.viewControllers, [photoView, photoDetailView])
         XCTAssertEqual(photoDetailViewFactory.photo, photo)
@@ -73,9 +74,9 @@ class RandomPhotoFlowTest: XCTestCase {
     
     private class RandomPhotoViewFactorySpy: RandomPhotoViewFactory {
         var stubPhotoView: UIViewController?
-        var select: ((CoreRandomPhoto) -> Void)?
+        var select: ((CoreRandomPhoto, UIImage) -> Void)?
 
-        func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void) -> UIViewController {
+        func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto, UIImage) -> Void) -> UIViewController {
             select = selected
             return stubPhotoView!
         }
@@ -84,8 +85,9 @@ class RandomPhotoFlowTest: XCTestCase {
     private class RandomPhotoDetailViewFactorySpy: RandomPhotoDetailViewFactory {
         var stubPhotoDetailView: UIViewController?
         var photo: CoreRandomPhoto?
+        var image: UIImage?
         
-        func makeRandomPhotoDetailView(for photo: CoreRandomPhoto) -> UIViewController {
+        func makeRandomPhotoDetailView(for photo: CoreRandomPhoto, image: UIImage) -> UIViewController {
             self.photo = photo
             return stubPhotoDetailView!
         }

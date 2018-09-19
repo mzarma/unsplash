@@ -22,10 +22,12 @@ final class PhoneRandomPhotoViewFactory<R: RandomPhotoResultFetcher, P: PhotoFet
         self.photoFetcher = photoFetcher
     }
     
-    func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void) -> UIViewController {
+    func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto, UIImage) -> Void) -> UIViewController {
+        var detailImage: UIImage?
         let dataSourceDelegate = RandomPhotoDataSourceDelegate(noPhotoText: "No photo") { presentablePhoto in
+            guard let image = detailImage else { return }
             let photo = RandomPhotoPresenter.corePhoto(from: presentablePhoto)
-            selected(photo)
+            selected(photo, image)
         }
         
         let viewController = RandomPhotoViewController(dataSource: dataSourceDelegate, delegate: dataSourceDelegate)
@@ -41,6 +43,7 @@ final class PhoneRandomPhotoViewFactory<R: RandomPhotoResultFetcher, P: PhotoFet
                         guard let image = UIImage(data: data) else { return }
                         dataSourceDelegate.photo = RandomPhotoPresenter.presentablePhoto(from: photo)
                         dataSourceDelegate.image = image
+                        detailImage = image
                         DispatchQueue.main.async {
                             viewController.collectionView.reloadData()
                         }

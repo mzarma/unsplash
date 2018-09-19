@@ -95,10 +95,12 @@ class PhoneRandomPhotoViewFactoryTest: XCTestCase {
     func test_makeRandomPhotoView_doesNotDelegateSelection_whenShowingNoPhotoCellAndUserSelectsItem() {
         var callCount = 0
         var selectedPhoto: CoreRandomPhoto?
+        var selectedImage: UIImage?
         
-        let randomView = makeRandomPhotoView() { photo in
+        let randomView = makeRandomPhotoView() { photo, image in
             callCount += 1
             selectedPhoto = photo
+            selectedImage = image
         }
         
         randomPhotoFetcher.complete?(.error(.remote))
@@ -111,26 +113,31 @@ class PhoneRandomPhotoViewFactoryTest: XCTestCase {
         
         XCTAssertEqual(callCount, 0)
         XCTAssertNil(selectedPhoto)
+        XCTAssertNil(selectedImage)
     }
     
     func test_makeRandomPhotoView_delegatesSelection_whenShowingPhotoCellAndUserSelectsItem() {
         var callCount = 0
         var selectedPhoto: CoreRandomPhoto?
-
-        let randomView = makeRandomPhotoView() { photo in
+        var selectedImage: UIImage?
+        
+        let randomView = makeRandomPhotoView() { photo, image in
             callCount += 1
             selectedPhoto = photo
+            selectedImage = image
         }
 
         let photo = coreRandomPhoto(description: "a description", regularImageURLString: "https://a-photo-url.com")
+        let image = testImage()
 
         randomPhotoFetcher.complete?(.success(photo))
-        photoFetcher.complete?(.success(testImage().pngData()!))
+        photoFetcher.complete?(.success(image.pngData()!))
 
         randomView.selectItem()
 
         XCTAssertEqual(callCount, 1)
-        XCTAssertEqual(selectedPhoto!, photo)
+        XCTAssertEqual(selectedPhoto, photo)
+        XCTAssertEqual(selectedImage!.pngData()!, image.pngData()!)
     }
         
     // MARK: Helpers
@@ -143,7 +150,7 @@ class PhoneRandomPhotoViewFactoryTest: XCTestCase {
         return PhoneRandomPhotoViewFactory(randomPhotoFetcher, photoFetcher)
     }
     
-    private func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void = { _ in }) -> RandomPhotoViewController {
+    private func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto, UIImage) -> Void = { _,_ in }) -> RandomPhotoViewController {
         let sut = makeSUT()
         let randomView = sut.makeRandomPhotoView(selected) as! RandomPhotoViewController
         randomView.loadViewIfNeeded()
