@@ -65,6 +65,15 @@ class RandomPhotoDetailViewControllerTest: XCTestCase {
         XCTAssertEqual(cell.detailTextLabel?.text, photo.creatorName)
     }
     
+    func test_rendersCreatorPortfolioURLCell() {
+        let photo = presentableRandomPhoto(creatorPortfolioURLString: "a url")
+        let sut = makeSUT(photo: photo)
+        let cell = sut.creatorPortfolioURLCell()
+        
+        XCTAssertEqual(cell.textLabel?.text, "Creator's portfolio")
+        XCTAssertEqual(cell.detailTextLabel?.text, photo.creatorPortfolioURLString)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(photo: PresentableRandomPhoto = presentableRandomPhoto(), image: UIImage = testImage()) -> RandomPhotoDetailViewController {
