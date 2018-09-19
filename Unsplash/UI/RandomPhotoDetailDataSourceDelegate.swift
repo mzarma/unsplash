@@ -23,12 +23,23 @@ class RandomPhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return imageCell(tableView)
+        switch indexPath.row {
+        case TableStructure.image.rawValue: return imageCell(tableView)
+        case TableStructure.description.rawValue: return descriptionCell()
+        default: return UITableViewCell()
+        }
     }
     
     private func imageCell(_ tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell") as! ImageCell
         cell.photoImage = image
+        return cell
+    }
+    
+    private func descriptionCell() -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.textLabel?.text = "Description"
+        cell.detailTextLabel?.text = photo.description
         return cell
     }
 }

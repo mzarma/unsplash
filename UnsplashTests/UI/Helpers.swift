@@ -40,23 +40,39 @@ extension RandomPhotoDetailViewController {
         return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 0)) as! ImageCell
     }
     
+    func descriptionCell() -> UITableViewCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 1))
+    }
+    
+    func dateCreatedCell() -> UITableViewCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 2))
+    }
+
+    func creatorNameCell() -> UITableViewCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 3))
+    }
+
+    func creatorPortfolioURLCell() -> UITableViewCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 4))
+    }
+    
     func indexPath(for row: Int) -> IndexPath {
         return IndexPath(row: row, section: 0)
     }
 }
 
-func presentableRandomPhoto(description: String = "", regularImageURLString: String = "") -> PresentableRandomPhoto {
+func presentableRandomPhoto(identifier: String = "", dateCreated: String = "", description: String = "", creatorName: String = "", creatorPortfolioURLString: String = "", regularImageURLString: String = "") -> PresentableRandomPhoto {
     return PresentableRandomPhoto(
-        identifier: "",
-        dateCreated: "",
+        identifier: identifier,
+        dateCreated: dateCreated,
         width: 0,
         height: 0,
         colorString: "",
         description: description,
         creatorIdentifier: "",
         creatorUsername: "",
-        creatorName: "",
-        creatorPortfolioURLString: "",
+        creatorName: creatorName,
+        creatorPortfolioURLString: creatorPortfolioURLString,
         regularImageURLString: regularImageURLString,
         smallImageURLString: "",
         thumbnailImageURLString: "",
