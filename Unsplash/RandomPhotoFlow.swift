@@ -30,7 +30,11 @@ final class RandomPhotoFlow {
     }
     
     func start() {
-        let photoView = photoViewFactory.makeRandomPhotoView { _ in }
+        let photoView = photoViewFactory.makeRandomPhotoView { [weak self] photo in
+            guard let sSelf = self else { return }
+            let photoDetailView = sSelf.photoDetailViewFactory.makeRandomPhotoDetailView(for: photo)
+            sSelf.navigationController.pushViewController(photoDetailView, animated: true)
+        }
         navigationController.setViewControllers([photoView], animated: false)
     }
 }

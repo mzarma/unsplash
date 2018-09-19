@@ -27,10 +27,26 @@ class RandomPhotoFlowTest: XCTestCase {
         
         XCTAssertEqual(navigationController.viewControllers, [photoView])
     }
+    
+    func test_start_presentsPhotoDetailView_withCorrectPhoto() {
+        let sut = makeSUT()
+        
+        XCTAssertEqual(navigationController.viewControllers, [])
+        
+        sut.start()
+        
+        XCTAssertEqual(navigationController.viewControllers, [photoView])
+        
+        let photo = coreRandomPhoto()
+        photoViewFactory.select?(photo)
+        
+        XCTAssertEqual(navigationController.viewControllers, [photoView, photoDetailView])
+        XCTAssertEqual(photoDetailViewFactory.photo, photo)
+    }
 
     // MARK: Helpers
     
-    private let navigationController = UINavigationControllerSpy()
+    private let navigationController = NonAnimatingUINavigationController()
     private let photoViewFactory = RandomPhotoViewFactorySpy()
     private let photoDetailViewFactory = RandomPhotoDetailViewFactorySpy()
     
@@ -49,25 +65,28 @@ class RandomPhotoFlowTest: XCTestCase {
         return sut
     }
     
-    private class UINavigationControllerSpy: UINavigationController {
-        
+    private class NonAnimatingUINavigationController: UINavigationController {
+        override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+            super.pushViewController(viewController, animated: false)
+        }
     }
     
     private class RandomPhotoViewFactorySpy: RandomPhotoViewFactory {
         var stubPhotoView: UIViewController?
-        var photo: CoreRandomPhoto?
         var select: ((CoreRandomPhoto) -> Void)?
 
         func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void) -> UIViewController {
-            
+            select = selected
             return stubPhotoView!
         }
     }
 
     private class RandomPhotoDetailViewFactorySpy: RandomPhotoDetailViewFactory {
         var stubPhotoDetailView: UIViewController?
+        var photo: CoreRandomPhoto?
         
         func makeRandomPhotoDetailView(for photo: CoreRandomPhoto) -> UIViewController {
+            self.photo = photo
             return stubPhotoDetailView!
         }
     }

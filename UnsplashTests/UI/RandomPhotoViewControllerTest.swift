@@ -40,7 +40,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
     }
     
     func test_showsNoPhotoCell_whenNoImage() {
-        let photo = presentablePhoto()
+        let photo = presentableRandomPhoto()
         let sut = makeSUT(photo: photo, image: nil, noPhotoText: "No Photos")
         
         let cell = sut.noPhotoCell()
@@ -50,7 +50,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
 
     func test_photoCellForItemAtIndexpath() {
         let image = UIImage()
-        let photo = presentablePhoto(description: "a description")
+        let photo = presentableRandomPhoto(description: "a description")
         let sut = makeSUT(photo: photo, image: image)
 
         let cell = sut.photoCell()
@@ -74,7 +74,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
     
     func test_doesNotTriggerPhotoSelection_whenNoImage() {
         var callCount = 0
-        let photo = presentablePhoto()
+        let photo = presentableRandomPhoto()
         let sut = makeSUT(photo: photo, image: nil) { _ in callCount += 1 }
         
         XCTAssertEqual(callCount, 0)
@@ -87,7 +87,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
     func test_triggersPhotoSelection() {
         var callCount = 0
         var expectedPhoto: PresentableRandomPhoto?
-        let photo = presentablePhoto(description: "a description")
+        let photo = presentableRandomPhoto(description: "a description")
         
         let sut = makeSUT(photo: photo, image: UIImage()) { photo in
             callCount += 1

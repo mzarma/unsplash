@@ -30,7 +30,7 @@ class PhoneUIFactoryTest: XCTestCase {
     func test_makeRandomPhotoView_showsNoPhotoCell_whenFetchingSucceedsWithInvalidURL() {
         let randomView = makeRandomPhotoView()
         let invalidURL = ""
-        let photo = makePhoto(regularImageURLString: invalidURL)
+        let photo = coreRandomPhoto(regularImageURLString: invalidURL)
         
         randomPhotoFetcher.complete?(.success(photo))
         
@@ -43,7 +43,7 @@ class PhoneUIFactoryTest: XCTestCase {
     func test_makeRandomPhotoView_showsNoPhotoCell_whenFetchingSucceedsWithValidURLButImageFetchingFails() {
         let randomView = makeRandomPhotoView()
         let url = "https://a-photo-url.com"
-        let photo = makePhoto(regularImageURLString: url)
+        let photo = coreRandomPhoto(regularImageURLString: url)
 
         randomPhotoFetcher.complete?(.success(photo))
 
@@ -59,7 +59,7 @@ class PhoneUIFactoryTest: XCTestCase {
     func test_makeRandomPhotoView_showsNoPhotoCell_whenFetchingSucceedsWithValidURLAndImageFetchingSucceedsWithInalidImageData() {
         let randomView = makeRandomPhotoView()
         let url = "https://a-photo-url.com"
-        let photo = makePhoto(regularImageURLString: url)
+        let photo = coreRandomPhoto(regularImageURLString: url)
         let invalidImageData = Data()
         
         randomPhotoFetcher.complete?(.success(photo))
@@ -76,7 +76,7 @@ class PhoneUIFactoryTest: XCTestCase {
     func test_makeRandomPhotoView_showsPhotoCell_whenFetchingSucceedsWithValidURLAndImageFetchingSucceedsWithValidImageData() {
         let randomView = makeRandomPhotoView()
         let url = "https://a-photo-url.com"
-        let photo = makePhoto(description: "a description", regularImageURLString: url)
+        let photo = coreRandomPhoto(description: "a description", regularImageURLString: url)
         let image = testImage()
         let validImageData = image.pngData()!
         
@@ -122,7 +122,7 @@ class PhoneUIFactoryTest: XCTestCase {
             selectedPhoto = photo
         }
 
-        let photo = makePhoto(description: "a description", regularImageURLString: "https://a-photo-url.com")
+        let photo = coreRandomPhoto(description: "a description", regularImageURLString: "https://a-photo-url.com")
 
         randomPhotoFetcher.complete?(.success(photo))
         photoFetcher.complete?(.success(testImage().pngData()!))
@@ -149,27 +149,7 @@ class PhoneUIFactoryTest: XCTestCase {
         randomView.loadViewIfNeeded()
         return randomView
     }
-    
-    private func makePhoto(
-        description: String = "",
-        regularImageURLString: String = "") -> CoreRandomPhoto {
-        return CoreRandomPhoto(
-            identifier: "an identifier",
-            dateCreated: Date(timeIntervalSince1970: 946684800),
-            width: 150,
-            height: 150,
-            colorString: "a color string",
-            description: description,
-            creatorIdentifier: "creator identifier",
-            creatorUsername: "creator username",
-            creatorName: "creator name",
-            creatorPortfolioURLString: "portfolioURLString",
-            regularImageURLString: regularImageURLString,
-            smallImageURLString: "smallImageURLString",
-            thumbnailImageURLString: "thumbnailImageURLString",
-            downloadImageLink: "downloadImageLink")
-    }
-    
+        
     private func testImage() -> UIImage {
         UIGraphicsBeginImageContext(CGSize(width: 20, height: 20))
         let image = UIGraphicsGetImageFromCurrentImageContext()

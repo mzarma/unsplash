@@ -31,7 +31,7 @@ extension RandomPhotoViewController {
     }
 }
 
-func presentablePhoto(description: String = "", regularImageURLString: String = "") -> PresentableRandomPhoto {
+func presentableRandomPhoto(description: String = "", regularImageURLString: String = "") -> PresentableRandomPhoto {
     return PresentableRandomPhoto(
         identifier: "",
         dateCreated: "",
@@ -48,4 +48,24 @@ func presentablePhoto(description: String = "", regularImageURLString: String = 
         thumbnailImageURLString: "",
         downloadImageLink: ""
     )
+}
+
+func coreRandomPhoto(
+    description: String = "",
+    regularImageURLString: String = "") -> CoreRandomPhoto {
+    return CoreRandomPhoto(
+        identifier: "an identifier",
+        dateCreated: Date(timeIntervalSince1970: 946684800),
+        width: 150,
+        height: 150,
+        colorString: "a color string",
+        description: description,
+        creatorIdentifier: "creator identifier",
+        creatorUsername: "creator username",
+        creatorName: "creator name",
+        creatorPortfolioURLString: "portfolioURLString",
+        regularImageURLString: regularImageURLString,
+        smallImageURLString: "smallImageURLString",
+        thumbnailImageURLString: "thumbnailImageURLString",
+        downloadImageLink: "downloadImageLink")
 }
