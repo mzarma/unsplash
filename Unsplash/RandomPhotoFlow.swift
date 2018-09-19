@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RandomPhotoViewFactory {
-    func makeRandomPhotoView(_ selected: @escaping (PresentableRandomPhoto) -> Void) -> UIViewController
+    func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void) -> UIViewController
 }
 
 protocol RandomPhotoDetailViewFactory {

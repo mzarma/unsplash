@@ -94,7 +94,7 @@ class PhoneUIFactoryTest: XCTestCase {
     
     func test_makeRandomPhotoView_doesNotDelegateSelection_whenShowingNoPhotoCellAndUserSelectsItem() {
         var callCount = 0
-        var selectedPhoto: PresentableRandomPhoto?
+        var selectedPhoto: CoreRandomPhoto?
         
         let randomView = makeRandomPhotoView() { photo in
             callCount += 1
@@ -115,7 +115,7 @@ class PhoneUIFactoryTest: XCTestCase {
     
     func test_makeRandomPhotoView_delegatesSelection_whenShowingPhotoCellAndUserSelectsItem() {
         var callCount = 0
-        var selectedPhoto: PresentableRandomPhoto?
+        var selectedPhoto: CoreRandomPhoto?
 
         let randomView = makeRandomPhotoView() { photo in
             callCount += 1
@@ -123,7 +123,6 @@ class PhoneUIFactoryTest: XCTestCase {
         }
 
         let photo = makePhoto(description: "a description", regularImageURLString: "https://a-photo-url.com")
-        let presentableRandomPhoto = RandomPhotoPresenter.presentablePhoto(from: photo)
 
         randomPhotoFetcher.complete?(.success(photo))
         photoFetcher.complete?(.success(testImage().pngData()!))
@@ -131,7 +130,7 @@ class PhoneUIFactoryTest: XCTestCase {
         randomView.selectItem()
 
         XCTAssertEqual(callCount, 1)
-        XCTAssertEqual(selectedPhoto, presentableRandomPhoto)
+        XCTAssertEqual(selectedPhoto!, photo)
     }
         
     // MARK: Helpers
@@ -144,7 +143,7 @@ class PhoneUIFactoryTest: XCTestCase {
         return PhoneUIFactory(randomPhotoFetcher, photoFetcher)
     }
     
-    private func makeRandomPhotoView(_ selected: @escaping (PresentableRandomPhoto) -> Void = { _ in }) -> RandomPhotoViewController {
+    private func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void = { _ in }) -> RandomPhotoViewController {
         let sut = makeSUT()
         let randomView = sut.makeRandomPhotoView(selected) as! RandomPhotoViewController
         randomView.loadViewIfNeeded()
@@ -155,20 +154,20 @@ class PhoneUIFactoryTest: XCTestCase {
         description: String = "",
         regularImageURLString: String = "") -> CoreRandomPhoto {
         return CoreRandomPhoto(
-            identifier: "",
-            dateCreated: Date(),
-            width: 0,
-            height: 0,
-            colorString: "",
+            identifier: "an identifier",
+            dateCreated: Date(timeIntervalSince1970: 946684800),
+            width: 150,
+            height: 150,
+            colorString: "a color string",
             description: description,
-            creatorIdentifier: "",
-            creatorUsername: "",
-            creatorName: "",
-            creatorPortfolioURLString: "",
+            creatorIdentifier: "creator identifier",
+            creatorUsername: "creator username",
+            creatorName: "creator name",
+            creatorPortfolioURLString: "portfolioURLString",
             regularImageURLString: regularImageURLString,
-            smallImageURLString: "",
-            thumbnailImageURLString: "",
-            downloadImageLink: "")
+            smallImageURLString: "smallImageURLString",
+            thumbnailImageURLString: "thumbnailImageURLString",
+            downloadImageLink: "downloadImageLink")
     }
     
     private func testImage() -> UIImage {

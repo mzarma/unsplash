@@ -22,8 +22,9 @@ final class PhoneUIFactory<R: RandomPhotoResultFetcher, P: PhotoFetcher>: Random
         self.photoFetcher = photoFetcher
     }
     
-    func makeRandomPhotoView(_ selected: @escaping (PresentableRandomPhoto) -> Void) -> UIViewController {
-        let dataSourceDelegate = RandomPhotoDataSourceDelegate(noPhotoText: "No photo") { photo in
+    func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void) -> UIViewController {
+        let dataSourceDelegate = RandomPhotoDataSourceDelegate(noPhotoText: "No photo") { presentablePhoto in
+            let photo = RandomPhotoPresenter.corePhoto(from: presentablePhoto)
             selected(photo)
         }
         

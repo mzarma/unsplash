@@ -55,10 +55,10 @@ class RandomPhotoFlowTest: XCTestCase {
     
     private class RandomPhotoViewFactorySpy: RandomPhotoViewFactory {
         var stubPhotoView: UIViewController?
-        var photo: PresentableRandomPhoto?
-        var select: ((PresentableRandomPhoto) -> Void)?
+        var photo: CoreRandomPhoto?
+        var select: ((CoreRandomPhoto) -> Void)?
 
-        func makeRandomPhotoView(_ selected: @escaping (PresentableRandomPhoto) -> Void) -> UIViewController {
+        func makeRandomPhotoView(_ selected: @escaping (CoreRandomPhoto) -> Void) -> UIViewController {
             
             return stubPhotoView!
         }
