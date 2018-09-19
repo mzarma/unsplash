@@ -10,8 +10,8 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
 
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var photoImageView: UIImageView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     var photoImage: UIImage? {
         get { return photoImageView.image ?? nil }

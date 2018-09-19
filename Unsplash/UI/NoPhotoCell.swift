@@ -10,7 +10,7 @@ import UIKit
 
 class NoPhotoCell: UICollectionViewCell {
 
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet private weak var label: UILabel!
 
     var text: String {
         get { return label.text ?? "" }
