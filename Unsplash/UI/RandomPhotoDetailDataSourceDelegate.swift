@@ -27,6 +27,7 @@ class RandomPhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         case TableStructure.image.rawValue: return imageCell(tableView)
         case TableStructure.description.rawValue: return descriptionCell()
         case TableStructure.dateCreated.rawValue: return dateCreatedCell()
+        case TableStructure.creatorName.rawValue: return creatorNameCell()
         default: return UITableViewCell()
         }
     }
@@ -48,6 +49,13 @@ class RandomPhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = "Date Created"
         cell.detailTextLabel?.text = photo.dateCreated
+        return cell
+    }
+    
+    private func creatorNameCell() -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.textLabel?.text = "Creator"
+        cell.detailTextLabel?.text = photo.creatorName
         return cell
     }
 }

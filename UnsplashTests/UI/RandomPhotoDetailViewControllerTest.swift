@@ -56,6 +56,15 @@ class RandomPhotoDetailViewControllerTest: XCTestCase {
         XCTAssertEqual(cell.detailTextLabel?.text, photo.dateCreated)
     }
     
+    func test_rendersCreatorNameCell() {
+        let photo = presentableRandomPhoto(creatorName: "a name")
+        let sut = makeSUT(photo: photo)
+        let cell = sut.creatorNameCell()
+        
+        XCTAssertEqual(cell.textLabel?.text, "Creator")
+        XCTAssertEqual(cell.detailTextLabel?.text, photo.creatorName)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(photo: PresentableRandomPhoto = presentableRandomPhoto(), image: UIImage = testImage()) -> RandomPhotoDetailViewController {
