@@ -24,10 +24,23 @@ class RandomPhotoDetailViewControllerTest: XCTestCase {
         let sut = makeSUT()
         XCTAssertTrue(sut.tableView.superview === sut.view)
     }
+    
+        // MARK: UICollectionViewDataSource
+    
+    func test_numberOfRowsInSection() {
+        XCTAssertEqual(makeSUT().numberOfRows(), 5)
+    }
+    
+    func test_rendersImageCell() {
+        let sut = makeSUT()
+        let cell = sut.imageCell()
         
+        XCTAssertEqual(cell.photoImage?.pngData(), testImage().pngData())
+    }
+    
     // MARK: Helpers
     
-    private func makeSUT(photo: PresentableRandomPhoto = presentableRandomPhoto(), image: UIImage = UIImage()) -> RandomPhotoDetailViewController {
+    private func makeSUT(photo: PresentableRandomPhoto = presentableRandomPhoto(), image: UIImage = testImage()) -> RandomPhotoDetailViewController {
         let dataSourceDelegate = RandomPhotoDetailDataSourceDelegate(
             photo: photo,
             image: image

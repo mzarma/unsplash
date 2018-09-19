@@ -28,6 +28,10 @@ class RandomPhotoDetailViewController: UIViewController {
     private func setupTableView() {
         view.addSubview(tableView)
         
+        tableView.dataSource = dataSource
+        
+        tableView.register(UINib(nibName: "ImageCell", bundle: nil), forCellReuseIdentifier: "ImageCell")
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

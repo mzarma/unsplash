@@ -156,14 +156,7 @@ class PhoneRandomPhotoViewFactoryTest: XCTestCase {
         randomView.loadViewIfNeeded()
         return randomView
     }
-        
-    private func testImage() -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: 20, height: 20))
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image!
-    }
-    
+            
     private class RandomPhotoResultFetcherSpy: RandomPhotoResultFetcher {
         var fetchCallCount = 0
         var complete: ((Result) -> Void)?

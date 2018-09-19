@@ -31,6 +31,20 @@ extension RandomPhotoViewController {
     }
 }
 
+extension RandomPhotoDetailViewController {
+    func numberOfRows() -> Int {
+        return tableView.dataSource!.tableView(tableView, numberOfRowsInSection: 0)
+    }
+    
+    func imageCell() -> ImageCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 0)) as! ImageCell
+    }
+    
+    func indexPath(for row: Int) -> IndexPath {
+        return IndexPath(row: row, section: 0)
+    }
+}
+
 func presentableRandomPhoto(description: String = "", regularImageURLString: String = "") -> PresentableRandomPhoto {
     return PresentableRandomPhoto(
         identifier: "",
@@ -68,4 +82,11 @@ func coreRandomPhoto(
         smallImageURLString: "smallImageURLString",
         thumbnailImageURLString: "thumbnailImageURLString",
         downloadImageLink: "downloadImageLink")
+}
+
+func testImage() -> UIImage {
+    UIGraphicsBeginImageContext(CGSize(width: 20, height: 20))
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image!
 }
