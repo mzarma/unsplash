@@ -60,7 +60,7 @@ class RandomPhotoViewControllerTest: XCTestCase {
     }
 
     // MARK: UICollectionViewDelegateFlowLayout
-    
+
     func test_doesNotTriggerPhotoSelection_whenNoPresentablePhoto() {
         var callCount = 0
         let sut = makeSUT(photo: nil, image: UIImage()) { _ in callCount += 1 }
