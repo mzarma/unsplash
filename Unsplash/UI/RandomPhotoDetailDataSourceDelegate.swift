@@ -25,10 +25,14 @@ class RandomPhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case TableStructure.image.rawValue: return imageCell(tableView)
-        case TableStructure.description.rawValue: return descriptionCell()
-        case TableStructure.dateCreated.rawValue: return dateCreatedCell()
-        case TableStructure.creatorName.rawValue: return creatorNameCell()
-        case TableStructure.creatorPortfolioURL.rawValue: return creatorPortfolioURLCell()
+        case TableStructure.description.rawValue:
+            return defaultSubtitleCell(title: "Description", subtitle: photo.description)
+        case TableStructure.dateCreated.rawValue:
+            return defaultSubtitleCell(title: "Date Created", subtitle: photo.dateCreated)
+        case TableStructure.creatorName.rawValue:
+            return defaultSubtitleCell(title: "Creator", subtitle: photo.creatorName)
+        case TableStructure.creatorPortfolioURL.rawValue:
+            return defaultSubtitleCell(title: "Creator's portfolio", subtitle: photo.creatorPortfolioURLString)
         default: return UITableViewCell()
         }
     }
@@ -39,31 +43,10 @@ class RandomPhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         return cell
     }
     
-    private func descriptionCell() -> UITableViewCell {
+    private func defaultSubtitleCell(title: String, subtitle: String?) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "Description"
-        cell.detailTextLabel?.text = photo.description
-        return cell
-    }
-    
-    private func dateCreatedCell() -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "Date Created"
-        cell.detailTextLabel?.text = photo.dateCreated
-        return cell
-    }
-    
-    private func creatorNameCell() -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "Creator"
-        cell.detailTextLabel?.text = photo.creatorName
-        return cell
-    }
-    
-    private func creatorPortfolioURLCell() -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "Creator's portfolio"
-        cell.detailTextLabel?.text = photo.creatorPortfolioURLString
+        cell.textLabel?.text = title
+        cell.detailTextLabel?.text = subtitle 
         return cell
     }
 }
@@ -76,4 +59,3 @@ private enum TableStructure: Int {
     case creatorPortfolioURL
     case count
 }
-
