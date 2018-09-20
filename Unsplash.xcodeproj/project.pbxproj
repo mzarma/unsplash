@@ -84,7 +84,7 @@
 		05E75B23214BB31D00E37F39 /* RemoteRandomPhotoResultFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRandomPhotoResultFetcher.swift; sourceTree = "<group>"; };
 		05E75B24214BB31D00E37F39 /* RemoteRandomPhotoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRandomPhotoResponse.swift; sourceTree = "<group>"; };
 		05E75B25214BB31D00E37F39 /* URLRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestFactory.swift; sourceTree = "<group>"; };
-		05E75B26214BB31E00E37F39 /* CorePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CorePhoto.swift; path = Unsplash/CorePhoto.swift; sourceTree = SOURCE_ROOT; };
+		05E75B26214BB31E00E37F39 /* CorePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CorePhoto.swift; path = "Unsplash/New Group/CorePhoto.swift"; sourceTree = SOURCE_ROOT; };
 		05E75B28214BB31E00E37F39 /* RandomPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomPhotoViewController.swift; sourceTree = "<group>"; };
 		05E75B29214BB31E00E37F39 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		05E75B2A214BB31E00E37F39 /* PhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
@@ -154,15 +154,13 @@
 		05198553214BB28000D9D094 /* Unsplash */ = {
 			isa = PBXGroup;
 			children = (
+				05E75B30214BB31E00E37F39 /* Info.plist */,
 				05E75B37214BB31E00E37F39 /* AppDelegate.swift */,
 				05E75B1A214BB31D00E37F39 /* Assets.xcassets */,
-				05E75B26214BB31E00E37F39 /* CorePhoto.swift */,
-				056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */,
 				056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */,
-				05E1533D21513B8E0033BC3C /* RandomPhotoFlow.swift */,
-				05C1248421522B81008EBA67 /* PresentableRandomPhoto.swift */,
-				05C12486215232A5008EBA67 /* RandomPhotoPresenter.swift */,
-				05E75B30214BB31E00E37F39 /* Info.plist */,
+				05290B2F215382CE00FEC1C3 /* Models */,
+				05290B2C2153828300FEC1C3 /* Flow */,
+				05290B2E215382A400FEC1C3 /* Presentation */,
 				05E75B35214BB31E00E37F39 /* Main */,
 				05E75B1B214BB31D00E37F39 /* Networking */,
 				05E75B31214BB31E00E37F39 /* Shared */,
@@ -174,15 +172,89 @@
 		05198568214BB28100D9D094 /* UnsplashTests */ = {
 			isa = PBXGroup;
 			children = (
-				056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */,
-				05E1533B21513A910033BC3C /* RandomPhotoFlowTest.swift */,
 				05E75B57214BB34600E37F39 /* Info.plist */,
+				056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */,
+				05290B2D2153828E00FEC1C3 /* Flow */,
 				05E75B4D214BB34600E37F39 /* Main */,
 				05E75B58214BB34600E37F39 /* Networking */,
 				05E75B4F214BB34600E37F39 /* Shared */,
 				05E75B54214BB34600E37F39 /* UI */,
 			);
 			path = UnsplashTests;
+			sourceTree = "<group>";
+		};
+		05290B2C2153828300FEC1C3 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				05E1533D21513B8E0033BC3C /* RandomPhotoFlow.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		05290B2D2153828E00FEC1C3 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				05E1533B21513A910033BC3C /* RandomPhotoFlowTest.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		05290B2E215382A400FEC1C3 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				05C1248421522B81008EBA67 /* PresentableRandomPhoto.swift */,
+				05C12486215232A5008EBA67 /* RandomPhotoPresenter.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		05290B2F215382CE00FEC1C3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05E75B26214BB31E00E37F39 /* CorePhoto.swift */,
+				056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		05290B30215382F100FEC1C3 /* RandomPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				05E75B28214BB31E00E37F39 /* RandomPhotoViewController.swift */,
+				05E75B2E214BB31E00E37F39 /* RandomPhotoDataSourceDelegate.swift */,
+				05290B322153830C00FEC1C3 /* Cells */,
+			);
+			path = RandomPhoto;
+			sourceTree = "<group>";
+		};
+		05290B31215382FD00FEC1C3 /* RandomPhotoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				05881D942152901900785EC5 /* RandomPhotoDetailViewController.swift */,
+				05881D962152919D00785EC5 /* RandomPhotoDetailDataSourceDelegate.swift */,
+				05290B332153831600FEC1C3 /* Cells */,
+			);
+			path = RandomPhotoDetail;
+			sourceTree = "<group>";
+		};
+		05290B322153830C00FEC1C3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				05E75B29214BB31E00E37F39 /* PhotoCell.swift */,
+				05E75B2A214BB31E00E37F39 /* PhotoCell.xib */,
+				05E75B2B214BB31E00E37F39 /* NoPhotoCell.swift */,
+				05E75B2F214BB31E00E37F39 /* NoPhotoCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		05290B332153831600FEC1C3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				05881D9C2152999D00785EC5 /* ImageCell.swift */,
+				05881D9D2152999D00785EC5 /* ImageCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		05E75B1B214BB31D00E37F39 /* Networking */ = {
@@ -228,16 +300,8 @@
 			isa = PBXGroup;
 			children = (
 				05E75B2C214BB31E00E37F39 /* LaunchScreen.storyboard */,
-				05E75B28214BB31E00E37F39 /* RandomPhotoViewController.swift */,
-				05E75B2E214BB31E00E37F39 /* RandomPhotoDataSourceDelegate.swift */,
-				05E75B29214BB31E00E37F39 /* PhotoCell.swift */,
-				05E75B2A214BB31E00E37F39 /* PhotoCell.xib */,
-				05E75B2B214BB31E00E37F39 /* NoPhotoCell.swift */,
-				05E75B2F214BB31E00E37F39 /* NoPhotoCell.xib */,
-				05881D942152901900785EC5 /* RandomPhotoDetailViewController.swift */,
-				05881D962152919D00785EC5 /* RandomPhotoDetailDataSourceDelegate.swift */,
-				05881D9C2152999D00785EC5 /* ImageCell.swift */,
-				05881D9D2152999D00785EC5 /* ImageCell.xib */,
+				05290B30215382F100FEC1C3 /* RandomPhoto */,
+				05290B31215382FD00FEC1C3 /* RandomPhotoDetail */,
 			);
 			name = UI;
 			path = Unsplash/UI;
