@@ -25,7 +25,16 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return configuredNoPhotoCell(collectionView, at: indexPath)
+        return photos.count > 0 ?
+        configuredPhotoCell(collectionView, at: indexPath, photo: photos[indexPath.row]) :
+        configuredNoPhotoCell(collectionView, at: indexPath)
+    }
+    
+    private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, photo: PresentablePhoto) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        cell.photoImage = photo.thumbnailImage
+        cell.text = photo.description
+        return cell
     }
     
     private func configuredNoPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {

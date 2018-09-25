@@ -40,6 +40,22 @@ class PhotoListViewControllerTest: XCTestCase {
         XCTAssertEqual(cell.text, "No Photos")
     }
     
+    func test_photoCellForItemAtIndexpath() {
+        let image1 = testImage(width: 100, height: 100)
+        let photo1 = presentablePhoto(description: "description1", thumbnailImage: image1)
+        let image2 = testImage(width: 200, height: 200)
+        let photo2 = presentablePhoto(description: "description2", thumbnailImage: image2)
+        let sut = makeSUT(photos: [photo1, photo2])
+    
+        let cell1 = sut.photoCell(for: 0)
+        let cell2 = sut.photoCell(for: 1)
+    
+        XCTAssertEqual(cell1.photoImage, image1)
+        XCTAssertEqual(cell1.text, "description1")
+        XCTAssertEqual(cell2.photoImage, image2)
+        XCTAssertEqual(cell2.text, "description2")
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(photos: [PresentablePhoto] = [], noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> PhotoListViewController {
