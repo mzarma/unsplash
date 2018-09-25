@@ -18,8 +18,11 @@ final class RemoteCorePhotoFetcher<S: SearchResultFetcher>: SearchResultFetcher 
     }
     
     func fetch(request: S.Request, completion: @escaping (Output) -> Void) {
-        fetcher.fetch(request: request) { _ in
-            
+        fetcher.fetch(request: request) { result in
+            switch result {
+            case .success(_): break
+            case .error(let error): completion(.error(error))
+            }
         }
     }
 }
