@@ -135,5 +135,4 @@ class CoreRandomPhotoFetcherTest: XCTestCase {
             complete = completion
         }
     }
-
 }

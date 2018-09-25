@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum RemoteSearchResultFetcherError: Error {
+enum SearchResultFetcherError: Error {
     case httpClient
     case mapping
 }
@@ -22,7 +22,7 @@ protocol SearchResultFetcher {
 
 final class RemoteSearchResultFetcher: SearchResultFetcher {
     typealias Input = URLRequest
-    typealias Output = Result<RemoteSearchResultResponse, RemoteSearchResultFetcherError>
+    typealias Output = Result<RemoteSearchResultResponse, SearchResultFetcherError>
 
     private let client: HTTPClient
     
