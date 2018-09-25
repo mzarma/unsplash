@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct PresentablePhoto {
+struct PresentablePhoto: Equatable {
     let identifier: String
     let dateCreated: String
     let width: Int

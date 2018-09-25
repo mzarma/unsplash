@@ -31,7 +31,8 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard !photos.isEmpty else { return }
+        photoSelection(photos[indexPath.row])
     }
     
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, photo: PresentablePhoto) -> UICollectionViewCell {

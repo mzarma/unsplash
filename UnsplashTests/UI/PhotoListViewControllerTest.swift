@@ -69,6 +69,27 @@ class PhotoListViewControllerTest: XCTestCase {
         XCTAssertEqual(callCount, 0)
     }
     
+    func test_triggersPhotoSelection() {
+        var callCount = 0
+        var expectedPhoto: PresentablePhoto?
+        
+        let image1 = testImage(width: 100, height: 100)
+        let photo1 = presentablePhoto(description: "description1", thumbnailImage: image1)
+        let image2 = testImage(width: 200, height: 200)
+        let photo2 = presentablePhoto(description: "description2", thumbnailImage: image2)
+        let sut = makeSUT(photos: [photo1, photo2]) { photo in
+            callCount += 1
+            expectedPhoto = photo
+        }
+    
+        XCTAssertEqual(callCount, 0)
+    
+        sut.selectItem(0)
+    
+        XCTAssertEqual(callCount, 1)
+        XCTAssertEqual(expectedPhoto, photo1)
+    }
+
     // MARK: Helpers
     
     private func makeSUT(photos: [PresentablePhoto] = [], noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> PhotoListViewController {
