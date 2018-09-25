@@ -61,6 +61,28 @@ extension RandomPhotoDetailViewController {
     }
 }
 
+extension PhotoListViewController {
+    func numberOfItems() -> Int {
+        return collectionView.dataSource!.collectionView(collectionView, numberOfItemsInSection: 0)
+    }
+    
+    func noPhotoCell() -> NoPhotoCell {
+        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath(for: 0)) as! NoPhotoCell
+    }
+    
+    func photoCell(for item: Int) -> PhotoCell {
+        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath(for: item)) as! PhotoCell
+    }
+    
+    func selectItem(_ item: Int) {
+        collectionView.delegate!.collectionView!(collectionView, didSelectItemAt: indexPath(for: item))
+    }
+    
+    func indexPath(for item: Int) -> IndexPath {
+        return IndexPath(item: item, section: 0)
+    }
+}
+
 extension SearchViewController {
     func clickSearchButton(with term: String) {
         searchBar.text = term
@@ -108,6 +130,30 @@ func coreRandomPhoto(
         smallImageURLString: "smallImageURLString",
         thumbnailImageURLString: "thumbnailImageURLString",
         downloadImageLink: "downloadImageLink")
+}
+
+func presentablePhoto(identifier: String = "", dateCreated: String = "", description: String = "", creatorName: String = "", creatorPortfolioURLString: String = "", regularImageURLString: String = "") -> PresentablePhoto {
+    return PresentablePhoto(
+        identifier: identifier,
+        dateCreated: dateCreated,
+        width: 0,
+        height: 0,
+        colorString: "",
+        description: description,
+        creatorIdentifier: "",
+        creatorUsername: "",
+        creatorName: creatorName,
+        creatorPortfolioURLString:
+        creatorPortfolioURLString,
+        creatorSmallProfileImageURLString: nil,
+        creatorMediumProfileImageURLString: nil,
+        creatorLargeProfileImageURLString: nil,
+        regularImageURLString: regularImageURLString,
+        smallImageURLString: "",
+        thumbnailImageURLString: "",
+        downloadImageLink: "",
+        thumbnailImage: testImage()
+    )
 }
 
 func testImage() -> UIImage {
