@@ -30,6 +30,10 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
         configuredNoPhotoCell(collectionView, at: indexPath)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, photo: PresentablePhoto) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         cell.photoImage = photo.thumbnailImage

@@ -56,6 +56,19 @@ class PhotoListViewControllerTest: XCTestCase {
         XCTAssertEqual(cell2.text, "description2")
     }
     
+    // MARK: UICollectionViewDelegateFlowLayout
+    
+    func test_doesNotTriggerPhotoSelection_whenPhotosArrayIsEmpty() {
+        var callCount = 0
+        let sut = makeSUT(photos: []) { _ in callCount += 1 }
+    
+        XCTAssertEqual(callCount, 0)
+    
+        sut.selectItem(0)
+    
+        XCTAssertEqual(callCount, 0)
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(photos: [PresentablePhoto] = [], noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> PhotoListViewController {
