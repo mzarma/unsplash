@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CorePhoto {
+struct CorePhoto: Equatable {
     let identifier: String
     let dateCreated: Date
     let width: Int

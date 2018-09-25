@@ -9,7 +9,7 @@
 import Foundation
 
 final class RemoteCorePhotoFetcher<S: SearchResultFetcher>: SearchResultFetcher where S.Request == URLRequest, S.Result == Result<RemoteSearchResultResponse, SearchResultFetcherError> {
-    typealias Output = Result<CorePhoto, SearchResultFetcherError>
+    typealias Output = Result<CoreSearchResult, SearchResultFetcherError>
     
     private let fetcher: S
     

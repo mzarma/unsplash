@@ -15,6 +15,7 @@
 		05380D35215A59B900CEB9B5 /* PresentablePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D34215A59B900CEB9B5 /* PresentablePhoto.swift */; };
 		05380D37215A678100CEB9B5 /* RemoteCorePhotoFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D36215A678100CEB9B5 /* RemoteCorePhotoFetcherTest.swift */; };
 		05380D39215A67F300CEB9B5 /* RemoteCorePhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D38215A67F300CEB9B5 /* RemoteCorePhotoFetcher.swift */; };
+		05380D3B215A800A00CEB9B5 /* CoreSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D3A215A800A00CEB9B5 /* CoreSearchResult.swift */; };
 		05561F35215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05561F34215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift */; };
 		05561F37215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05561F36215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift */; };
 		056064D5215945BC0060EA90 /* CorePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056064D4215945BC0060EA90 /* CorePhoto.swift */; };
@@ -81,6 +82,7 @@
 		05380D34215A59B900CEB9B5 /* PresentablePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentablePhoto.swift; sourceTree = "<group>"; };
 		05380D36215A678100CEB9B5 /* RemoteCorePhotoFetcherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCorePhotoFetcherTest.swift; sourceTree = "<group>"; };
 		05380D38215A67F300CEB9B5 /* RemoteCorePhotoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCorePhotoFetcher.swift; sourceTree = "<group>"; };
+		05380D3A215A800A00CEB9B5 /* CoreSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreSearchResult.swift; sourceTree = "<group>"; };
 		05561F34215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRandomPhotoDetailViewFactory.swift; sourceTree = "<group>"; };
 		05561F36215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRandomPhotoDetailViewFactoryTest.swift; sourceTree = "<group>"; };
 		056064D4215945BC0060EA90 /* CorePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorePhoto.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				056064D4215945BC0060EA90 /* CorePhoto.swift */,
+				05380D3A215A800A00CEB9B5 /* CoreSearchResult.swift */,
 				056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */,
 			);
 			path = Models;
@@ -624,6 +627,7 @@
 				05E75B41214BB31E00E37F39 /* RandomPhotoViewController.swift in Sources */,
 				05E75B3C214BB31E00E37F39 /* RemoteSearchResultPhotoResponse.swift in Sources */,
 				05E75B4C214BB31E00E37F39 /* AppDelegate.swift in Sources */,
+				05380D3B215A800A00CEB9B5 /* CoreSearchResult.swift in Sources */,
 				05561F35215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift in Sources */,
 				05E75B42214BB31E00E37F39 /* PhotoCell.swift in Sources */,
 				05E1533E21513B8E0033BC3C /* RandomPhotoFlow.swift in Sources */,
