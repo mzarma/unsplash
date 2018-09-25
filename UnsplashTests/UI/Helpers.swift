@@ -81,19 +81,22 @@ func presentableRandomPhoto(identifier: String = "", dateCreated: String = "", d
 }
 
 func coreRandomPhoto(
+    dateCreated: Date = Date(timeIntervalSince1970: 946684800),
     description: String = "",
+    creatorName: String = "",
+    creatorPortfolioURLString: String = "",
     regularImageURLString: String = "") -> CoreRandomPhoto {
     return CoreRandomPhoto(
         identifier: "an identifier",
-        dateCreated: Date(timeIntervalSince1970: 946684800),
+        dateCreated: dateCreated,
         width: 150,
         height: 150,
         colorString: "a color string",
         description: description,
         creatorIdentifier: "creator identifier",
         creatorUsername: "creator username",
-        creatorName: "creator name",
-        creatorPortfolioURLString: "portfolioURLString",
+        creatorName: creatorName,
+        creatorPortfolioURLString: creatorPortfolioURLString,
         regularImageURLString: regularImageURLString,
         smallImageURLString: "smallImageURLString",
         thumbnailImageURLString: "thumbnailImageURLString",

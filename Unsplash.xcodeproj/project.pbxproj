@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05561F35215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05561F34215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift */; };
+		05561F37215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05561F36215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift */; };
+		056064D5215945BC0060EA90 /* CorePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056064D4215945BC0060EA90 /* CorePhoto.swift */; };
 		056FFF92214FA52C005F0077 /* CoreRandomPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */; };
 		056FFF94214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */; };
 		056FFF96214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */; };
@@ -27,7 +30,6 @@
 		05E75B3D214BB31E00E37F39 /* RemoteRandomPhotoResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B23214BB31D00E37F39 /* RemoteRandomPhotoResultFetcher.swift */; };
 		05E75B3E214BB31E00E37F39 /* RemoteRandomPhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B24214BB31D00E37F39 /* RemoteRandomPhotoResponse.swift */; };
 		05E75B3F214BB31E00E37F39 /* URLRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B25214BB31D00E37F39 /* URLRequestFactory.swift */; };
-		05E75B40214BB31E00E37F39 /* CorePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B26214BB31E00E37F39 /* CorePhoto.swift */; };
 		05E75B41214BB31E00E37F39 /* RandomPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B28214BB31E00E37F39 /* RandomPhotoViewController.swift */; };
 		05E75B42214BB31E00E37F39 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B29214BB31E00E37F39 /* PhotoCell.swift */; };
 		05E75B43214BB31E00E37F39 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E75B2A214BB31E00E37F39 /* PhotoCell.xib */; };
@@ -64,6 +66,9 @@
 /* Begin PBXFileReference section */
 		05198551214BB28000D9D094 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05198565214BB28100D9D094 /* UnsplashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05561F34215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRandomPhotoDetailViewFactory.swift; sourceTree = "<group>"; };
+		05561F36215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRandomPhotoDetailViewFactoryTest.swift; sourceTree = "<group>"; };
+		056064D4215945BC0060EA90 /* CorePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorePhoto.swift; sourceTree = "<group>"; };
 		056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhoto.swift; sourceTree = "<group>"; };
 		056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhotoFetcher.swift; sourceTree = "<group>"; };
 		056FFF95214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRandomPhotoFetcherTest.swift; sourceTree = "<group>"; };
@@ -84,7 +89,6 @@
 		05E75B23214BB31D00E37F39 /* RemoteRandomPhotoResultFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRandomPhotoResultFetcher.swift; sourceTree = "<group>"; };
 		05E75B24214BB31D00E37F39 /* RemoteRandomPhotoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRandomPhotoResponse.swift; sourceTree = "<group>"; };
 		05E75B25214BB31D00E37F39 /* URLRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestFactory.swift; sourceTree = "<group>"; };
-		05E75B26214BB31E00E37F39 /* CorePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CorePhoto.swift; path = "Unsplash/New Group/CorePhoto.swift"; sourceTree = SOURCE_ROOT; };
 		05E75B28214BB31E00E37F39 /* RandomPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomPhotoViewController.swift; sourceTree = "<group>"; };
 		05E75B29214BB31E00E37F39 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		05E75B2A214BB31E00E37F39 /* PhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
@@ -211,7 +215,7 @@
 		05290B2F215382CE00FEC1C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				05E75B26214BB31E00E37F39 /* CorePhoto.swift */,
+				056064D4215945BC0060EA90 /* CorePhoto.swift */,
 				056FFF91214FA52C005F0077 /* CoreRandomPhoto.swift */,
 			);
 			path = Models;
@@ -329,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				05E75B36214BB31E00E37F39 /* PhoneRandomPhotoViewFactory.swift */,
+				05561F34215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift */,
 			);
 			name = Main;
 			path = Unsplash/Main;
@@ -338,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				05E75B4E214BB34600E37F39 /* PhoneRandomPhotoViewFactoryTest.swift */,
+				05561F36215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift */,
 			);
 			name = Main;
 			path = UnsplashTests/Main;
@@ -593,14 +599,15 @@
 				05E75B41214BB31E00E37F39 /* RandomPhotoViewController.swift in Sources */,
 				05E75B3C214BB31E00E37F39 /* RemoteSearchResultPhotoResponse.swift in Sources */,
 				05E75B4C214BB31E00E37F39 /* AppDelegate.swift in Sources */,
+				05561F35215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift in Sources */,
 				05E75B42214BB31E00E37F39 /* PhotoCell.swift in Sources */,
 				05E1533E21513B8E0033BC3C /* RandomPhotoFlow.swift in Sources */,
 				05E75B4B214BB31E00E37F39 /* PhoneRandomPhotoViewFactory.swift in Sources */,
 				05E75B46214BB31E00E37F39 /* RandomPhotoDataSourceDelegate.swift in Sources */,
 				05C1248521522B81008EBA67 /* PresentableRandomPhoto.swift in Sources */,
-				05E75B40214BB31E00E37F39 /* CorePhoto.swift in Sources */,
 				05E75B3F214BB31E00E37F39 /* URLRequestFactory.swift in Sources */,
 				05E75B3B214BB31E00E37F39 /* RemoteSearchResultFetcher.swift in Sources */,
+				056064D5215945BC0060EA90 /* CorePhoto.swift in Sources */,
 				05E75B44214BB31E00E37F39 /* NoPhotoCell.swift in Sources */,
 				05881D952152901900785EC5 /* RandomPhotoDetailViewController.swift in Sources */,
 			);
@@ -616,6 +623,7 @@
 				05E75B68214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift in Sources */,
 				056FFF96214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift in Sources */,
 				05881D9321528F4A00785EC5 /* RandomPhotoDetailViewControllerTest.swift in Sources */,
+				05561F37215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift in Sources */,
 				05E75B61214BB34600E37F39 /* HTTPClientTest.swift in Sources */,
 				05E75B66214BB34600E37F39 /* RemotePhotoFetcherTest.swift in Sources */,
 				05E75B60214BB34600E37F39 /* PhoneRandomPhotoViewFactoryTest.swift in Sources */,
