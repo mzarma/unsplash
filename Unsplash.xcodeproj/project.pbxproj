@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		05380D2B215A48BA00CEB9B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */; };
 		05380D2D215A48F200CEB9B5 /* SearchViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2C215A48F200CEB9B5 /* SearchViewControllerTest.swift */; };
+		05380D2F215A574200CEB9B5 /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */; };
+		05380D31215A57F800CEB9B5 /* PhotoListDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D30215A57F800CEB9B5 /* PhotoListDataSourceDelegate.swift */; };
+		05380D33215A580900CEB9B5 /* PhotoListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D32215A580900CEB9B5 /* PhotoListViewControllerTest.swift */; };
+		05380D35215A59B900CEB9B5 /* PresentablePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D34215A59B900CEB9B5 /* PresentablePhoto.swift */; };
 		05561F35215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05561F34215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift */; };
 		05561F37215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05561F36215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift */; };
 		056064D5215945BC0060EA90 /* CorePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056064D4215945BC0060EA90 /* CorePhoto.swift */; };
@@ -69,6 +73,10 @@
 		05198565214BB28100D9D094 /* UnsplashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		05380D2C215A48F200CEB9B5 /* SearchViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTest.swift; sourceTree = "<group>"; };
+		05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewController.swift; sourceTree = "<group>"; };
+		05380D30215A57F800CEB9B5 /* PhotoListDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListDataSourceDelegate.swift; sourceTree = "<group>"; };
+		05380D32215A580900CEB9B5 /* PhotoListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewControllerTest.swift; sourceTree = "<group>"; };
+		05380D34215A59B900CEB9B5 /* PresentablePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentablePhoto.swift; sourceTree = "<group>"; };
 		05561F34215A1A8D004BE337 /* PhoneRandomPhotoDetailViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRandomPhotoDetailViewFactory.swift; sourceTree = "<group>"; };
 		05561F36215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRandomPhotoDetailViewFactoryTest.swift; sourceTree = "<group>"; };
 		056064D4215945BC0060EA90 /* CorePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CorePhoto.swift; sourceTree = "<group>"; };
@@ -210,6 +218,7 @@
 			children = (
 				05C1248421522B81008EBA67 /* PresentableRandomPhoto.swift */,
 				05C12486215232A5008EBA67 /* RandomPhotoPresenter.swift */,
+				05380D34215A59B900CEB9B5 /* PresentablePhoto.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -228,7 +237,6 @@
 			children = (
 				05E75B28214BB31E00E37F39 /* RandomPhotoViewController.swift */,
 				05E75B2E214BB31E00E37F39 /* RandomPhotoDataSourceDelegate.swift */,
-				05290B322153830C00FEC1C3 /* Cells */,
 			);
 			path = RandomPhoto;
 			sourceTree = "<group>";
@@ -308,7 +316,10 @@
 				05E75B2C214BB31E00E37F39 /* LaunchScreen.storyboard */,
 				05290B30215382F100FEC1C3 /* RandomPhoto */,
 				05290B31215382FD00FEC1C3 /* RandomPhotoDetail */,
+				05290B322153830C00FEC1C3 /* Cells */,
 				05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */,
+				05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */,
+				05380D30215A57F800CEB9B5 /* PhotoListDataSourceDelegate.swift */,
 			);
 			name = UI;
 			path = Unsplash/UI;
@@ -384,6 +395,7 @@
 				05E75B55214BB34600E37F39 /* Helpers.swift */,
 				05E75B56214BB34600E37F39 /* RandomPhotoViewControllerTest.swift */,
 				05380D2C215A48F200CEB9B5 /* SearchViewControllerTest.swift */,
+				05380D32215A580900CEB9B5 /* PhotoListViewControllerTest.swift */,
 			);
 			name = UI;
 			path = UnsplashTests/UI;
@@ -588,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05380D31215A57F800CEB9B5 /* PhotoListDataSourceDelegate.swift in Sources */,
 				05C12487215232A5008EBA67 /* RandomPhotoPresenter.swift in Sources */,
 				056FFF94214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift in Sources */,
 				05E75B3E214BB31E00E37F39 /* RemoteRandomPhotoResponse.swift in Sources */,
@@ -595,6 +608,7 @@
 				056FFF92214FA52C005F0077 /* CoreRandomPhoto.swift in Sources */,
 				05881D9E2152999D00785EC5 /* ImageCell.swift in Sources */,
 				05881D972152919D00785EC5 /* RandomPhotoDetailDataSourceDelegate.swift in Sources */,
+				05380D35215A59B900CEB9B5 /* PresentablePhoto.swift in Sources */,
 				05E75B49214BB31E00E37F39 /* HTTPClient.swift in Sources */,
 				05380D2B215A48BA00CEB9B5 /* SearchViewController.swift in Sources */,
 				05E75B39214BB31E00E37F39 /* PhotoDownloader.swift in Sources */,
@@ -611,6 +625,7 @@
 				05C1248521522B81008EBA67 /* PresentableRandomPhoto.swift in Sources */,
 				05E75B3F214BB31E00E37F39 /* URLRequestFactory.swift in Sources */,
 				05E75B3B214BB31E00E37F39 /* RemoteSearchResultFetcher.swift in Sources */,
+				05380D2F215A574200CEB9B5 /* PhotoListViewController.swift in Sources */,
 				056064D5215945BC0060EA90 /* CorePhoto.swift in Sources */,
 				05E75B44214BB31E00E37F39 /* NoPhotoCell.swift in Sources */,
 				05881D952152901900785EC5 /* RandomPhotoDetailViewController.swift in Sources */,
@@ -626,6 +641,7 @@
 				05E75B62214BB34600E37F39 /* HTTPClientStub.swift in Sources */,
 				05E75B68214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift in Sources */,
 				056FFF96214FCC74005F0077 /* CoreRandomPhotoFetcherTest.swift in Sources */,
+				05380D33215A580900CEB9B5 /* PhotoListViewControllerTest.swift in Sources */,
 				05561F37215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift in Sources */,
 				05E75B61214BB34600E37F39 /* HTTPClientTest.swift in Sources */,
 				05E75B66214BB34600E37F39 /* RemotePhotoFetcherTest.swift in Sources */,

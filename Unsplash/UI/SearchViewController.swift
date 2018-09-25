@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchBarDelegate {
+final class SearchViewController: UIViewController, UISearchBarDelegate {
     let searchBar = UISearchBar(frame: .zero)
     private var searched: (String) -> Void = { _ in }
     
