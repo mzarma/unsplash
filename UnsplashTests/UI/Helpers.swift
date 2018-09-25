@@ -61,6 +61,13 @@ extension RandomPhotoDetailViewController {
     }
 }
 
+extension SearchViewController {
+    func clickSearchButton(with term: String) {
+        searchBar.text = term
+        searchBar.delegate!.searchBarSearchButtonClicked!(searchBar)
+    }
+}
+
 func presentableRandomPhoto(identifier: String = "", dateCreated: String = "", description: String = "", creatorName: String = "", creatorPortfolioURLString: String = "", regularImageURLString: String = "") -> PresentableRandomPhoto {
     return PresentableRandomPhoto(
         identifier: identifier,
