@@ -32,6 +32,14 @@ class PhotoListViewControllerTest: XCTestCase {
         XCTAssertEqual(makeSUT(photos: [presentablePhoto(), presentablePhoto(), presentablePhoto()]).numberOfItems(), 3)
     }
     
+    func test_showsNoPhotoCell_whenPhotosArrayIsEmpty() {
+        let sut = makeSUT(photos: [], noPhotoText: "No Photos")
+        
+        let cell = sut.noPhotoCell()
+        
+        XCTAssertEqual(cell.text, "No Photos")
+    }
+    
     // MARK: Helpers
     
     private func makeSUT(photos: [PresentablePhoto] = [], noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> PhotoListViewController {

@@ -25,6 +25,12 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        return configuredNoPhotoCell(collectionView, at: indexPath)
+    }
+    
+    private func configuredNoPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoPhotoCell", for: indexPath) as! NoPhotoCell
+        cell.text = noPhotoText
+        return cell
     }
 }
