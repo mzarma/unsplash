@@ -18,13 +18,22 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         super.tearDown()
     }
     
-    func test_containerViewHasChildSearchView() {
+    func test_containerHasChildSearchView() {
         let sut = makeSUT()
         
         let containerViewController = sut.makePhotoListView { _ in }
 
-        XCTAssertTrue(sut.searchViewController?.parent === containerViewController)
-        XCTAssertTrue(sut.searchViewController?.view.superview === containerViewController.view)
+        XCTAssertTrue(sut.searchViewController.parent === containerViewController)
+        XCTAssertTrue(sut.searchViewController.view.superview === containerViewController.view)
+    }
+    
+    func test_containerHasChildPhotoListView() {
+        let sut = makeSUT()
+        
+        let containerViewController = sut.makePhotoListView { _ in }
+        
+        XCTAssertTrue(sut.listViewController.parent === containerViewController)
+        XCTAssertTrue(sut.listViewController.view.superview === containerViewController.view)
     }
         
     // MARK: Helpers

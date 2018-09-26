@@ -13,9 +13,10 @@ protocol PhotoListViewFactory {
 }
 
 final class PhonePhotoListViewFactory<S: SearchResultFetcher, P: PhotoFetcher>: PhotoListViewFactory where S.Request == URLRequest, S.Result == Result<CoreSearchResult, SearchResultFetcherError>, P.Request == URLRequest, P.Response == Result<Data,PhotoFetcherError> {
-    
-    private (set) var searchViewController: SearchViewController?
-    private (set) var listViewController: PhotoListViewController?
+
+    private let container = UIViewController()
+    private (set) var searchViewController: SearchViewController!
+    private (set) var listViewController: PhotoListViewController!
     
     private let searchResultFetcher: S
     private let photoFetcher: P
@@ -26,15 +27,25 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher, P: PhotoFetcher>: 
     }
     
     func makePhotoListView(_ selected: @escaping (CorePhoto) -> Void) -> UIViewController {
-        let container = UIViewController()
-        
+        addSearchViewController()
+        addPhotoListViewController()
+        return container
+    }
+    
+    private func addSearchViewController() {
         searchViewController = SearchViewController { _ in }
+        container.addChild(searchViewController)
+        container.view.addSubview(searchViewController.view)
+        searchViewController.view.frame = CGRect(x: 0, y: 0, width: container.view.bounds.width, height: 80)
+        searchViewController.didMove(toParent: container)
+    }
+    
+    private func addPhotoListViewController() {
         let dataSourceDelegate = PhotoListDataSourceDelegate(noPhotoText: "") { _ in }
         listViewController = PhotoListViewController(dataSource: dataSourceDelegate, delegate: dataSourceDelegate)
-        
-        container.addChild(searchViewController!)
-        container.view.addSubview(searchViewController!.view)
-        searchViewController!.didMove(toParent: container)
-        return container
+        container.addChild(listViewController)
+        container.view.addSubview(listViewController.view)
+        listViewController.view.frame = CGRect(x: 0, y: 80, width: container.view.bounds.width, height: container.view.bounds.height-80)
+        listViewController.didMove(toParent: container)
     }
 }
