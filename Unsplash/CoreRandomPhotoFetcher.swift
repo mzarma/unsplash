@@ -31,11 +31,11 @@ final class CoreRandomPhotoFetcher<R: RandomPhotoResultFetcher>: RandomPhotoResu
         }
     }
     
-    func map(_ response: RemoteRandomPhotoResponse) -> CoreRandomPhoto? {
-        guard let dateCreatedString = ISO8601DateFormatter().date(from: response.dateCreatedString) else { return nil }
+    private func map(_ response: RemoteRandomPhotoResponse) -> CoreRandomPhoto? {
+        guard let dateCreated = ISO8601DateFormatter().date(from: response.dateCreatedString) else { return nil }
         return CoreRandomPhoto(
             identifier: response.identifier,
-            dateCreated: dateCreatedString,
+            dateCreated: dateCreated,
             width: response.width,
             height: response.height,
             colorString: response.colorString,

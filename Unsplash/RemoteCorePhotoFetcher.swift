@@ -18,11 +18,39 @@ final class RemoteCorePhotoFetcher<S: SearchResultFetcher>: SearchResultFetcher 
     }
     
     func fetch(request: S.Request, completion: @escaping (Output) -> Void) {
-        fetcher.fetch(request: request) { result in
+        fetcher.fetch(request: request) { [weak self] result in
+            guard let sSelf = self else { return }
             switch result {
-            case .success(_): break
+            case .success(let response): completion(.success(sSelf.map(response)))
             case .error(let error): completion(.error(error))
             }
         }
+    }
+    
+    private func map(_ response: RemoteSearchResultResponse) -> CoreSearchResult {
+        return CoreSearchResult(totalPhotos: response.totalPhotos, totalPages: response.totalPages, photos: response.photos.compactMap { map($0) })
+    }
+    
+    private func map(_ photo: RemoteSearchResultPhotoResponse) -> CorePhoto? {
+        guard let date = ISO8601DateFormatter().date(from: photo.dateCreatedString) else { return nil }
+        return CorePhoto(
+            identifier: photo.identifier,
+            dateCreated: date,
+            width: photo.width,
+            height: photo.height,
+            colorString: photo.colorString,
+            description: photo.description,
+            creatorIdentifier: photo.creator.identifier,
+            creatorUsername: photo.creator.username,
+            creatorName: photo.creator.name,
+            creatorPortfolioURLString: photo.creator.portfolioURLString,
+            creatorSmallProfileImageURLString: photo.creator.profileImageURLs?.small,
+            creatorMediumProfileImageURLString: photo.creator.profileImageURLs?.medium,
+            creatorLargeProfileImageURLString: photo.creator.profileImageURLs?.large,
+            regularImageURLString: photo.imageURLs.regular,
+            smallImageURLString: photo.imageURLs.small,
+            thumbnailImageURLString: photo.imageURLs.thumbnail,
+            downloadImageLink: photo.imageLinks.download
+        )
     }
 }

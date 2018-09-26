@@ -36,25 +36,25 @@ struct RemoteSearchResultPhotoResponse: Equatable, Codable {
         let username: String
         let name: String
         let portfolioURLString: String?
-        let imageURLs: ImageURLs?
+        let profileImageURLs: ProfileImageURLs?
         
         enum CodingKeys: String, CodingKey {
             case identifier = "id"
             case username = "username"
             case name = "name"
             case portfolioURLString = "portfolio_url"
-            case imageURLs = "profile_image"
+            case profileImageURLs = "profile_image"
         }
         
-        struct ImageURLs: Equatable, Codable {
-            let smallProfileImageURLString: String?
-            let mediumProfileImageURLString: String?
-            let largeProfileImageURLString: String?
+        struct ProfileImageURLs: Equatable, Codable {
+            let small: String?
+            let medium: String?
+            let large: String?
             
             enum CodingKeys: String, CodingKey {
-                case smallProfileImageURLString = "small"
-                case mediumProfileImageURLString = "medium"
-                case largeProfileImageURLString = "large"
+                case small = "small"
+                case medium = "medium"
+                case large = "large"
             }
         }
     }
