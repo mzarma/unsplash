@@ -39,7 +39,6 @@ final class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let term = searchBar.text ?? ""
-        print("Search button clicked. Term: " + term)
         searched(term)
     }
 }
