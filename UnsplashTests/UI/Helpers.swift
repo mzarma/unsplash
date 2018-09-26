@@ -156,6 +156,28 @@ func presentablePhoto(identifier: String = "", dateCreated: String = "", descrip
     )
 }
 
+func corePhoto(thumbnailURLString: String = "") -> CorePhoto {
+    return CorePhoto(
+        identifier: "",
+        dateCreated: Date(),
+        width: 0,
+        height: 0,
+        colorString: "",
+        description: "",
+        creatorIdentifier: "",
+        creatorUsername: "",
+        creatorName: "",
+        creatorPortfolioURLString: "",
+        creatorSmallProfileImageURLString: "",
+        creatorMediumProfileImageURLString: "",
+        creatorLargeProfileImageURLString: "",
+        regularImageURLString: "",
+        smallImageURLString: "",
+        thumbnailImageURLString: thumbnailURLString,
+        downloadImageLink: ""
+    )
+}
+
 func testImage(width: Int = 20, height: Int = 20) -> UIImage {
     UIGraphicsBeginImageContext(CGSize(width: 20, height: 20))
     let image = UIGraphicsGetImageFromCurrentImageContext()

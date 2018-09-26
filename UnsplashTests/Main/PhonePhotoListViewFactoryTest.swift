@@ -55,6 +55,59 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
         XCTAssertEqual(searchResultFetcher.requests, [URLRequestFactory.search(parameters: expectedSearchParameters)])
     }
+    
+    func test_photoListView_showsNoPhotoCell_whenSearchResultFetchingFails() {
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { _ in }
+
+        sut.searchViewController.clickSearchButton(with: "a term")
+        searchResultFetcher.complete?(.error(.httpClient))
+        
+        XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
+        XCTAssertEqual(sut.listViewController.numberOfItems(), 1)
+        XCTAssertEqual(sut.listViewController.noPhotoCell().text, "No photos")
+    }
+    
+    func test_photoListView_showsNoPhotoCell_whenSearchResultFetcherCompletesWithZeroPhotos() {
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { _ in }
+        
+        sut.searchViewController.clickSearchButton(with: "a term")
+        let searchResult = CoreSearchResult(totalPhotos: 0, totalPages: 1, photos: [])
+        searchResultFetcher.complete?(.success(searchResult))
+        
+        XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
+        XCTAssertEqual(sut.listViewController.numberOfItems(), 1)
+        XCTAssertEqual(sut.listViewController.noPhotoCell().text, "No photos")
+    }
+
+    func test_photoListView_showsNoPhotoCell_whenSearchResultFetcherCompletesWithOnePhotoWithInvalidThumbnailURL() {
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { _ in }
+        
+        sut.searchViewController.clickSearchButton(with: "a term")
+        let photo = corePhoto(thumbnailURLString: "")
+        let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
+        searchResultFetcher.complete?(.success(searchResult))
+        
+        XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
+        XCTAssertEqual(sut.listViewController.numberOfItems(), 1)
+        XCTAssertEqual(sut.listViewController.noPhotoCell().text, "No photos")
+    }
+    
+    func test_photoListView_showsNoPhotoCell_whenSearchResultFetcherCompletesWithOnePhotoAndPhotoFetcherFails() {
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { _ in }
+        
+        sut.searchViewController.clickSearchButton(with: "a term")
+        let photo = corePhoto(thumbnailURLString: "https://a-mock.url")
+        let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
+        searchResultFetcher.complete?(.success(searchResult))
+        
+        XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
+        XCTAssertEqual(sut.listViewController.numberOfItems(), 1)
+        XCTAssertEqual(sut.listViewController.noPhotoCell().text, "No photos")
+    }
         
     // MARK: Helpers
     

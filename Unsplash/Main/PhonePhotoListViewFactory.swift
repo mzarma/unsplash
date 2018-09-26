@@ -35,8 +35,15 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher, P: PhotoFetcher>: 
     private func addSearchViewController() {
         searchViewController = SearchViewController { [weak self] term in
             let request = URLRequestFactory.search(parameters: SearchParameters(page: 1, term: term))
-            self?.searchResultFetcher.fetch(request: request) { _ in
-                
+            self?.searchResultFetcher.fetch(request: request) { result in
+                switch result {
+                case .success(let result):
+                    guard let photo = result.photos.first,
+                          let url = URL(string: photo.thumbnailImageURLString) else { return }
+                    let request = URLRequest(url: url)
+                    self?.photoFetcher.fetch(request: request) { _ in }
+                case .error(_): break
+                }
             }
         }
         container.addChild(searchViewController)
