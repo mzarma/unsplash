@@ -33,7 +33,12 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher, P: PhotoFetcher>: 
     }
     
     private func addSearchViewController() {
-        searchViewController = SearchViewController { _ in }
+        searchViewController = SearchViewController { [weak self] term in
+            let request = URLRequestFactory.search(parameters: SearchParameters(page: 1, term: term))
+            self?.searchResultFetcher.fetch(request: request) { _ in
+                
+            }
+        }
         container.addChild(searchViewController)
         container.view.addSubview(searchViewController.view)
         searchViewController.view.frame = CGRect(x: 0, y: 0, width: container.view.bounds.width, height: 80)

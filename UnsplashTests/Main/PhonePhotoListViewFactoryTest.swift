@@ -41,6 +41,20 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         _ = sut.makePhotoListView { _ in }
         XCTAssertEqual(sut.listViewController.noPhotoCell().text, "No photos")
     }
+    
+    func test_searchResultFetcherFetches_whenSearchedIsFired() {
+        let expectedSearchParameters = SearchParameters(page: 1, term: "a term")
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { _ in }
+        
+        XCTAssertEqual(searchResultFetcher.fetchCallCount, 0)
+        XCTAssertEqual(searchResultFetcher.requests, [])
+        
+        sut.searchViewController.clickSearchButton(with: "a term")
+        
+        XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
+        XCTAssertEqual(searchResultFetcher.requests, [URLRequestFactory.search(parameters: expectedSearchParameters)])
+    }
         
     // MARK: Helpers
     
@@ -56,10 +70,12 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
     
     private class SearchResultFetcherSpy: SearchResultFetcher {
         var fetchCallCount = 0
+        var requests = [URLRequest]()
         var complete: ((Result) -> Void)?
         
         func fetch(request: URLRequest, completion: @escaping (Result<CoreSearchResult, SearchResultFetcherError>) -> Void) {
             fetchCallCount += 1
+            requests.append(request)
             complete = completion
         }
     }
