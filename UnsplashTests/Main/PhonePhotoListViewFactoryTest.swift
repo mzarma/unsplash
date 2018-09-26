@@ -35,6 +35,12 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         XCTAssertTrue(sut.listViewController.parent === containerViewController)
         XCTAssertTrue(sut.listViewController.view.superview === containerViewController.view)
     }
+    
+    func test_photoListView_startsWithNoPhotoText() {
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { _ in }
+        XCTAssertEqual(sut.listViewController.noPhotoCell().text, "No photos")
+    }
         
     // MARK: Helpers
     
@@ -46,13 +52,6 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         let sut = PhonePhotoListViewFactory(searchResultFetcher, photoFetcher)
         weakSUT = sut
         return sut
-    }
-    
-    private func makePhotoListView(_ selected: @escaping (CorePhoto) -> Void = { _ in }) -> UIViewController {
-        let sut = makeSUT()
-        let photoListView = sut.makePhotoListView(selected)
-        photoListView.loadViewIfNeeded()
-        return photoListView
     }
     
     private class SearchResultFetcherSpy: SearchResultFetcher {

@@ -41,7 +41,7 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher, P: PhotoFetcher>: 
     }
     
     private func addPhotoListViewController() {
-        let dataSourceDelegate = PhotoListDataSourceDelegate(noPhotoText: "") { _ in }
+        let dataSourceDelegate = PhotoListDataSourceDelegate(noPhotoText: "No photos") { _ in }
         listViewController = PhotoListViewController(dataSource: dataSourceDelegate, delegate: dataSourceDelegate)
         container.addChild(listViewController)
         container.view.addSubview(listViewController.view)
