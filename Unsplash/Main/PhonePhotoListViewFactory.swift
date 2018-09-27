@@ -17,6 +17,7 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher, P: PhotoFetcher>: 
     private let container = UIViewController()
     private (set) var searchViewController: SearchViewController!
     private (set) var listViewController: PhotoListViewController!
+    private let dataSourceDelegate = PhotoListDataSourceDelegate(noPhotoText: "No photos") { _ in }
     
     private let searchResultFetcher: S
     private let photoFetcher: P
@@ -41,7 +42,17 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher, P: PhotoFetcher>: 
                     guard let photo = result.photos.first,
                           let url = URL(string: photo.thumbnailImageURLString) else { return }
                     let request = URLRequest(url: url)
-                    self?.photoFetcher.fetch(request: request) { _ in }
+                    self?.photoFetcher.fetch(request: request) { result in
+                        switch result {
+                        case .success(let data):
+                            guard let image = UIImage(data: data) else { return }
+                            self?.dataSourceDelegate.photos = [PhotoPresenter.presentablePhoto(from: photo, thumbnailImage: image)]
+                            DispatchQueue.main.async {
+                                self?.listViewController.collectionView.reloadData()
+                            }
+                        case .error(_): break
+                        }
+                    }
                 case .error(_): break
                 }
             }
@@ -53,7 +64,6 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher, P: PhotoFetcher>: 
     }
     
     private func addPhotoListViewController() {
-        let dataSourceDelegate = PhotoListDataSourceDelegate(noPhotoText: "No photos") { _ in }
         listViewController = PhotoListViewController(dataSource: dataSourceDelegate, delegate: dataSourceDelegate)
         container.addChild(listViewController)
         container.view.addSubview(listViewController.view)

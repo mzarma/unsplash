@@ -156,14 +156,14 @@ func presentablePhoto(identifier: String = "", dateCreated: String = "", descrip
     )
 }
 
-func corePhoto(thumbnailURLString: String = "") -> CorePhoto {
+func corePhoto(description: String = "", thumbnailURLString: String = "") -> CorePhoto {
     return CorePhoto(
         identifier: "",
         dateCreated: Date(),
         width: 0,
         height: 0,
         colorString: "",
-        description: "",
+        description: description,
         creatorIdentifier: "",
         creatorUsername: "",
         creatorName: "",
