@@ -60,6 +60,7 @@
 		05E75B69214BB34600E37F39 /* URLRequestFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5F214BB34600E37F39 /* URLRequestFactoryTest.swift */; };
 		05F83FDD215BA895002D79AD /* PhonePhotoListViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F83FDC215BA895002D79AD /* PhonePhotoListViewFactory.swift */; };
 		05F83FDF215BA8AD002D79AD /* PhonePhotoListViewFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F83FDE215BA8AD002D79AD /* PhonePhotoListViewFactoryTest.swift */; };
+		05F83FE1215D038E002D79AD /* PhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F83FE0215D038E002D79AD /* PhotoPresenter.swift */; };
 		7876D4C54B07C4DAE37392FE /* Pods_Unsplash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EBECAC48307CBC204BF9A4 /* Pods_Unsplash.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,7 @@
 		05E75B5F214BB34600E37F39 /* URLRequestFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestFactoryTest.swift; sourceTree = "<group>"; };
 		05F83FDC215BA895002D79AD /* PhonePhotoListViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonePhotoListViewFactory.swift; sourceTree = "<group>"; };
 		05F83FDE215BA8AD002D79AD /* PhonePhotoListViewFactoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonePhotoListViewFactoryTest.swift; sourceTree = "<group>"; };
+		05F83FE0215D038E002D79AD /* PhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPresenter.swift; sourceTree = "<group>"; };
 		6ED25A25AEB2FA1513CC4BAD /* Pods-Unsplash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash.release.xcconfig"; path = "Pods/Target Support Files/Pods-Unsplash/Pods-Unsplash.release.xcconfig"; sourceTree = "<group>"; };
 		A9EBECAC48307CBC204BF9A4 /* Pods_Unsplash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B806E66B857BCD9A609726 /* Pods-Unsplash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Unsplash/Pods-Unsplash.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				05C1248421522B81008EBA67 /* PresentableRandomPhoto.swift */,
 				05C12486215232A5008EBA67 /* RandomPhotoPresenter.swift */,
 				05380D34215A59B900CEB9B5 /* PresentablePhoto.swift */,
+				05F83FE0215D038E002D79AD /* PhotoPresenter.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				05380D2B215A48BA00CEB9B5 /* SearchViewController.swift in Sources */,
 				05E75B39214BB31E00E37F39 /* PhotoDownloader.swift in Sources */,
 				05F83FDD215BA895002D79AD /* PhonePhotoListViewFactory.swift in Sources */,
+				05F83FE1215D038E002D79AD /* PhotoPresenter.swift in Sources */,
 				05E75B4A214BB31E00E37F39 /* Result.swift in Sources */,
 				05E75B3D214BB31E00E37F39 /* RemoteRandomPhotoResultFetcher.swift in Sources */,
 				05E75B41214BB31E00E37F39 /* RandomPhotoViewController.swift in Sources */,
