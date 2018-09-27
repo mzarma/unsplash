@@ -27,7 +27,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
         XCTAssertEqual(client.requests, [request])
     }
     
-    func test_completesWithHTTPClientError() {
+    func test_completesWithRemoteError() {
         let sut = makeSUT(request: mockRequest())
         var expectedResult: SUT.Output?
         var callCount = 0
@@ -39,7 +39,7 @@ class RemoteSearchResultFetcherTest: XCTestCase {
         client.complete?(.error(.unknown))
 
         switch expectedResult! {
-        case .error(let error): XCTAssertEqual(error, .httpClient)
+        case .error(let error): XCTAssertEqual(error, .remote)
         case .success(_): XCTFail("Should complete with error")
         }
     }

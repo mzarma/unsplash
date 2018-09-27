@@ -9,7 +9,7 @@
 import Foundation
 
 enum SearchResultFetcherError: Error {
-    case httpClient
+    case remote
     case mapping
 }
 
@@ -39,7 +39,7 @@ final class RemoteSearchResultFetcher: SearchResultFetcher {
                 } else {
                     completion(.error(.mapping))
                 }
-            case .error(_): completion(.error(.httpClient))
+            case .error(_): completion(.error(.remote))
             }
         }
     }

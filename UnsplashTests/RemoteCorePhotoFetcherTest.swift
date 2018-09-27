@@ -38,11 +38,11 @@ class RemoteCorePhotoFetcherTest: XCTestCase {
             expectedResult = result
         }
         
-        searchResultFetcher.complete?(.error(.httpClient))
+        searchResultFetcher.complete?(.error(.remote))
         
         switch expectedResult! {
-        case .success(_): XCTFail("Should complete with httpClient error")
-        case .error(let error): XCTAssertEqual(error, .httpClient)
+        case .success(_): XCTFail("Should complete with remote error")
+        case .error(let error): XCTAssertEqual(error, .remote)
         }
     }
     

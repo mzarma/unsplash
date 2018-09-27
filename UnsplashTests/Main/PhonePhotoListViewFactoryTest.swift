@@ -61,7 +61,7 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         _ = sut.makePhotoListView { _ in }
 
         sut.searchViewController.clickSearchButton(with: "a term")
-        searchResultFetcher.complete?(.error(.httpClient))
+        searchResultFetcher.complete?(.error(.remote))
         
         XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
         XCTAssertEqual(sut.listViewController.numberOfItems(), 1)
