@@ -140,6 +140,29 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         XCTAssertNil(sut.listViewController.photoCell(for: 2).photoImage)
     }
 
+    func test_photoListView_doesNotDelegateSelection_whenNoPhotoCellIsSelected() {
+        var photoSelectionCount = 0
+        var selectedPhoto: CorePhoto?
+        
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { photo in
+            photoSelectionCount += 1
+            selectedPhoto = photo
+        }
+        
+        sut.searchViewController.clickSearchButton(with: "a term")
+        let searchResult = CoreSearchResult(totalPhotos: 0, totalPages: 1, photos: [])
+        searchResultFetcher.complete?(.success(searchResult))
+        
+        XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
+        XCTAssertEqual(sut.listViewController.numberOfItems(), 1)
+        XCTAssertEqual(sut.listViewController.noPhotoCell().text, "No photos")
+        
+        sut.listViewController.selectItem(0)
+        
+        XCTAssertEqual(photoSelectionCount, 0)
+        XCTAssertNil(selectedPhoto)
+    }
     
     // MARK: Helpers
     
