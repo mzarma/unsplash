@@ -10,7 +10,7 @@ import UIKit
 
 final class PhotoPresenter {
     private static let dateFormatter = ISO8601DateFormatter()
-    static func presentablePhoto(from photo: CorePhoto, thumbnailImage: UIImage) -> PresentablePhoto {
+    static func presentablePhoto(from photo: CorePhoto) -> PresentablePhoto {
         return PresentablePhoto(
             identifier: photo.identifier,
             dateCreated: dateFormatter.string(from: photo.dateCreated),
