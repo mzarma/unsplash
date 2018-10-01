@@ -14,7 +14,6 @@ protocol PhotoListViewFactory {
 
 final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFactory where S.Request == URLRequest, S.Result == Result<CoreSearchResult, SearchResultFetcherError> {
 
-    private let container = UIViewController()
     private (set) var searchViewController: SearchViewController!
     private (set) var listViewController: PhotoListViewController!
     
@@ -31,7 +30,17 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
             selected(PhotoPresenter.corePhoto(from: photo))
         }
         
-        searchViewController = SearchViewController { [weak self] term in
+        let container = UIViewController()
+        searchViewController = makeSearchView(with: dataSourceDelegate)
+        listViewController = makePhotoListView(with: dataSourceDelegate)
+        
+        PhonePhotoListViewFactory.configure(searchViewController, listViewController, in: container)
+        
+        return container
+    }
+    
+    private func makeSearchView(with dataSourceDelegate: PhotoListDataSourceDelegate) -> SearchViewController {
+        let viewController = SearchViewController { [weak self] term in
             let request = URLRequestFactory.search(parameters: SearchParameters(page: 1, term: term))
             self?.searchResultFetcher.fetch(request: request) { result in
                 switch result {
@@ -42,17 +51,26 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
                 }
             }
         }
+        return viewController
+    }
+    
+    private func makePhotoListView(with dataSourceDelegate: PhotoListDataSourceDelegate) -> PhotoListViewController {
+        return PhotoListViewController(dataSource: dataSourceDelegate, delegate: dataSourceDelegate)
+    }
+    
+    private static func configure(_ searchView: UIViewController, _ photoListView: UIViewController, in container: UIViewController) {
+        let width = container.view.bounds.width
+        let height = container.view.bounds.height
+        let searchViewHeight: CGFloat = 80
         
-        container.addChild(searchViewController)
-        container.view.addSubview(searchViewController.view)
-        searchViewController.view.frame = CGRect(x: 0, y: 0, width: container.view.bounds.width, height: 80)
-        searchViewController.didMove(toParent: container)
+        container.addChild(searchView)
+        container.view.addSubview(searchView.view)
+        searchView.view.frame = CGRect(x: 0, y: 0, width: width, height: searchViewHeight)
+        searchView.didMove(toParent: container)
 
-        listViewController = PhotoListViewController(dataSource: dataSourceDelegate, delegate: dataSourceDelegate)
-        container.addChild(listViewController)
-        container.view.addSubview(listViewController.view)
-        listViewController.view.frame = CGRect(x: 0, y: 80, width: container.view.bounds.width, height: container.view.bounds.height-80)
-        listViewController.didMove(toParent: container)
-        return container
+        container.addChild(photoListView)
+        container.view.addSubview(photoListView.view)
+        photoListView.view.frame = CGRect(x: 0, y: 80, width: width, height: height - searchViewHeight)
+        photoListView.didMove(toParent: container)
     }
 }
