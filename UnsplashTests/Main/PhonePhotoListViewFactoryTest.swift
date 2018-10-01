@@ -96,23 +96,22 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         XCTAssertNil(sut.listViewController.photoCell(for: 0).photoImage)
     }
     
-//    func test_photoListView_showsPhotoCell_withOnePhoto() {
-//        let sut = makeSUT()
-//        _ = sut.makePhotoListView { _ in }
-//
-//        sut.searchViewController.clickSearchButton(with: "a term")
-//        let photo = corePhoto(description: "a description", thumbnailURLString: "https://a-mock.url")
-//        let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
-//        searchResultFetcher.complete?(.success(searchResult))
-//
-//        let imageData = testImage().pngData()!
-//        photoFetcher.complete?(.success(imageData))
-//
-//        XCTAssertEqual(photoFetcher.fetchCallCount, 1)
-//        XCTAssertEqual(sut.listViewController.numberOfItems(), 1)
-//        XCTAssertEqual(sut.listViewController.photoCell(for: 0).text, "a description")
-//        XCTAssertEqual(sut.listViewController.photoCell(for: 0).photoImage?.pngData(), imageData)
-//    }
+    func test_photoListView_showsPhotoCell_withOnePhoto() {
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { _ in }
+
+        sut.searchViewController.clickSearchButton(with: "a term")
+        let photo = corePhoto(identifier: "an identifier", description: "a description")
+        let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
+        searchResultFetcher.complete?(.success(searchResult))
+
+        let image = testImage()
+        imageProvider.imagesByIdentifier = ["an identifier": image]
+
+        XCTAssertEqual(sut.listViewController.numberOfItems(), 1)
+        XCTAssertEqual(sut.listViewController.photoCell(for: 0).text, "a description")
+        XCTAssertEqual(sut.listViewController.photoCell(for: 0).photoImage, image)
+    }
     
     // MARK: Helpers
     
