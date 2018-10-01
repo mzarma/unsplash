@@ -26,5 +26,4 @@ struct PresentablePhoto: Equatable {
     let smallImageURLString: String
     let thumbnailImageURLString: String
     let downloadImageLink: String
-    let thumbnailImage: UIImage
 }

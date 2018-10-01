@@ -28,8 +28,7 @@ final class PhotoPresenter {
             regularImageURLString: photo.regularImageURLString,
             smallImageURLString: photo.smallImageURLString,
             thumbnailImageURLString: photo.thumbnailImageURLString,
-            downloadImageLink: photo.downloadImageLink,
-            thumbnailImage: thumbnailImage
+            downloadImageLink: photo.downloadImageLink
         )
     }
     

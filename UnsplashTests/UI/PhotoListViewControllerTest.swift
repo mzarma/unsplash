@@ -42,11 +42,14 @@ class PhotoListViewControllerTest: XCTestCase {
     
     func test_photoCellForItemAtIndexpath() {
         let image1 = testImage(width: 100, height: 100)
-        let photo1 = presentablePhoto(description: "description1", thumbnailImage: image1)
+        let photo1 = presentablePhoto(identifier: "identifier1", description: "description1")
         let image2 = testImage(width: 200, height: 200)
-        let photo2 = presentablePhoto(description: "description2", thumbnailImage: image2)
-        let sut = makeSUT(photos: [photo1, photo2])
-    
+        let photo2 = presentablePhoto(identifier: "identifier2", description: "description2")
+        let imageProvider = ImageProviderStub()
+        imageProvider.imagesByIdentifier = ["identifier1": image1, "identifier2": image2]
+
+        let sut = makeSUT(photos: [photo1, photo2], imageProvider: imageProvider)
+        
         let cell1 = sut.photoCell(for: 0)
         let cell2 = sut.photoCell(for: 1)
     
@@ -73,10 +76,8 @@ class PhotoListViewControllerTest: XCTestCase {
         var callCount = 0
         var expectedPhoto: PresentablePhoto?
         
-        let image1 = testImage(width: 100, height: 100)
-        let photo1 = presentablePhoto(description: "description1", thumbnailImage: image1)
-        let image2 = testImage(width: 200, height: 200)
-        let photo2 = presentablePhoto(description: "description2", thumbnailImage: image2)
+        let photo1 = presentablePhoto(description: "description1")
+        let photo2 = presentablePhoto(description: "description2")
         let sut = makeSUT(photos: [photo1, photo2]) { photo in
             callCount += 1
             expectedPhoto = photo
@@ -92,13 +93,14 @@ class PhotoListViewControllerTest: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(photos: [PresentablePhoto] = [], noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> PhotoListViewController {
+    private func makeSUT(photos: [PresentablePhoto] = [], noPhotoText: String = "", imageProvider: ImageProvider? = nil, photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> PhotoListViewController {
         let dataSourceDelegate = PhotoListDataSourceDelegate(
             noPhotoText: noPhotoText,
             photoSelection: photoSelection
         )
         
         dataSourceDelegate.photos = photos
+        dataSourceDelegate.imageProvider = imageProvider
         
         let sut = PhotoListViewController(
             dataSource: dataSourceDelegate,
@@ -108,5 +110,13 @@ class PhotoListViewControllerTest: XCTestCase {
         weakSUT = sut
         sut.loadViewIfNeeded()
         return sut
+    }
+    
+    private class ImageProviderStub: ImageProvider {
+        var imagesByIdentifier = [String: UIImage]()
+        
+        func image(for identifier: String) -> UIImage? {
+            return imagesByIdentifier[identifier]
+        }
     }
 }

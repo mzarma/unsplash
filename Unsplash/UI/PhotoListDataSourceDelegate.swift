@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol ImageProvider {
+    func image(for identifier: String) -> UIImage?
+}
+
 final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var photos = [PresentablePhoto]()
+    var imageProvider: ImageProvider?
     
     private let noPhotoText: String
     private let photoSelection: (PresentablePhoto) -> Void
@@ -37,8 +42,8 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, photo: PresentablePhoto) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
-        cell.photoImage = photo.thumbnailImage
         cell.text = photo.description
+        cell.photoImage = imageProvider?.image(for: photo.identifier)
         return cell
     }
     
