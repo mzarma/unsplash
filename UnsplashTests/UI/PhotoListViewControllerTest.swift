@@ -59,6 +59,22 @@ class PhotoListViewControllerTest: XCTestCase {
         XCTAssertEqual(cell2.text, "description2")
     }
     
+    func test_photoCellForItemAtIndexpathShowsNoImage_whenImageProviderReturnsNil() {
+        let photo1 = presentablePhoto(identifier: "identifier1", description: "description1")
+        let photo2 = presentablePhoto(identifier: "identifier2", description: "description2")
+        let imageProvider = ImageProviderStub()
+        
+        let sut = makeSUT(photos: [photo1, photo2], imageProvider: imageProvider)
+        
+        let cell1 = sut.photoCell(for: 0)
+        let cell2 = sut.photoCell(for: 1)
+        
+        XCTAssertNil(cell1.photoImage)
+        XCTAssertEqual(cell1.text, "description1")
+        XCTAssertNil(cell2.photoImage)
+        XCTAssertEqual(cell2.text, "description2")
+    }
+    
     // MARK: UICollectionViewDelegateFlowLayout
     
     func test_doesNotTriggerPhotoSelection_whenPhotosArrayIsEmpty() {
