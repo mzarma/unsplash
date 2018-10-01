@@ -13,9 +13,6 @@ protocol PhotoListViewFactory {
 }
 
 final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFactory where S.Request == URLRequest, S.Result == Result<CoreSearchResult, SearchResultFetcherError> {
-
-    private (set) var searchViewController: SearchViewController!
-    private (set) var listViewController: PhotoListViewController!
     
     private let searchResultFetcher: S
     private let imageProvider: ImageProvider
@@ -31,8 +28,8 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
         }
         
         let container = UIViewController()
-        searchViewController = makeSearchView(with: dataSourceDelegate)
-        listViewController = makePhotoListView(with: dataSourceDelegate)
+        let searchViewController = makeSearchView(with: dataSourceDelegate)
+        let listViewController = makePhotoListView(with: dataSourceDelegate)
         
         PhonePhotoListViewFactory.configure(searchViewController, listViewController, in: container)
         
