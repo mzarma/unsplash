@@ -155,10 +155,10 @@ func presentablePhoto(identifier: String = "", dateCreated: String = "", descrip
     )
 }
 
-func corePhoto(identifier: String = "", description: String = "", thumbnailURLString: String = "") -> CorePhoto {
+func corePhoto(identifier: String = "", dateCreated: Date = Date(timeIntervalSince1970: 946684800), description: String = "", thumbnailURLString: String = "") -> CorePhoto {
     return CorePhoto(
         identifier: identifier,
-        dateCreated: Date(),
+        dateCreated: dateCreated,
         width: 0,
         height: 0,
         colorString: "",
