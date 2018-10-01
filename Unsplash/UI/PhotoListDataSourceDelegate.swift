@@ -15,13 +15,14 @@ protocol ImageProvider {
 final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var photos = [PresentablePhoto]()
-    var imageProvider: ImageProvider?
     
     private let noPhotoText: String
+    private let imageProvider: ImageProvider
     private let photoSelection: (PresentablePhoto) -> Void
     
-    init(noPhotoText: String, photoSelection: @escaping (PresentablePhoto) -> Void) {
+    init(noPhotoText: String, imageProvider: ImageProvider, photoSelection: @escaping (PresentablePhoto) -> Void) {
         self.noPhotoText = noPhotoText
+        self.imageProvider = imageProvider
         self.photoSelection = photoSelection
     }
     
@@ -43,7 +44,7 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, photo: PresentablePhoto) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         cell.text = photo.description
-        cell.photoImage = imageProvider?.image(for: photo.identifier)
+        cell.photoImage = imageProvider.image(for: photo.identifier)
         return cell
     }
     

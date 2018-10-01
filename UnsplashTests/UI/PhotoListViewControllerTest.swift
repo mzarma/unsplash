@@ -45,10 +45,9 @@ class PhotoListViewControllerTest: XCTestCase {
         let photo1 = presentablePhoto(identifier: "identifier1", description: "description1")
         let image2 = testImage(width: 200, height: 200)
         let photo2 = presentablePhoto(identifier: "identifier2", description: "description2")
-        let imageProvider = ImageProviderStub()
-        imageProvider.imagesByIdentifier = ["identifier1": image1, "identifier2": image2]
 
-        let sut = makeSUT(photos: [photo1, photo2], imageProvider: imageProvider)
+        imageProvider.imagesByIdentifier = ["identifier1": image1, "identifier2": image2]
+        let sut = makeSUT(photos: [photo1, photo2])
         
         let cell1 = sut.photoCell(for: 0)
         let cell2 = sut.photoCell(for: 1)
@@ -62,9 +61,8 @@ class PhotoListViewControllerTest: XCTestCase {
     func test_photoCellForItemAtIndexpathShowsNoImage_whenImageProviderReturnsNil() {
         let photo1 = presentablePhoto(identifier: "identifier1", description: "description1")
         let photo2 = presentablePhoto(identifier: "identifier2", description: "description2")
-        let imageProvider = ImageProviderStub()
         
-        let sut = makeSUT(photos: [photo1, photo2], imageProvider: imageProvider)
+        let sut = makeSUT(photos: [photo1, photo2])
         
         let cell1 = sut.photoCell(for: 0)
         let cell2 = sut.photoCell(for: 1)
@@ -109,14 +107,16 @@ class PhotoListViewControllerTest: XCTestCase {
 
     // MARK: Helpers
     
-    private func makeSUT(photos: [PresentablePhoto] = [], noPhotoText: String = "", imageProvider: ImageProvider? = nil, photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> PhotoListViewController {
+    private let imageProvider = ImageProviderStub()
+    
+    private func makeSUT(photos: [PresentablePhoto] = [], noPhotoText: String = "", photoSelection: @escaping (PresentablePhoto) -> Void = { _ in }) -> PhotoListViewController {
         let dataSourceDelegate = PhotoListDataSourceDelegate(
             noPhotoText: noPhotoText,
+            imageProvider: imageProvider,
             photoSelection: photoSelection
         )
         
         dataSourceDelegate.photos = photos
-        dataSourceDelegate.imageProvider = imageProvider
         
         let sut = PhotoListViewController(
             dataSource: dataSourceDelegate,
