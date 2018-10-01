@@ -113,6 +113,34 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         XCTAssertEqual(sut.listViewController.photoCell(for: 0).photoImage, image)
     }
     
+    func test_photoListView_showsPhotoCells() {
+        let sut = makeSUT()
+        _ = sut.makePhotoListView { _ in }
+        
+        sut.searchViewController.clickSearchButton(with: "a term")
+        let photo1 = corePhoto(identifier: "identifier1", description: "description1")
+        let photo2 = corePhoto(identifier: "identifier2", description: "description2")
+        let photo3 = corePhoto(identifier: "identifier3", description: "description3")
+        
+        let searchResult = CoreSearchResult(totalPhotos: 3, totalPages: 1, photos: [photo1, photo2, photo3])
+        searchResultFetcher.complete?(.success(searchResult))
+        
+        let image1 = testImage(width: 100, height: 100)
+        let image2 = testImage(width: 200, height: 200)
+        
+        imageProvider.imagesByIdentifier = ["identifier1": image1, "identifier2": image2]
+        
+        XCTAssertEqual(sut.listViewController.numberOfItems(), 3)
+        XCTAssertEqual(sut.listViewController.photoCell(for: 0).text, "description1")
+        XCTAssertEqual(sut.listViewController.photoCell(for: 1).text, "description2")
+        XCTAssertEqual(sut.listViewController.photoCell(for: 2).text, "description3")
+
+        XCTAssertEqual(sut.listViewController.photoCell(for: 0).photoImage, image1)
+        XCTAssertEqual(sut.listViewController.photoCell(for: 1).photoImage, image2)
+        XCTAssertNil(sut.listViewController.photoCell(for: 2).photoImage)
+    }
+
+    
     // MARK: Helpers
     
     private let searchResultFetcher = SearchResultFetcherSpy()

@@ -34,9 +34,8 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
             self?.searchResultFetcher.fetch(request: request) { result in
                 switch result {
                 case .success(let result):
-                    guard let photo = result.photos.first else { return }
-                    let presentablePhoto = PhotoPresenter.presentablePhoto(from: photo)
-                    dataSourceDelegate.photos = [presentablePhoto]
+                    let presentablePhotos = result.photos.map(PhotoPresenter.presentablePhoto)
+                    dataSourceDelegate.photos = presentablePhotos
                 case .error(_): break
                 }
             }
