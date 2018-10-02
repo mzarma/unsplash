@@ -9,6 +9,8 @@
 import UIKit
 
 final class PhotoPresenter {
+    static let noPhotosText = "No photos"
+    
     private static let dateFormatter = ISO8601DateFormatter()
     static func presentablePhoto(from photo: CorePhoto) -> PresentablePhoto {
         return PresentablePhoto(
