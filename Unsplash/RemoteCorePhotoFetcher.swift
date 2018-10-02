@@ -18,20 +18,19 @@ final class RemoteCorePhotoFetcher<S: SearchResultFetcher>: SearchResultFetcher 
     }
     
     func fetch(request: S.Request, completion: @escaping (Output) -> Void) {
-        fetcher.fetch(request: request) { [weak self] result in
-            guard let sSelf = self else { return }
+        fetcher.fetch(request: request) { result in
             switch result {
-            case .success(let response): completion(.success(sSelf.map(response)))
+            case .success(let response): completion(.success(RemoteCorePhotoFetcher.map(response)))
             case .error(let error): completion(.error(error))
             }
         }
     }
     
-    private func map(_ response: RemoteSearchResultResponse) -> CoreSearchResult {
+    private static func map(_ response: RemoteSearchResultResponse) -> CoreSearchResult {
         return CoreSearchResult(totalPhotos: response.totalPhotos, totalPages: response.totalPages, photos: response.photos.compactMap { map($0) })
     }
     
-    private func map(_ photo: RemoteSearchResultPhotoResponse) -> CorePhoto? {
+    private static func map(_ photo: RemoteSearchResultPhotoResponse) -> CorePhoto? {
         guard let date = ISO8601DateFormatter().date(from: photo.dateCreatedString) else { return nil }
         return CorePhoto(
             identifier: photo.identifier,
