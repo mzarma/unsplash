@@ -1,5 +1,5 @@
 //
-//  RemotePhotoFetcherTest.swift
+//  PhotoDownloaderTest.swift
 //  UnsplashTests
 //
 //  Created by Michail Zarmakoupis on 05/09/2018.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Unsplash
 
-class RemotePhotoFetcherTest: XCTestCase {
+class PhotoDownloaderTest: XCTestCase {
     private weak var weakSUT: PhotoDownloader?
     
     override func tearDown() {

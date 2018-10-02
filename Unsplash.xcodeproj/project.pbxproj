@@ -55,7 +55,7 @@
 		05E75B62214BB34600E37F39 /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B53214BB34600E37F39 /* HTTPClientStub.swift */; };
 		05E75B63214BB34600E37F39 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B55214BB34600E37F39 /* Helpers.swift */; };
 		05E75B64214BB34600E37F39 /* RandomPhotoViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B56214BB34600E37F39 /* RandomPhotoViewControllerTest.swift */; };
-		05E75B66214BB34600E37F39 /* RemotePhotoFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5A214BB34600E37F39 /* RemotePhotoFetcherTest.swift */; };
+		05E75B66214BB34600E37F39 /* PhotoDownloaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5A214BB34600E37F39 /* PhotoDownloaderTest.swift */; };
 		05E75B67214BB34600E37F39 /* RemoteSearchResultFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5C214BB34600E37F39 /* RemoteSearchResultFetcherTest.swift */; };
 		05E75B68214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5E214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift */; };
 		05E75B69214BB34600E37F39 /* URLRequestFactoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E75B5F214BB34600E37F39 /* URLRequestFactoryTest.swift */; };
@@ -128,7 +128,7 @@
 		05E75B55214BB34600E37F39 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		05E75B56214BB34600E37F39 /* RandomPhotoViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomPhotoViewControllerTest.swift; sourceTree = "<group>"; };
 		05E75B57214BB34600E37F39 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = UnsplashTests/Info.plist; sourceTree = SOURCE_ROOT; };
-		05E75B5A214BB34600E37F39 /* RemotePhotoFetcherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemotePhotoFetcherTest.swift; sourceTree = "<group>"; };
+		05E75B5A214BB34600E37F39 /* PhotoDownloaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDownloaderTest.swift; sourceTree = "<group>"; };
 		05E75B5C214BB34600E37F39 /* RemoteSearchResultFetcherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteSearchResultFetcherTest.swift; sourceTree = "<group>"; };
 		05E75B5E214BB34600E37F39 /* RemoteRandomPhotoResultFetcherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRandomPhotoResultFetcherTest.swift; sourceTree = "<group>"; };
 		05E75B5F214BB34600E37F39 /* URLRequestFactoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestFactoryTest.swift; sourceTree = "<group>"; };
@@ -437,7 +437,7 @@
 		05E75B59214BB34600E37F39 /* DownloadPhoto */ = {
 			isa = PBXGroup;
 			children = (
-				05E75B5A214BB34600E37F39 /* RemotePhotoFetcherTest.swift */,
+				05E75B5A214BB34600E37F39 /* PhotoDownloaderTest.swift */,
 			);
 			path = DownloadPhoto;
 			sourceTree = "<group>";
@@ -671,7 +671,7 @@
 				05561F37215A1AD8004BE337 /* PhoneRandomPhotoDetailViewFactoryTest.swift in Sources */,
 				05E75B61214BB34600E37F39 /* HTTPClientTest.swift in Sources */,
 				05F83FDF215BA8AD002D79AD /* PhonePhotoListViewFactoryTest.swift in Sources */,
-				05E75B66214BB34600E37F39 /* RemotePhotoFetcherTest.swift in Sources */,
+				05E75B66214BB34600E37F39 /* PhotoDownloaderTest.swift in Sources */,
 				05E75B60214BB34600E37F39 /* PhoneRandomPhotoViewFactoryTest.swift in Sources */,
 				05E1533C21513A910033BC3C /* RandomPhotoFlowTest.swift in Sources */,
 				05380D2D215A48F200CEB9B5 /* SearchViewControllerTest.swift in Sources */,
