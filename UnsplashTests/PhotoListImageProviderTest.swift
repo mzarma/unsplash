@@ -20,10 +20,8 @@ class PhotoListImageProviderTest: XCTestCase {
     func test_CompletesWithInvalidURLError() {
         var fetchImageCount = 0
         var expectedResult: SUT.Output?
-        let photo = corePhoto(thumbnailURLString: "")
-        let sut = makeSUT()
-        
-        sut.fetchImage(for: photo) { result in
+
+        fetchImage(for: corePhoto(thumbnailURLString: "")) { result in
             fetchImageCount += 1
             expectedResult = result
         }
@@ -36,17 +34,21 @@ class PhotoListImageProviderTest: XCTestCase {
         }
     }
     
+    func test_fetcherFetchesWithCorrectRequest() {
+        let urlString = "https://a-mock-url.com"
+        
+        XCTAssertEqual(fetcher.requests, [])
+        
+        fetchImage(for: corePhoto(thumbnailURLString: urlString))
+        
+        XCTAssertEqual(fetcher.requests, [URLRequest(url: URL(string: "https://a-mock-url.com")!)])
+    }
+    
     func test_completesWithRemoteError() {
         var fetchImageCount = 0
         var expectedResult: SUT.Output?
 
-        let urlString = "https://a-mock-url.com"
-        let photo = corePhoto(thumbnailURLString: urlString)
-        let sut = makeSUT()
-
-        XCTAssertEqual(fetcher.requests, [])
-
-        sut.fetchImage(for: photo) { result in
+        fetchImage(for: corePhoto(thumbnailURLString: "https://a-mock-url.com")) { result in
             fetchImageCount += 1
             expectedResult = result
         }
@@ -54,11 +56,29 @@ class PhotoListImageProviderTest: XCTestCase {
         fetcher.complete?(.error(.remote))
 
         XCTAssertEqual(fetchImageCount, 1)
-        XCTAssertEqual(fetcher.requests, [URLRequest(url: URL(string: "https://a-mock-url.com")!)])
         
         switch expectedResult! {
         case .success: XCTFail("Should fail with remoteError")
         case .error(let error): XCTAssertEqual(error, .remote)
+        }
+    }
+    
+    func test_completesWithInvalidImageDataError() {
+        var fetchImageCount = 0
+        var expectedResult: SUT.Output?
+        
+        fetchImage(for: corePhoto(thumbnailURLString: "https://a-mock-url.com")) { result in
+            fetchImageCount += 1
+            expectedResult = result
+        }
+        
+        fetcher.complete?(.success(Data()))
+        
+        XCTAssertEqual(fetchImageCount, 1)
+        
+        switch expectedResult! {
+        case .success: XCTFail("Should fail with invalidImageDataError")
+        case .error(let error): XCTAssertEqual(error, .invalidImageData)
         }
     }
     
@@ -71,6 +91,11 @@ class PhotoListImageProviderTest: XCTestCase {
         let sut = PhotoListImageProvider(fetcher)
         weakSUT = sut
         return sut
+    }
+    
+    private func fetchImage(for photo: CorePhoto, completion: @escaping (SUT.Output) -> Void = { _ in }) {
+        let sut = makeSUT()
+        sut.fetchImage(for: photo, completion: completion)
     }
     
     private class PhotoFetcherSpy: PhotoFetcher {

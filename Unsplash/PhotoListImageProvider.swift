@@ -9,14 +9,13 @@
 import UIKit
 
 protocol ImageProvider_ {
-    associatedtype Response
-    
-    func fetchImage(for photo: CorePhoto, completion: @escaping (Response) -> Void)
+    func fetchImage(for photo: CorePhoto, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void)
 }
 
 enum ImageProviderError: Error {
     case invalidURL
     case remote
+    case invalidImageData
 }
 
 final class PhotoListImageProvider<F: PhotoFetcher>: ImageProvider_ where F.Request == URLRequest, F.Response == Result<Data, PhotoFetcherError> {
@@ -36,7 +35,7 @@ final class PhotoListImageProvider<F: PhotoFetcher>: ImageProvider_ where F.Requ
         
         fetcher.fetch(request: URLRequest(url: url)) { result in
             switch result {
-            case .success(_): break
+            case .success(_): completion(.error(.invalidImageData))
             case .error(_): completion(.error(.remote))
             }
         }
