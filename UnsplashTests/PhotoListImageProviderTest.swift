@@ -17,8 +17,12 @@ class PhotoListImageProviderTest: XCTestCase {
         super.tearDown()
     }
     
-    func test_returnsNIL() {
-        _ = makeSUT()
+    func test_returnsNil_whenInvalidThumbnailURL() {
+        let invalidURL = ""
+        let photo = corePhoto(thumbnailURLString: invalidURL)
+        let sut = makeSUT()
+        
+        XCTAssertNil(sut.image(for: photo))
     }
     
     // MARK: Helpers

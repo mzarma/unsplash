@@ -8,8 +8,9 @@
 
 import UIKit
 
-class PhotoListImageProvider: ImageProvider {
+final class PhotoListImageProvider: ImageProvider {
     func image(for photo: CorePhoto) -> UIImage? {
+        guard let _ = URL(string: photo.thumbnailImageURLString) else { return nil }
         return UIImage()
     }
 }
