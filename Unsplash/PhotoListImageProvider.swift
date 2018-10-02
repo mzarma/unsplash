@@ -35,7 +35,11 @@ final class PhotoListImageProvider<F: PhotoFetcher>: ImageProvider_ where F.Requ
         
         fetcher.fetch(request: URLRequest(url: url)) { result in
             switch result {
-            case .success(_): completion(.error(.invalidImageData))
+            case .success(let data):
+                guard let image = UIImage(data: data) else {
+                   return completion(.error(.invalidImageData))
+                }
+                completion(.success(image))
             case .error(_): completion(.error(.remote))
             }
         }

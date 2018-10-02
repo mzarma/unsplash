@@ -82,6 +82,26 @@ class PhotoListImageProviderTest: XCTestCase {
         }
     }
     
+    func test_completesWithImage() {
+        var fetchImageCount = 0
+        var expectedResult: SUT.Output?
+        
+        fetchImage(for: corePhoto(thumbnailURLString: "https://a-mock-url.com")) { result in
+            fetchImageCount += 1
+            expectedResult = result
+        }
+        
+        let expectedImageData = testImage().pngData()!
+        fetcher.complete?(.success(expectedImageData))
+        
+        XCTAssertEqual(fetchImageCount, 1)
+        
+        switch expectedResult! {
+        case .success(let image): XCTAssertEqual(image.pngData(), expectedImageData)
+        case .error(_): XCTFail("Should succeed with image data")
+        }
+    }
+    
     // MARK: Helpers
     
     private let fetcher = PhotoFetcherSpy()
