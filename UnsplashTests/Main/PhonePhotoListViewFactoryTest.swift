@@ -193,8 +193,8 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
     private class ImageProviderStub: ImageProvider {
         var imagesByIdentifier = [String: UIImage]()
         
-        func image(for identifier: String) -> UIImage? {
-            return imagesByIdentifier[identifier]
+        func image(for photo: CorePhoto) -> UIImage? {
+            return imagesByIdentifier[photo.identifier]
         }
     }
 }

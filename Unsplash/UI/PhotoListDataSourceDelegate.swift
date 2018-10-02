@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ImageProvider {
-    func image(for identifier: String) -> UIImage?
+    func image(for photo: CorePhoto) -> UIImage?
 }
 
 final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -44,7 +44,7 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, photo: PresentablePhoto) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
         cell.text = photo.description
-        cell.photoImage = imageProvider.image(for: photo.identifier)
+        cell.photoImage = imageProvider.image(for: PhotoPresenter.corePhoto(from: photo))
         return cell
     }
     
