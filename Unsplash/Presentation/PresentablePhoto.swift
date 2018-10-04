@@ -27,3 +27,27 @@ struct PresentablePhoto: Equatable {
     let thumbnailImageURLString: String
     let downloadImageLink: String
 }
+
+extension PresentablePhoto {
+    var corePhoto: CorePhoto {
+        return CorePhoto(
+            identifier: identifier,
+            dateCreated: ISO8601DateFormatter().date(from: dateCreated)!,
+            width: width,
+            height: height,
+            colorString: colorString,
+            description: description,
+            creatorIdentifier: creatorIdentifier,
+            creatorUsername: creatorUsername,
+            creatorName: creatorName,
+            creatorPortfolioURLString: creatorPortfolioURLString,
+            creatorSmallProfileImageURLString: creatorSmallProfileImageURLString,
+            creatorMediumProfileImageURLString: creatorMediumProfileImageURLString,
+            creatorLargeProfileImageURLString: creatorLargeProfileImageURLString,
+            regularImageURLString: regularImageURLString,
+            smallImageURLString: smallImageURLString,
+            thumbnailImageURLString: thumbnailImageURLString,
+            downloadImageLink: downloadImageLink
+        )
+    }
+}

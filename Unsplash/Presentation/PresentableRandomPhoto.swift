@@ -24,3 +24,24 @@ struct PresentableRandomPhoto: Equatable {
     let thumbnailImageURLString: String
     let downloadImageLink: String
 }
+
+extension PresentableRandomPhoto {
+    var coreRandomPhoto: CoreRandomPhoto {
+        return CoreRandomPhoto(
+            identifier: identifier,
+            dateCreated: ISO8601DateFormatter().date(from: dateCreated)!,
+            width: width,
+            height: height,
+            colorString: colorString,
+            description: description,
+            creatorIdentifier: creatorIdentifier,
+            creatorUsername: creatorUsername,
+            creatorName: creatorName,
+            creatorPortfolioURLString: creatorPortfolioURLString,
+            regularImageURLString: regularImageURLString,
+            smallImageURLString: smallImageURLString,
+            thumbnailImageURLString: thumbnailImageURLString,
+            downloadImageLink: downloadImageLink
+        )
+    }
+}

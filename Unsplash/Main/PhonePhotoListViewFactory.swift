@@ -24,7 +24,7 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
     
     func makePhotoListView(_ selected: @escaping (CorePhoto) -> Void) -> UIViewController {
         let dataSourceDelegate = PhotoListDataSourceDelegate(noPhotoText: PhotoPresenter.noPhotosText, imageProvider: imageProvider) { photo in
-            selected(PhotoPresenter.corePhoto(from: photo))
+            selected(photo.corePhoto)
         }
         
         let container = UIViewController()

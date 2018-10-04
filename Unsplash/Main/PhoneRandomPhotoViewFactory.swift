@@ -26,7 +26,7 @@ final class PhoneRandomPhotoViewFactory<R: RandomPhotoResultFetcher, P: PhotoFet
         var detailImage: UIImage?
         let dataSourceDelegate = RandomPhotoDataSourceDelegate(noPhotoText: "No photo") { presentablePhoto in
             guard let image = detailImage else { return }
-            let photo = RandomPhotoPresenter.corePhoto(from: presentablePhoto)
+            let photo = presentablePhoto.coreRandomPhoto
             selected(photo, image)
         }
         
