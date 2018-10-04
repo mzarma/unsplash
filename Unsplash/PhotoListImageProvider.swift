@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ImageProvider_ {
+protocol ImageProvider {
     func fetchImage(for photo: CorePhoto, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void)
 }
 
@@ -18,7 +18,7 @@ enum ImageProviderError: Error {
     case invalidImageData
 }
 
-final class PhotoListImageProvider<F: PhotoFetcher>: ImageProvider_ where F.Request == URLRequest, F.Response == Result<Data, PhotoFetcherError> {
+final class PhotoListImageProvider<F: PhotoFetcher>: ImageProvider where F.Request == URLRequest, F.Response == Result<Data, PhotoFetcherError> {
     
     typealias Output = Result<UIImage, ImageProviderError>
     

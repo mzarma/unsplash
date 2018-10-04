@@ -76,12 +76,12 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         let sut = makeSUT()
 
         sut.searchView.clickSearchButton(with: "a term")
-        let photo = corePhoto(identifier: "an identifier", description: "a description")
+        let photo = corePhoto(identifier: "identifier", description: "a description")
         let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
         searchResultFetcher.complete?(.success(searchResult))
 
         let image = testImage()
-        imageProvider.imagesByIdentifier = ["an identifier": image]
+        imageProvider.imagesByIdentifier = ["identifier": image]
 
         XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
         XCTAssertEqual(sut.photoListView.photoCell(for: 0).text, "a description")
@@ -193,8 +193,12 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
     private class ImageProviderStub: ImageProvider {
         var imagesByIdentifier = [String: UIImage]()
         
-        func image(for photo: CorePhoto) -> UIImage? {
-            return imagesByIdentifier[photo.identifier]
+        func fetchImage(for photo: CorePhoto, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void) {
+            if let image = imagesByIdentifier[photo.identifier] {
+                completion(.success(image))
+            } else {
+                completion(.error(.invalidImageData))
+            }
         }
     }
 }
