@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol PhotoListViewFactory {
-    func makePhotoListView(_ selected: @escaping (CorePhoto) -> Void) -> UIViewController
-}
-
 final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFactory where S.Request == URLRequest, S.Result == Result<CoreSearchResult, SearchResultFetcherError> {
     
     private let searchResultFetcher: S
