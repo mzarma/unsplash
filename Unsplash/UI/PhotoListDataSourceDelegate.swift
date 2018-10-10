@@ -42,7 +42,10 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
         cell.text = photo.description
         imageProvider.fetchImage(for: photo.corePhoto) { result in
             switch result {
-            case .success(let image): cell.photoImage = image
+            case .success(let image):
+                DispatchQueue.main.async {
+                    cell.photoImage = image
+                }
             case .error(_): break
             }
         }

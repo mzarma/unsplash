@@ -132,7 +132,7 @@ func coreRandomPhoto(
         downloadImageLink: "downloadImageLink")
 }
 
-func presentablePhoto(identifier: String = "", dateCreated: String = "", description: String = "", creatorName: String = "", creatorPortfolioURLString: String = "", regularImageURLString: String = "") -> PresentablePhoto {
+func presentablePhoto(identifier: String = "", dateCreated: String = "2000-01-01T00:00:00Z", description: String = "", creatorName: String = "", creatorPortfolioURLString: String = "", regularImageURLString: String = "") -> PresentablePhoto {
     return PresentablePhoto(
         identifier: identifier,
         dateCreated: dateCreated,
