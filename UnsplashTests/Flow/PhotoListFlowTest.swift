@@ -28,6 +28,22 @@ class PhotoListFlowTest: XCTestCase {
         XCTAssertEqual(navigation.viewControllers, [photoListView])
     }
     
+    func test_start_presentsPhotoDetailView_withCorrectPhoto() {
+        let sut = makeSUT()
+        
+        XCTAssertEqual(navigation.viewControllers, [])
+        
+        sut.start()
+        
+        XCTAssertEqual(navigation.viewControllers, [photoListView])
+        
+        let photo = corePhoto()
+        photoListViewFactory.select?(photo)
+        
+        XCTAssertEqual(navigation.viewControllers, [photoListView, photoDetailView])
+        XCTAssertEqual(photoDetailViewFactory.selectedPhoto, photo)
+    }
+    
     // MARK: Helpers
     
     private let navigation = NonAnimatingUINavigationController()
@@ -64,9 +80,11 @@ class PhotoListFlowTest: XCTestCase {
     }
     
     private class PhotoDetailViewFactorySpy: PhotoDetailViewFactory {
+        var selectedPhoto: CorePhoto?
         var stubPhotoDetailView: UIViewController?
         
-        func makePhotoDetailView(for photo: CorePhoto, imageProvider: ImageProvider) -> UIViewController {
+        func makePhotoDetailView(for photo: CorePhoto) -> UIViewController {
+            selectedPhoto = photo
             return stubPhotoDetailView!
         }
     }

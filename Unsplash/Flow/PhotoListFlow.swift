@@ -13,7 +13,7 @@ protocol PhotoListViewFactory {
 }
 
 protocol PhotoDetailViewFactory {
-    func makePhotoDetailView(for photo: CorePhoto, imageProvider: ImageProvider) -> UIViewController
+    func makePhotoDetailView(for photo: CorePhoto) -> UIViewController
 }
 
 final class PhotoListFlow {
@@ -28,7 +28,11 @@ final class PhotoListFlow {
     }
     
     func start() {
-        let photoListView = photoListViewFactory.makePhotoListView { _ in }
+        let photoListView = photoListViewFactory.makePhotoListView { [weak self] photo in
+            guard let self = self else { return }
+            let photoDetailView = self.photoDetailViewFactory.makePhotoDetailView(for: photo)
+            self.navigation.pushViewController(photoDetailView, animated: true)
+        }
         navigation.setViewControllers([photoListView], animated: false)
     }
 }
