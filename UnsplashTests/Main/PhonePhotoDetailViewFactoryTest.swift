@@ -26,6 +26,12 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
         XCTAssertTrue(photoDetailView.tableView.superview === photoDetailView.view)
     }
     
+    // MARK: UICollectionViewDataSource
+    
+    func test_numberOfRowsInSection() {
+        XCTAssertEqual(makePhotoDetailView().numberOfRows(), 5)
+    }
+    
     // MARK: Helpers
     private let imageProvider = ImageProviderStub()
     

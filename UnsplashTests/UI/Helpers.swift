@@ -61,6 +61,37 @@ extension RandomPhotoDetailViewController {
     }
 }
 
+extension PhotoDetailViewController {
+    func numberOfRows() -> Int {
+        return tableView.dataSource!.tableView(tableView, numberOfRowsInSection: 0)
+    }
+    
+    func imageCell() -> ImageCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 0)) as! ImageCell
+    }
+    
+    func descriptionCell() -> UITableViewCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 1))
+    }
+    
+    func dateCreatedCell() -> UITableViewCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 2))
+    }
+    
+    func creatorNameCell() -> UITableViewCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 3))
+    }
+    
+    func creatorPortfolioURLCell() -> UITableViewCell {
+        return tableView.dataSource!.tableView(tableView, cellForRowAt: indexPath(for: 4))
+    }
+    
+    func indexPath(for row: Int) -> IndexPath {
+        return IndexPath(row: row, section: 0)
+    }
+}
+
+
 extension PhotoListViewController {
     func numberOfItems() -> Int {
         return collectionView.dataSource!.collectionView(collectionView, numberOfItemsInSection: 0)
