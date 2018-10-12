@@ -25,6 +25,7 @@ class HTTPClient {
     }
     
     func execute(_ request: Input, completion: @escaping (Output) -> Void) {
+        print("[HTTPClient execute request: \(request.url!.absoluteString)]")
         session.dataTask(with: request) { data, response, error in
             if let response = response as? HTTPURLResponse {
                 if let data = data, response.statusCode > 199, response.statusCode < 300 {

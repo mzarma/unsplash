@@ -61,12 +61,12 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
         
         container.addChild(searchView)
         container.view.addSubview(searchView.view)
-        searchView.view.frame = CGRect(x: 0, y: 0, width: width, height: searchViewHeight)
+        searchView.view.frame = CGRect(x: 0, y: 64, width: width, height: searchViewHeight)
         searchView.didMove(toParent: container)
 
         container.addChild(photoListView)
         container.view.addSubview(photoListView.view)
-        photoListView.view.frame = CGRect(x: 0, y: 80, width: width, height: height - searchViewHeight)
+        photoListView.view.frame = CGRect(x: 0, y: 144, width: width, height: height - searchViewHeight)
         photoListView.didMove(toParent: container)
     }
 }
