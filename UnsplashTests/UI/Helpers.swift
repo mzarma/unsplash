@@ -89,8 +89,39 @@ extension PhotoDetailViewController {
     func indexPath(for row: Int) -> IndexPath {
         return IndexPath(row: row, section: 0)
     }
-}
+    
+    var descriptionCellTitle: String? {
+        return descriptionCell().textLabel?.text
+    }
+    
+    var descriptionCellSubtitle: String? {
+        return descriptionCell().detailTextLabel?.text
+    }
+    
+    var dateCreatedCellTitle: String? {
+        return dateCreatedCell().textLabel?.text
+    }
+    
+    var dateCreatedCellSubtitle: String? {
+        return dateCreatedCell().detailTextLabel?.text
+    }
 
+    var creatorNameCellTitle: String? {
+        return creatorNameCell().textLabel?.text
+    }
+    
+    var creatorNameCellSubtitle: String? {
+        return creatorNameCell().detailTextLabel?.text
+    }
+    
+    var creatorPortfolioCellTitle: String? {
+        return creatorPortfolioURLCell().textLabel?.text
+    }
+    
+    var creatorPortfolioCellSubtitle: String? {
+        return creatorPortfolioURLCell().detailTextLabel?.text
+    }
+}
 
 extension PhotoListViewController {
     func numberOfItems() -> Int {
@@ -186,7 +217,7 @@ func presentablePhoto(identifier: String = "", dateCreated: String = "2000-01-01
     )
 }
 
-func corePhoto(identifier: String = "", dateCreated: Date = Date(timeIntervalSince1970: 946684800), description: String = "", thumbnailURLString: String = "") -> CorePhoto {
+func corePhoto(identifier: String = "", dateCreated: Date = Date(timeIntervalSince1970: 946684800), description: String = "", creatorName: String = "", creatorPortfolioURLString: String = "", thumbnailURLString: String = "") -> CorePhoto {
     return CorePhoto(
         identifier: identifier,
         dateCreated: dateCreated,
@@ -196,8 +227,8 @@ func corePhoto(identifier: String = "", dateCreated: Date = Date(timeIntervalSin
         description: description,
         creatorIdentifier: "",
         creatorUsername: "",
-        creatorName: "",
-        creatorPortfolioURLString: "",
+        creatorName: creatorName,
+        creatorPortfolioURLString: creatorPortfolioURLString,
         creatorSmallProfileImageURLString: "",
         creatorMediumProfileImageURLString: "",
         creatorLargeProfileImageURLString: "",

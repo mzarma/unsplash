@@ -44,6 +44,22 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
         XCTAssertEqual(cell.photoImage, image)
     }
 
+    func test_defaultCells() {
+        let photo = corePhoto(dateCreated: Date(timeIntervalSince1970: 946684800), description: "a description", creatorName: "a creator", creatorPortfolioURLString: "a portfolio url")
+        let detailView = makePhotoDetailView(photo: photo)
+        
+        XCTAssertEqual(detailView.descriptionCellTitle, "Description")
+        XCTAssertEqual(detailView.descriptionCellSubtitle, "a description")
+        
+        XCTAssertEqual(detailView.dateCreatedCellTitle, "Date Created")
+        XCTAssertEqual(detailView.dateCreatedCellSubtitle, "2000-01-01T00:00:00Z")
+
+        XCTAssertEqual(detailView.creatorNameCellTitle, "Creator")
+        XCTAssertEqual(detailView.creatorNameCellSubtitle, "a creator")
+
+        XCTAssertEqual(detailView.creatorPortfolioCellTitle, "Creator's Portfolio")
+        XCTAssertEqual(detailView.creatorPortfolioCellSubtitle, "a portfolio url")
+    }
     
     // MARK: Helpers
     private let imageProvider = ImageProviderStub()
@@ -62,16 +78,10 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
     }
     
     private class ImageProviderStub: ImageProvider {
-        var imagesByIdentifier = [String: UIImage]()
         var complete: ((Result<UIImage, ImageProviderError>) -> Void)?
         
         func fetchImage(for photo: CorePhoto, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void) {
             complete = completion
-//            if let image = imagesByIdentifier[photo.identifier] {
-//                completion(.success(image))
-//            } else {
-//                completion(.error(.invalidImageData))
-//            }
         }
     }
 }

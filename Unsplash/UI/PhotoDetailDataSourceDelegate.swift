@@ -32,7 +32,7 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         case TableStructure.creatorName.rawValue:
             return defaultSubtitleCell(title: "Creator", subtitle: photo.creatorName)
         case TableStructure.creatorPortfolioURL.rawValue:
-            return defaultSubtitleCell(title: "Creator's portfolio", subtitle: photo.creatorPortfolioURLString)
+            return defaultSubtitleCell(title: "Creator's Portfolio", subtitle: photo.creatorPortfolioURLString)
         default: return UITableViewCell()
         }
     }
