@@ -32,6 +32,19 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
         XCTAssertEqual(makePhotoDetailView().numberOfRows(), 5)
     }
     
+    func test_imageCell() {
+        let exp = expectation(description: "Image should be filled")
+        let image = testImage()
+        let cell = makePhotoDetailView().imageCell()
+        
+        imageProvider.complete?(.success(image))
+        XCTWaiter().wait(for: [exp], timeout: 0.1)
+        exp.fulfill()
+        
+        XCTAssertEqual(cell.photoImage, image)
+    }
+
+    
     // MARK: Helpers
     private let imageProvider = ImageProviderStub()
     
@@ -53,11 +66,12 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
         var complete: ((Result<UIImage, ImageProviderError>) -> Void)?
         
         func fetchImage(for photo: CorePhoto, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void) {
-            if let image = imagesByIdentifier[photo.identifier] {
-                completion(.success(image))
-            } else {
-                completion(.error(.invalidImageData))
-            }
+            complete = completion
+//            if let image = imagesByIdentifier[photo.identifier] {
+//                completion(.success(image))
+//            } else {
+//                completion(.error(.invalidImageData))
+//            }
         }
     }
 }
