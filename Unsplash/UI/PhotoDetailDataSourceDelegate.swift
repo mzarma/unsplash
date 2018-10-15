@@ -55,6 +55,7 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
             case .error(_): break
             }
         }
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -62,6 +63,7 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = title
         cell.detailTextLabel?.text = subtitle
+        cell.selectionStyle = .none
         return cell
     }
 }

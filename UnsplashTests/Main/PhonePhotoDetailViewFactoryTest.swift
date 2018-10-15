@@ -60,6 +60,22 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
         XCTAssertEqual(detailView.creatorPortfolioCellTitle, "Creator's Portfolio")
         XCTAssertEqual(detailView.creatorPortfolioCellSubtitle, "a portfolio url")
     }
+    
+    func test_cellSelectionUIIsDisabled() {
+        let detailView = makePhotoDetailView(photo: corePhoto())
+        
+        // Since we don't test exhaustively the number of cells
+        // we assert the number of rows as a constraint.
+        // By doing so, if we add another cell, this test should signal that
+        // we should add more assertions.
+        XCTAssertEqual(detailView.numberOfRows(), 5)
+
+        XCTAssertEqual(detailView.imageCell().selectionStyle, .none)
+        XCTAssertEqual(detailView.descriptionCell().selectionStyle, .none)
+        XCTAssertEqual(detailView.dateCreatedCell().selectionStyle, .none)
+        XCTAssertEqual(detailView.creatorNameCell().selectionStyle, .none)
+        XCTAssertEqual(detailView.creatorPortfolioURLCell().selectionStyle, .none)
+    }
 
     // MARK: Helpers
     private let imageProvider = ImageProviderStub()
