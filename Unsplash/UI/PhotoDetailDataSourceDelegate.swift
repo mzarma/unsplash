@@ -13,8 +13,8 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
     private let photoDetails: PresentablePhotoDetails
     private let imageProvider: ImageProvider
     
-    init(photo: PresentablePhotoDetails, imageProvider: ImageProvider) {
-        self.photoDetails = photo
+    init(photoDetails: PresentablePhotoDetails, imageProvider: ImageProvider) {
+        self.photoDetails = photoDetails
         self.imageProvider = imageProvider
     }
     
