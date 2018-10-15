@@ -31,6 +31,8 @@ final class PhotoDetailViewController: UIViewController {
         tableView.dataSource = dataSource
         tableView.delegate = delegate
         
+        tableView.tableFooterView = UIView()
+        
         tableView.register(UINib(nibName: "ImageCell", bundle: nil), forCellReuseIdentifier: "ImageCell")
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
