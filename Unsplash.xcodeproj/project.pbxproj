@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		051DF53621639112008F1148 /* PhotoListImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DF53521639112008F1148 /* PhotoListImageProvider.swift */; };
 		051DF53821639147008F1148 /* PhotoListImageProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DF53721639147008F1148 /* PhotoListImageProviderTest.swift */; };
+		0532AB6E2174DB1D00065CDD /* PresentablePhotoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532AB6D2174DB1D00065CDD /* PresentablePhotoDetails.swift */; };
 		05380D2B215A48BA00CEB9B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */; };
 		05380D2D215A48F200CEB9B5 /* SearchViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2C215A48F200CEB9B5 /* SearchViewControllerTest.swift */; };
 		05380D2F215A574200CEB9B5 /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */; };
@@ -86,6 +87,7 @@
 		05198565214BB28100D9D094 /* UnsplashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		051DF53521639112008F1148 /* PhotoListImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListImageProvider.swift; sourceTree = "<group>"; };
 		051DF53721639147008F1148 /* PhotoListImageProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListImageProviderTest.swift; sourceTree = "<group>"; };
+		0532AB6D2174DB1D00065CDD /* PresentablePhotoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentablePhotoDetails.swift; sourceTree = "<group>"; };
 		05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		05380D2C215A48F200CEB9B5 /* SearchViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTest.swift; sourceTree = "<group>"; };
 		05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				05C12486215232A5008EBA67 /* RandomPhotoPresenter.swift */,
 				05380D34215A59B900CEB9B5 /* PresentablePhoto.swift */,
 				05F83FE0215D038E002D79AD /* PhotoPresenter.swift */,
+				0532AB6D2174DB1D00065CDD /* PresentablePhotoDetails.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				05E0EBCD216E47F900BCEEBB /* PhotoDetailDataSourceDelegate.swift in Sources */,
 				05E75B3F214BB31E00E37F39 /* URLRequestFactory.swift in Sources */,
 				05E75B3B214BB31E00E37F39 /* RemoteSearchResultFetcher.swift in Sources */,
+				0532AB6E2174DB1D00065CDD /* PresentablePhotoDetails.swift in Sources */,
 				05380D2F215A574200CEB9B5 /* PhotoListViewController.swift in Sources */,
 				056064D5215945BC0060EA90 /* CorePhoto.swift in Sources */,
 				05E75B44214BB31E00E37F39 /* NoPhotoCell.swift in Sources */,

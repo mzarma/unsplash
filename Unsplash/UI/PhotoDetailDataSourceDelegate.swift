@@ -8,32 +8,6 @@
 
 import UIKit
 
-fileprivate let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "MMM d, yyyy"
-    return formatter
-}()
-
-struct PresentablePhotoDetails {
-    let corePhoto: CorePhoto
-    
-    var description: String {
-        return corePhoto.description
-    }
-    
-    var dateCreated: String {
-        return dateFormatter.string(from: corePhoto.dateCreated)
-    }
-    
-    var creatorName: String {
-        return corePhoto.creatorName
-    }
-
-    var creatorPortfolioURLString: String? {
-        return corePhoto.creatorPortfolioURLString
-    }
-}
-
 final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private let photoDetails: PresentablePhotoDetails
