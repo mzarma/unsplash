@@ -26,13 +26,13 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         switch indexPath.row {
         case TableStructure.image.rawValue: return imageCell(tableView)
         case TableStructure.description.rawValue:
-            return defaultSubtitleCell(title: "Description", subtitle: photoDetails.description)
+            return defaultSubtitleCell(title: photoDetails.descriptionTitle, subtitle: photoDetails.description)
         case TableStructure.dateCreated.rawValue:
-            return defaultSubtitleCell(title: "Date Created", subtitle: photoDetails.dateCreated)
+            return defaultSubtitleCell(title: photoDetails.dateCreatedTitle, subtitle: photoDetails.dateCreated)
         case TableStructure.creatorName.rawValue:
-            return defaultSubtitleCell(title: "Creator", subtitle: photoDetails.creatorName)
+            return defaultSubtitleCell(title: photoDetails.creatorNameTitle, subtitle: photoDetails.creatorName)
         case TableStructure.creatorPortfolioURL.rawValue:
-            return defaultSubtitleCell(title: "Creator's Portfolio", subtitle: photoDetails.creatorPortfolioURLString)
+            return defaultSubtitleCell(title: photoDetails.portfolioURLTitle, subtitle: photoDetails.creatorPortfolioURLString)
         default: return UITableViewCell()
         }
     }

@@ -17,16 +17,32 @@ struct PresentablePhotoDetails {
     
     let corePhoto: CorePhoto
     
+    var descriptionTitle: String {
+        return "Description"
+    }
+    
     var description: String {
         return corePhoto.description
     }
     
+    var dateCreatedTitle: String {
+        return "Date Created"
+    }
+
     var dateCreated: String {
         return PresentablePhotoDetails.dateFormatter.string(from: corePhoto.dateCreated)
     }
     
+    var creatorNameTitle: String {
+        return "Creator"
+    }
+
     var creatorName: String {
         return corePhoto.creatorName
+    }
+    
+    var portfolioURLTitle: String {
+        return "Creator's Portfolio"
     }
     
     var creatorPortfolioURLString: String? {
