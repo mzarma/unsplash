@@ -8,13 +8,39 @@
 
 import UIKit
 
+fileprivate let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM d, yyyy"
+    return formatter
+}()
+
+struct PresentablePhotoDetails {
+    let corePhoto: CorePhoto
+    
+    var description: String {
+        return corePhoto.description
+    }
+    
+    var dateCreated: String {
+        return dateFormatter.string(from: corePhoto.dateCreated)
+    }
+    
+    var creatorName: String {
+        return corePhoto.creatorName
+    }
+
+    var creatorPortfolioURLString: String? {
+        return corePhoto.creatorPortfolioURLString
+    }
+}
+
 final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    private let photo: PresentablePhoto
+    private let photoDetails: PresentablePhotoDetails
     private let imageProvider: ImageProvider
     
-    init(photo: PresentablePhoto, imageProvider: ImageProvider) {
-        self.photo = photo
+    init(photo: PresentablePhotoDetails, imageProvider: ImageProvider) {
+        self.photoDetails = photo
         self.imageProvider = imageProvider
     }
     
@@ -26,13 +52,13 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         switch indexPath.row {
         case TableStructure.image.rawValue: return imageCell(tableView)
         case TableStructure.description.rawValue:
-            return defaultSubtitleCell(title: "Description", subtitle: photo.description)
+            return defaultSubtitleCell(title: "Description", subtitle: photoDetails.description)
         case TableStructure.dateCreated.rawValue:
-            return defaultSubtitleCell(title: "Date Created", subtitle: photo.dateCreated)
+            return defaultSubtitleCell(title: "Date Created", subtitle: photoDetails.dateCreated)
         case TableStructure.creatorName.rawValue:
-            return defaultSubtitleCell(title: "Creator", subtitle: photo.creatorName)
+            return defaultSubtitleCell(title: "Creator", subtitle: photoDetails.creatorName)
         case TableStructure.creatorPortfolioURL.rawValue:
-            return defaultSubtitleCell(title: "Creator's Portfolio", subtitle: photo.creatorPortfolioURLString)
+            return defaultSubtitleCell(title: "Creator's Portfolio", subtitle: photoDetails.creatorPortfolioURLString)
         default: return UITableViewCell()
         }
     }
@@ -46,7 +72,7 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
     
     private func imageCell(_ tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell") as! ImageCell
-        imageProvider.fetchImage(for: photo.corePhoto) { result in
+        imageProvider.fetchImage(for: photoDetails.corePhoto) { result in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {

@@ -45,22 +45,22 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
     }
 
     func test_defaultCells() {
-        let photo = corePhoto(dateCreated: Date(timeIntervalSince1970: 946684800), description: "a description", creatorName: "a creator", creatorPortfolioURLString: "a portfolio url")
+        let photo = corePhoto(dateCreated: Date(timeIntervalSince1970: 1899894912), description: "a description", creatorName: "a creator", creatorPortfolioURLString: "a portfolio url")
         let detailView = makePhotoDetailView(photo: photo)
         
         XCTAssertEqual(detailView.descriptionCellTitle, "Description")
         XCTAssertEqual(detailView.descriptionCellSubtitle, "a description")
         
         XCTAssertEqual(detailView.dateCreatedCellTitle, "Date Created")
-        XCTAssertEqual(detailView.dateCreatedCellSubtitle, "2000-01-01T00:00:00Z")
-
+        XCTAssertEqual(detailView.dateCreatedCellSubtitle, "Mar 16, 2030")
+        
         XCTAssertEqual(detailView.creatorNameCellTitle, "Creator")
         XCTAssertEqual(detailView.creatorNameCellSubtitle, "a creator")
-
+        
         XCTAssertEqual(detailView.creatorPortfolioCellTitle, "Creator's Portfolio")
         XCTAssertEqual(detailView.creatorPortfolioCellSubtitle, "a portfolio url")
     }
-    
+
     // MARK: Helpers
     private let imageProvider = ImageProviderStub()
     

@@ -16,8 +16,8 @@ final class PhonePhotoDetailViewFactory: PhotoDetailViewFactory {
     }
     
     func makePhotoDetailView(for photo: CorePhoto) -> UIViewController {
-        let photo = PhotoPresenter.presentablePhoto(from: photo)
-        let dataSourceDelegate = PhotoDetailDataSourceDelegate(photo: photo, imageProvider: imageProvider)
+        let photoDetails = PresentablePhotoDetails(corePhoto: photo)
+        let dataSourceDelegate = PhotoDetailDataSourceDelegate(photo: photoDetails, imageProvider: imageProvider)
         let photoDetailView = PhotoDetailViewController(dataSource: dataSourceDelegate, delegate: dataSourceDelegate)
         return photoDetailView
     }
