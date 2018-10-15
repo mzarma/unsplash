@@ -29,6 +29,7 @@ final class PhotoDetailViewController: UIViewController {
         view.addSubview(tableView)
         
         tableView.dataSource = dataSource
+        tableView.delegate = delegate
         
         tableView.register(UINib(nibName: "ImageCell", bundle: nil), forCellReuseIdentifier: "ImageCell")
         

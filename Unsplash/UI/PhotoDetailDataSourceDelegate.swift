@@ -37,6 +37,13 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case TableStructure.image.rawValue: return 350
+        default: return 44
+        }
+    }
+    
     private func imageCell(_ tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell") as! ImageCell
         imageProvider.fetchImage(for: photo.corePhoto) { result in
