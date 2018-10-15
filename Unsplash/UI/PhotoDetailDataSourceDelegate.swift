@@ -40,7 +40,7 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case TableStructure.image.rawValue: return 350
-        default: return 44
+        default: return 60
         }
     }
     

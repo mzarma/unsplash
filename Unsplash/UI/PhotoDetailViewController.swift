@@ -32,6 +32,7 @@ final class PhotoDetailViewController: UIViewController {
         tableView.delegate = delegate
         
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         
         tableView.register(UINib(nibName: "ImageCell", bundle: nil), forCellReuseIdentifier: "ImageCell")
         
