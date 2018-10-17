@@ -46,7 +46,7 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
     
     private func imageCell(_ tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell") as! ImageCell
-        imageProvider.fetchImage(for: photoDetails.corePhoto) { result in
+        imageProvider.fetchImage(for: photoDetails.corePhoto.regularImageURLString) { result in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {

@@ -152,12 +152,8 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         var imagesByIdentifier = [String: UIImage]()
         var complete: ((Result<UIImage, ImageProviderError>) -> Void)?
         
-        func fetchImage(for photo: CorePhoto, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void) {
-            if let image = imagesByIdentifier[photo.identifier] {
-                completion(.success(image))
-            } else {
-                completion(.error(.invalidImageData))
-            }
+        func fetchImage(for urlString: String, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void) {
+            complete = completion
         }
     }
 }

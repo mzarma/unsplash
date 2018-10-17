@@ -1,5 +1,5 @@
 //
-//  ThumbnailProvider.swift
+//  BasicImageProvider.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 02/10/2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ImageProvider {
-    func fetchImage(for photo: CorePhoto, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void)
+    func fetchImage(for urlString: String, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void)
 }
 
 enum ImageProviderError: Error {
@@ -18,7 +18,7 @@ enum ImageProviderError: Error {
     case invalidImageData
 }
 
-final class ThumbnailProvider<F: PhotoFetcher>: ImageProvider where F.Request == URLRequest, F.Response == Result<Data, PhotoFetcherError> {
+final class BasicImageProvider<F: PhotoFetcher>: ImageProvider where F.Request == URLRequest, F.Response == Result<Data, PhotoFetcherError> {
     
     typealias Output = Result<UIImage, ImageProviderError>
     
@@ -28,8 +28,8 @@ final class ThumbnailProvider<F: PhotoFetcher>: ImageProvider where F.Request ==
         self.fetcher = fetcher
     }
     
-    func fetchImage(for photo: CorePhoto, completion: @escaping (Output) -> Void) {
-        guard let url = URL(string: photo.thumbnailImageURLString) else {
+    func fetchImage(for urlString: String, completion: @escaping (Output) -> Void) {
+        guard let url = URL(string: urlString) else {
             return completion(.error(.invalidURL))
         }
         

@@ -1,5 +1,5 @@
 //
-//  PhotoListImageProviderTest.swift
+//  BasicImageProviderTest.swift
 //  UnsplashTests
 //
 //  Created by Michail Zarmakoupis on 02/10/2018.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Unsplash
 
-class PhotoListImageProviderTest: XCTestCase {
+class BasicImageProviderTest: XCTestCase {
     private weak var weakSUT: SUT?
     
     override func tearDown() {
@@ -21,7 +21,7 @@ class PhotoListImageProviderTest: XCTestCase {
         var fetchImageCount = 0
         var expectedResult: SUT.Output?
 
-        fetchImage(for: corePhoto(thumbnailURLString: "")) { result in
+        fetchImage(for: "") { result in
             fetchImageCount += 1
             expectedResult = result
         }
@@ -39,7 +39,7 @@ class PhotoListImageProviderTest: XCTestCase {
         
         XCTAssertEqual(fetcher.requests, [])
         
-        fetchImage(for: corePhoto(thumbnailURLString: urlString))
+        fetchImage(for: urlString)
         
         XCTAssertEqual(fetcher.requests, [URLRequest(url: URL(string: "https://a-mock-url.com")!)])
     }
@@ -48,7 +48,7 @@ class PhotoListImageProviderTest: XCTestCase {
         var fetchImageCount = 0
         var expectedResult: SUT.Output?
 
-        fetchImage(for: corePhoto(thumbnailURLString: "https://a-mock-url.com")) { result in
+        fetchImage(for: "https://a-mock-url.com") { result in
             fetchImageCount += 1
             expectedResult = result
         }
@@ -67,7 +67,7 @@ class PhotoListImageProviderTest: XCTestCase {
         var fetchImageCount = 0
         var expectedResult: SUT.Output?
         
-        fetchImage(for: corePhoto(thumbnailURLString: "https://a-mock-url.com")) { result in
+        fetchImage(for: "https://a-mock-url.com") { result in
             fetchImageCount += 1
             expectedResult = result
         }
@@ -86,7 +86,7 @@ class PhotoListImageProviderTest: XCTestCase {
         var fetchImageCount = 0
         var expectedResult: SUT.Output?
         
-        fetchImage(for: corePhoto(thumbnailURLString: "https://a-mock-url.com")) { result in
+        fetchImage(for: "https://a-mock-url.com") { result in
             fetchImageCount += 1
             expectedResult = result
         }
@@ -105,17 +105,17 @@ class PhotoListImageProviderTest: XCTestCase {
     // MARK: Helpers
     
     private let fetcher = PhotoFetcherSpy()
-    private typealias SUT = ThumbnailProvider<PhotoFetcherSpy>
+    private typealias SUT = BasicImageProvider<PhotoFetcherSpy>
     
     private func makeSUT() -> SUT {
-        let sut = ThumbnailProvider(fetcher)
+        let sut = BasicImageProvider(fetcher)
         weakSUT = sut
         return sut
     }
     
-    private func fetchImage(for photo: CorePhoto, completion: @escaping (SUT.Output) -> Void = { _ in }) {
+    private func fetchImage(for urlString: String, completion: @escaping (SUT.Output) -> Void = { _ in }) {
         let sut = makeSUT()
-        sut.fetchImage(for: photo, completion: completion)
+        sut.fetchImage(for: urlString, completion: completion)
     }
     
     private class PhotoFetcherSpy: PhotoFetcher {

@@ -96,7 +96,7 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
     private class ImageProviderStub: ImageProvider {
         var complete: ((Result<UIImage, ImageProviderError>) -> Void)?
         
-        func fetchImage(for photo: CorePhoto, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void) {
+        func fetchImage(for urlString: String, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void) {
             complete = completion
         }
     }

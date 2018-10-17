@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let remoteSearchResultFetcher = RemoteSearchResultFetcher(client: client)
         let searchResultFetcher = RemoteCorePhotoFetcher(remoteSearchResultFetcher)
         let downloader = PhotoDownloader(client: client)
-        let imageProvider = ThumbnailProvider(downloader)
+        let imageProvider = BasicImageProvider(downloader)
         let photoListFactory = PhonePhotoListViewFactory(searchResultFetcher, imageProvider)
         let photoDetailFactory = PhonePhotoDetailViewFactory(imageProvider: imageProvider)
         photoListFlow = PhotoListFlow(
