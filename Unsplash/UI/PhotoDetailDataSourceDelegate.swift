@@ -26,13 +26,13 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         switch indexPath.row {
         case TableStructure.image.rawValue: return imageCell(tableView)
         case TableStructure.description.rawValue:
-            return defaultSubtitleCell(title: photoDetails.descriptionTitle, subtitle: photoDetails.description)
+            return detailCell(title: photoDetails.descriptionTitle, subtitle: photoDetails.description)
         case TableStructure.dateCreated.rawValue:
-            return defaultSubtitleCell(title: photoDetails.dateCreatedTitle, subtitle: photoDetails.dateCreated)
+            return detailCell(title: photoDetails.dateCreatedTitle, subtitle: photoDetails.dateCreated)
         case TableStructure.creatorName.rawValue:
-            return defaultSubtitleCell(title: photoDetails.creatorNameTitle, subtitle: photoDetails.creatorName)
+            return detailCell(title: photoDetails.creatorNameTitle, subtitle: photoDetails.creatorName)
         case TableStructure.creatorPortfolioURL.rawValue:
-            return defaultSubtitleCell(title: photoDetails.portfolioURLTitle, subtitle: photoDetails.creatorPortfolioURLString)
+            return detailCell(title: photoDetails.portfolioURLTitle, subtitle: photoDetails.creatorPortfolioURLString)
         default: return UITableViewCell()
         }
     }
@@ -59,7 +59,7 @@ final class PhotoDetailDataSourceDelegate: NSObject, UITableViewDataSource, UITa
         return cell
     }
     
-    private func defaultSubtitleCell(title: String, subtitle: String?) -> UITableViewCell {
+    private func detailCell(title: String, subtitle: String?) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = title
         cell.detailTextLabel?.text = subtitle

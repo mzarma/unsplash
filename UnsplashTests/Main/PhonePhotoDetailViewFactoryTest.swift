@@ -44,7 +44,7 @@ class PhonePhotoDetailViewFactoryTest: XCTestCase {
         XCTAssertEqual(cell.photoImage, image)
     }
 
-    func test_defaultCells() {
+    func test_detailCells() {
         let photo = corePhoto(dateCreated: Date(timeIntervalSince1970: 1899894912), description: "a description", creatorName: "a creator", creatorPortfolioURLString: "a portfolio url")
         let detailView = makePhotoDetailView(photo: photo)
         
