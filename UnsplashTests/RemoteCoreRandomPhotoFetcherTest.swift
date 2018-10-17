@@ -1,5 +1,5 @@
 //
-//  CoreRandomPhotoFetcherTest.swift
+//  RemoteCoreRandomPhotoFetcherTest.swift
 //  UnsplashTests
 //
 //  Created by Michail Zarmakoupis on 17/09/2018.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Unsplash
 
-class CoreRandomPhotoFetcherTest: XCTestCase {
+class RemoteCoreRandomPhotoFetcherTest: XCTestCase {
     private weak var weakSUT: SUT?
     
     override func tearDown() {
@@ -72,10 +72,10 @@ class CoreRandomPhotoFetcherTest: XCTestCase {
     // MARK: Helpers
     
     private let randomPhotoFetcher = RandomPhotoResultFetcherSpy()
-    private typealias SUT = CoreRandomPhotoFetcher<RandomPhotoResultFetcherSpy>
+    private typealias SUT = RemoteCoreRandomPhotoFetcher<RandomPhotoResultFetcherSpy>
     
     private func makeSUT() -> SUT {
-        let sut = CoreRandomPhotoFetcher(randomPhotoFetcher)
+        let sut = RemoteCoreRandomPhotoFetcher(randomPhotoFetcher)
         weakSUT = sut
         return sut
     }

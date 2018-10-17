@@ -1,5 +1,5 @@
 //
-//  CoreRandomPhotoFetcher.swift
+//  RemoteCoreRandomPhotoFetcher.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 17/09/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class CoreRandomPhotoFetcher<R: RandomPhotoResultFetcher>: RandomPhotoResultFetcher where R.Result == Result<RemoteRandomPhotoResponse, RandomPhotoResultFetcherError> {
+final class RemoteCoreRandomPhotoFetcher<R: RandomPhotoResultFetcher>: RandomPhotoResultFetcher where R.Result == Result<RemoteRandomPhotoResponse, RandomPhotoResultFetcherError> {
     typealias Output = Result<CoreRandomPhoto, RandomPhotoResultFetcherError>
     
     private let fetcher: R
