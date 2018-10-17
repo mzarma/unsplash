@@ -71,6 +71,28 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         XCTAssertEqual(sut.photoListView.photoCell(for: 0).text, "a description")
         XCTAssertNil(sut.photoListView.photoCell(for: 0).photoImage)
     }
+    
+    func test_photoListView_showsPhotoCell() {
+        let exp = expectation(description: "Image should be filled")
+        let sut = makeSUT()
+        
+        sut.searchView.clickSearchButton(with: "a term")
+        let photo = corePhoto(identifier: "an identifier", description: "a description")
+        let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
+        searchResultFetcher.complete?(.success(searchResult))
+        
+        let cell = sut.photoListView.photoCell(for: 0)
+        
+        let image = testImage()
+        imageProvider.complete?(.success(image))
+
+        XCTWaiter().wait(for: [exp], timeout: 1)
+        exp.fulfill()
+        
+        XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
+        XCTAssertEqual(cell.text, "a description")
+        XCTAssertEqual(cell.photoImage, image)
+    }
 
     func test_photoListView_doesNotDelegateSelection_whenNoPhotoCellIsSelected() {
         var photoSelectionCount = 0
@@ -149,7 +171,6 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
     }
     
     private class ImageProviderStub: ImageProvider {
-        var imagesByIdentifier = [String: UIImage]()
         var complete: ((Result<UIImage, ImageProviderError>) -> Void)?
         
         func fetchImage(for urlString: String, completion: @escaping (Result<UIImage, ImageProviderError>) -> Void) {
