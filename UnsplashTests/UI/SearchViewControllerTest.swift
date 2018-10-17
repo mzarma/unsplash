@@ -32,6 +32,15 @@ class SearchViewControllerTest: XCTestCase {
     
     // MARK: UISearchBarDelegate
     
+    func test_resignsFirstResponder_whenSearchButtonClicked() {
+        let sut = makeSUT()
+        let searchBar = SearchBarSpy()
+        
+        sut.searchBarSearchButtonClicked(searchBar)
+        
+        XCTAssertEqual(searchBar.resignFirstResponderCount, 1)
+    }
+    
     func test_firesSearchedWithCorrectTerm_whenSearchButtonClicked() {
         var callCount = 0
         var expectedTerm: String?
@@ -56,5 +65,14 @@ class SearchViewControllerTest: XCTestCase {
         weakSUT = sut
         sut.loadViewIfNeeded()
         return sut
+    }
+    
+    private class SearchBarSpy: UISearchBar {
+        var resignFirstResponderCount = 0
+        
+        override func resignFirstResponder() -> Bool {
+            resignFirstResponderCount += 1
+            return super.resignFirstResponder()
+        }
     }
 }
