@@ -39,8 +39,8 @@ final class PhotoListViewController: UIViewController {
         
         collectionView.backgroundColor = .white
         
-        let photoCellNib = UINib(nibName: "RandomPhotoCell", bundle: nil)
-        collectionView.register(photoCellNib, forCellWithReuseIdentifier: "RandomPhotoCell")
+        let photoCellNib = UINib(nibName: "PhotoListCell", bundle: nil)
+        collectionView.register(photoCellNib, forCellWithReuseIdentifier: "PhotoListCell")
         let noPhotoCellNib = UINib(nibName: "NoPhotoCell", bundle: nil)
         collectionView.register(noPhotoCellNib, forCellWithReuseIdentifier: "NoPhotoCell")
         

@@ -62,13 +62,12 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         let sut = makeSUT()
 
         sut.searchView.clickSearchButton(with: "a term")
-        let photo = corePhoto(description: "a description")
+        let photo = corePhoto()
         let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
         searchResultFetcher.complete?(.success(searchResult))
 
         XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
         XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
-        XCTAssertEqual(sut.photoListView.photoCell(for: 0).text, "a description")
         XCTAssertNil(sut.photoListView.photoCell(for: 0).photoImage)
     }
     
@@ -77,7 +76,7 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         let sut = makeSUT()
         
         sut.searchView.clickSearchButton(with: "a term")
-        let photo = corePhoto(identifier: "an identifier", description: "a description")
+        let photo = corePhoto(identifier: "an identifier")
         let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
         searchResultFetcher.complete?(.success(searchResult))
         
@@ -90,7 +89,6 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         exp.fulfill()
         
         XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
-        XCTAssertEqual(cell.text, "a description")
         XCTAssertEqual(cell.photoImage, image)
     }
 
@@ -127,12 +125,11 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         }
 
         sut.searchView.clickSearchButton(with: "a term")
-        let photo = corePhoto(identifier: "an identifier", description: "a description")
+        let photo = corePhoto(identifier: "an identifier")
         let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
         searchResultFetcher.complete?(.success(searchResult))
 
         XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
-        XCTAssertEqual(sut.photoListView.photoCell(for: 0).text, "a description")
         XCTAssertNil(sut.photoListView.photoCell(for: 0).photoImage)
 
         sut.photoListView.selectItem(0)

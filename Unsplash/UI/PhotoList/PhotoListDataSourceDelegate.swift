@@ -42,8 +42,7 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     }
     
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, photo: PresentablePhoto) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RandomPhotoCell", for: indexPath) as! RandomPhotoCell
-        cell.text = photo.description
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoListCell", for: indexPath) as! PhotoListCell
         imageProvider.fetchImage(for: photo.thumbnailImageURLString) { result in
             switch result {
             case .success(let image):

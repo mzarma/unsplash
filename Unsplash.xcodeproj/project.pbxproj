@@ -10,6 +10,8 @@
 		051DF53621639112008F1148 /* BasicImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DF53521639112008F1148 /* BasicImageProvider.swift */; };
 		051DF53821639147008F1148 /* BasicImageProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DF53721639147008F1148 /* BasicImageProviderTest.swift */; };
 		0532AB6E2174DB1D00065CDD /* PresentablePhotoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532AB6D2174DB1D00065CDD /* PresentablePhotoDetails.swift */; };
+		0532AB7121775DE900065CDD /* PhotoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532AB6F21775DE900065CDD /* PhotoListCell.swift */; };
+		0532AB7221775DE900065CDD /* PhotoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532AB7021775DE900065CDD /* PhotoListCell.xib */; };
 		05380D2B215A48BA00CEB9B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */; };
 		05380D2D215A48F200CEB9B5 /* SearchViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2C215A48F200CEB9B5 /* SearchViewControllerTest.swift */; };
 		05380D2F215A574200CEB9B5 /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */; };
@@ -88,6 +90,8 @@
 		051DF53521639112008F1148 /* BasicImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicImageProvider.swift; sourceTree = "<group>"; };
 		051DF53721639147008F1148 /* BasicImageProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicImageProviderTest.swift; sourceTree = "<group>"; };
 		0532AB6D2174DB1D00065CDD /* PresentablePhotoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentablePhotoDetails.swift; sourceTree = "<group>"; };
+		0532AB6F21775DE900065CDD /* PhotoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCell.swift; sourceTree = "<group>"; };
+		0532AB7021775DE900065CDD /* PhotoListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoListCell.xib; sourceTree = "<group>"; };
 		05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		05380D2C215A48F200CEB9B5 /* SearchViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTest.swift; sourceTree = "<group>"; };
 		05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewController.swift; sourceTree = "<group>"; };
@@ -292,12 +296,33 @@
 			children = (
 				05E75B29214BB31E00E37F39 /* RandomPhotoCell.swift */,
 				05E75B2A214BB31E00E37F39 /* RandomPhotoCell.xib */,
+				0532AB6F21775DE900065CDD /* PhotoListCell.swift */,
+				0532AB7021775DE900065CDD /* PhotoListCell.xib */,
 				05E75B2B214BB31E00E37F39 /* NoPhotoCell.swift */,
 				05E75B2F214BB31E00E37F39 /* NoPhotoCell.xib */,
 				05881D9C2152999D00785EC5 /* ImageCell.swift */,
 				05881D9D2152999D00785EC5 /* ImageCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		0532AB7321775E7A00065CDD /* PhotoList */ = {
+			isa = PBXGroup;
+			children = (
+				05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */,
+				05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */,
+				05380D30215A57F800CEB9B5 /* PhotoListDataSourceDelegate.swift */,
+			);
+			path = PhotoList;
+			sourceTree = "<group>";
+		};
+		0532AB7421775E8A00065CDD /* PhotoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				05E0EBCA216E47AD00BCEEBB /* PhotoDetailViewController.swift */,
+				05E0EBCC216E47F900BCEEBB /* PhotoDetailDataSourceDelegate.swift */,
+			);
+			path = PhotoDetail;
 			sourceTree = "<group>";
 		};
 		05E75B1B214BB31D00E37F39 /* Networking */ = {
@@ -343,14 +368,11 @@
 			isa = PBXGroup;
 			children = (
 				05E75B2C214BB31E00E37F39 /* LaunchScreen.storyboard */,
+				0532AB7321775E7A00065CDD /* PhotoList */,
+				0532AB7421775E8A00065CDD /* PhotoDetail */,
 				05290B30215382F100FEC1C3 /* RandomPhoto */,
 				05290B31215382FD00FEC1C3 /* RandomPhotoDetail */,
 				05290B322153830C00FEC1C3 /* Cells */,
-				05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */,
-				05380D2E215A574200CEB9B5 /* PhotoListViewController.swift */,
-				05380D30215A57F800CEB9B5 /* PhotoListDataSourceDelegate.swift */,
-				05E0EBCA216E47AD00BCEEBB /* PhotoDetailViewController.swift */,
-				05E0EBCC216E47F900BCEEBB /* PhotoDetailDataSourceDelegate.swift */,
 			);
 			name = UI;
 			path = Unsplash/UI;
@@ -575,6 +597,7 @@
 			files = (
 				05E75B45214BB31E00E37F39 /* LaunchScreen.storyboard in Resources */,
 				05E75B43214BB31E00E37F39 /* RandomPhotoCell.xib in Resources */,
+				0532AB7221775DE900065CDD /* PhotoListCell.xib in Resources */,
 				05E75B38214BB31E00E37F39 /* Assets.xcassets in Resources */,
 				05881D9F2152999D00785EC5 /* ImageCell.xib in Resources */,
 				05E75B47214BB31E00E37F39 /* NoPhotoCell.xib in Resources */,
@@ -670,6 +693,7 @@
 				05E75B3B214BB31E00E37F39 /* RemoteSearchResultFetcher.swift in Sources */,
 				0532AB6E2174DB1D00065CDD /* PresentablePhotoDetails.swift in Sources */,
 				05380D2F215A574200CEB9B5 /* PhotoListViewController.swift in Sources */,
+				0532AB7121775DE900065CDD /* PhotoListCell.swift in Sources */,
 				056064D5215945BC0060EA90 /* CorePhoto.swift in Sources */,
 				05E75B44214BB31E00E37F39 /* NoPhotoCell.swift in Sources */,
 				05881D952152901900785EC5 /* RandomPhotoDetailViewController.swift in Sources */,
