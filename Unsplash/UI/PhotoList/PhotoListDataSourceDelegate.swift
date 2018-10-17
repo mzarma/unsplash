@@ -16,6 +16,9 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     private let imageProvider: ImageProvider
     private let photoSelection: (PresentablePhoto) -> Void
     
+    private let inset: CGFloat = 10
+    private let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    
     init(noPhotoText: String, imageProvider: ImageProvider, photoSelection: @escaping (PresentablePhoto) -> Void) {
         self.noPhotoText = noPhotoText
         self.imageProvider = imageProvider
@@ -38,7 +41,20 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
+
+        let padding: CGFloat =  10
+        let width = collectionView.frame.size.width - padding - inset * 2
+        let photoCellSize = CGSize(width: width/2, height: width/2)
+        
+        return photos.count > 0 ? photoCellSize : collectionView.bounds.size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return insets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return insets.top
     }
     
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, photo: PresentablePhoto) -> UICollectionViewCell {
