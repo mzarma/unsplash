@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		051DF53621639112008F1148 /* PhotoListImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DF53521639112008F1148 /* PhotoListImageProvider.swift */; };
+		051DF53621639112008F1148 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DF53521639112008F1148 /* ThumbnailProvider.swift */; };
 		051DF53821639147008F1148 /* PhotoListImageProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051DF53721639147008F1148 /* PhotoListImageProviderTest.swift */; };
 		0532AB6E2174DB1D00065CDD /* PresentablePhotoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532AB6D2174DB1D00065CDD /* PresentablePhotoDetails.swift */; };
 		05380D2B215A48BA00CEB9B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */; };
@@ -85,7 +85,7 @@
 /* Begin PBXFileReference section */
 		05198551214BB28000D9D094 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05198565214BB28100D9D094 /* UnsplashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		051DF53521639112008F1148 /* PhotoListImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListImageProvider.swift; sourceTree = "<group>"; };
+		051DF53521639112008F1148 /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		051DF53721639147008F1148 /* PhotoListImageProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListImageProviderTest.swift; sourceTree = "<group>"; };
 		0532AB6D2174DB1D00065CDD /* PresentablePhotoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentablePhotoDetails.swift; sourceTree = "<group>"; };
 		05380D2A215A48BA00CEB9B5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				05E75B1A214BB31D00E37F39 /* Assets.xcassets */,
 				056FFF93214FCC5D005F0077 /* CoreRandomPhotoFetcher.swift */,
 				05380D38215A67F300CEB9B5 /* RemoteCorePhotoFetcher.swift */,
-				051DF53521639112008F1148 /* PhotoListImageProvider.swift */,
+				051DF53521639112008F1148 /* ThumbnailProvider.swift */,
 				05290B2F215382CE00FEC1C3 /* Models */,
 				05290B2C2153828300FEC1C3 /* Flow */,
 				05290B2E215382A400FEC1C3 /* Presentation */,
@@ -670,7 +670,7 @@
 				05E75B42214BB31E00E37F39 /* PhotoCell.swift in Sources */,
 				05E1533E21513B8E0033BC3C /* RandomPhotoFlow.swift in Sources */,
 				05E75B4B214BB31E00E37F39 /* PhoneRandomPhotoViewFactory.swift in Sources */,
-				051DF53621639112008F1148 /* PhotoListImageProvider.swift in Sources */,
+				051DF53621639112008F1148 /* ThumbnailProvider.swift in Sources */,
 				05E75B46214BB31E00E37F39 /* RandomPhotoDataSourceDelegate.swift in Sources */,
 				05C1248521522B81008EBA67 /* PresentableRandomPhoto.swift in Sources */,
 				05E0EBCD216E47F900BCEEBB /* PhotoDetailDataSourceDelegate.swift in Sources */,

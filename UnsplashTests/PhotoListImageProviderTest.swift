@@ -105,10 +105,10 @@ class PhotoListImageProviderTest: XCTestCase {
     // MARK: Helpers
     
     private let fetcher = PhotoFetcherSpy()
-    private typealias SUT = PhotoListImageProvider<PhotoFetcherSpy>
+    private typealias SUT = ThumbnailProvider<PhotoFetcherSpy>
     
     private func makeSUT() -> SUT {
-        let sut = PhotoListImageProvider(fetcher)
+        let sut = ThumbnailProvider(fetcher)
         weakSUT = sut
         return sut
     }

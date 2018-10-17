@@ -1,5 +1,5 @@
 //
-//  PhotoListImageProvider.swift
+//  ThumbnailProvider.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 02/10/2018.
@@ -18,7 +18,7 @@ enum ImageProviderError: Error {
     case invalidImageData
 }
 
-final class PhotoListImageProvider<F: PhotoFetcher>: ImageProvider where F.Request == URLRequest, F.Response == Result<Data, PhotoFetcherError> {
+final class ThumbnailProvider<F: PhotoFetcher>: ImageProvider where F.Request == URLRequest, F.Response == Result<Data, PhotoFetcherError> {
     
     typealias Output = Result<UIImage, ImageProviderError>
     
