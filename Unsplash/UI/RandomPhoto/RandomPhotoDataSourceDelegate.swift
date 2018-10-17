@@ -43,7 +43,7 @@ final class RandomPhotoDataSourceDelegate: NSObject, UICollectionViewDataSource,
     }
     
     private func configuredPhotoCell(_ collectionView: UICollectionView, at indexPath: IndexPath, image: UIImage, description: String) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RandomPhotoCell", for: indexPath) as! RandomPhotoCell
         cell.photoImage = image
         cell.text = description
         return cell

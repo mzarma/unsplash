@@ -1,5 +1,5 @@
 //
-//  PhotoCell.swift
+//  RandomPhotoCell.swift
 //  Unsplash
 //
 //  Created by Michail Zarmakoupis on 09/09/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoCell: UICollectionViewCell {
+class RandomPhotoCell: UICollectionViewCell {
 
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var descriptionLabel: UILabel!

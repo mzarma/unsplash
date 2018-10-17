@@ -18,8 +18,8 @@ extension RandomPhotoViewController {
         return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: onlyCell) as! NoPhotoCell
     }
     
-    func photoCell() -> PhotoCell {
-        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: onlyCell) as! PhotoCell
+    func photoCell() -> RandomPhotoCell {
+        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: onlyCell) as! RandomPhotoCell
     }
     
     func selectItem() {
@@ -132,8 +132,8 @@ extension PhotoListViewController {
         return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath(for: 0)) as! NoPhotoCell
     }
     
-    func photoCell(for item: Int) -> PhotoCell {
-        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath(for: item)) as! PhotoCell
+    func photoCell(for item: Int) -> RandomPhotoCell {
+        return collectionView.dataSource!.collectionView(collectionView, cellForItemAt: indexPath(for: item)) as! RandomPhotoCell
     }
     
     func selectItem(_ item: Int) {
