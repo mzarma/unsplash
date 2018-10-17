@@ -55,18 +55,29 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
     }
     
     private static func configure(_ searchView: UIViewController, _ photoListView: UIViewController, in container: UIViewController) {
-        let width = container.view.bounds.width
-        let height = container.view.bounds.height
+        container.edgesForExtendedLayout = []
         let searchViewHeight: CGFloat = 80
         
         container.addChild(searchView)
+        searchView.view.translatesAutoresizingMaskIntoConstraints = false
         container.view.addSubview(searchView.view)
-        searchView.view.frame = CGRect(x: 0, y: 64, width: width, height: searchViewHeight)
-        searchView.didMove(toParent: container)
-
+        
         container.addChild(photoListView)
+        photoListView.view.translatesAutoresizingMaskIntoConstraints = false
         container.view.addSubview(photoListView.view)
-        photoListView.view.frame = CGRect(x: 0, y: 144, width: width, height: height - searchViewHeight)
+
+        NSLayoutConstraint.activate([
+            searchView.view.topAnchor.constraint(equalTo: container.view.safeAreaLayoutGuide.topAnchor),
+            searchView.view.leadingAnchor.constraint(equalTo: container.view.safeAreaLayoutGuide.leadingAnchor),
+            searchView.view.trailingAnchor.constraint(equalTo: container.view.safeAreaLayoutGuide.trailingAnchor),
+            searchView.view.heightAnchor.constraint(equalToConstant: searchViewHeight),
+            photoListView.view.topAnchor.constraint(equalTo: searchView.view.bottomAnchor),
+            photoListView.view.leadingAnchor.constraint(equalTo: container.view.safeAreaLayoutGuide.leadingAnchor),
+            photoListView.view.trailingAnchor.constraint(equalTo: container.view.safeAreaLayoutGuide.trailingAnchor),
+            photoListView.view.bottomAnchor.constraint(equalTo: container.view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
+        searchView.didMove(toParent: container)
         photoListView.didMove(toParent: container)
     }
 }
