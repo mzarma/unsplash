@@ -39,6 +39,7 @@ final class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let term = searchBar.text ?? ""
+        searchBar.resignFirstResponder()
         searched(term)
     }
 }
