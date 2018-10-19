@@ -145,6 +145,12 @@ extension PhotoListViewController {
     }
 }
 
+extension PhotoListCell {
+    var isLoading: Bool {
+        return activityIndicator.isAnimating && !activityIndicator.isHidden
+    }
+}
+
 extension SearchViewController {
     func clickSearchButton(with term: String) {
         searchBar.text = term

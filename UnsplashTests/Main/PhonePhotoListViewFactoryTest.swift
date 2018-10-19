@@ -84,12 +84,15 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         
         let cell = sut.photoListView.photoCell(for: 0)
         
+        XCTAssertTrue(cell.isLoading)
+
         let image = testImage()
         imageProvider.complete?(.success(image))
 
         XCTWaiter().wait(for: [exp], timeout: 1)
         exp.fulfill()
         
+        XCTAssertFalse(cell.isLoading)
         XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
         XCTAssertEqual(cell.photoImage, image)
     }

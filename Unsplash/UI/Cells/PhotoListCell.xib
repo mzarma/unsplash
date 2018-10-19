@@ -22,17 +22,27 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3V6-7p-c1t">
                         <rect key="frame" x="0.0" y="0.0" width="371" height="143"/>
                     </imageView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xnC-Ki-fbu">
+                        <rect key="frame" x="175.5" y="61.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="lMP-hW-Nsf"/>
+                            <constraint firstAttribute="width" constant="20" id="p2u-Q5-pWt"/>
+                        </constraints>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="3V6-7p-c1t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="K8g-i8-bVA"/>
                 <constraint firstAttribute="trailing" secondItem="3V6-7p-c1t" secondAttribute="trailing" id="O4N-Mh-6Ca"/>
+                <constraint firstItem="xnC-Ki-fbu" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="P1u-sl-xDm"/>
+                <constraint firstItem="xnC-Ki-fbu" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="neR-qX-acV"/>
                 <constraint firstAttribute="bottom" secondItem="3V6-7p-c1t" secondAttribute="bottom" id="q52-hM-c0w"/>
                 <constraint firstItem="3V6-7p-c1t" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wlj-ip-Zo4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="371" height="143"/>
             <connections>
+                <outlet property="activityIndicator" destination="xnC-Ki-fbu" id="Sbt-Eu-pD6"/>
                 <outlet property="photoImageView" destination="3V6-7p-c1t" id="nd4-Mo-SWM"/>
             </connections>
             <point key="canvasLocation" x="394.39999999999998" y="196.55172413793105"/>
