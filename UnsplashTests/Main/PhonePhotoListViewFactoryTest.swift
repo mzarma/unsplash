@@ -58,14 +58,16 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         XCTAssertEqual(sut.photoListView.noPhotoCell().text, "No photos")
     }
 
-    func test_photoListView_photoCellWithNoImage_whenOnePhotoAndImageProviderReturnsNil() {
+    func test_photoListView_photoCellWithNoImage_whenOnePhotoAndImageProviderCompletesWithError() {
         let sut = makeSUT()
 
         sut.searchView.clickSearchButton(with: "a term")
         let photo = corePhoto()
         let searchResult = CoreSearchResult(totalPhotos: 1, totalPages: 1, photos: [photo])
         searchResultFetcher.complete?(.success(searchResult))
-
+        
+        imageProvider.complete?(.error(.invalidImageData))
+        
         XCTAssertEqual(searchResultFetcher.fetchCallCount, 1)
         XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
         XCTAssertNil(sut.photoListView.photoCell(for: 0).photoImage)
