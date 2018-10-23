@@ -46,7 +46,7 @@ final class PhotoListDataSourceDelegate: NSObject, UICollectionViewDataSource, U
         let width = collectionView.frame.size.width - padding - inset * 2
         let photoCellSize = CGSize(width: width/2, height: width/2)
         
-        return photos.count > 0 ? photoCellSize : collectionView.bounds.size
+        return photos.count > 0 ? photoCellSize : CGSize(width: collectionView.frame.width - inset * 2, height: collectionView.frame.height - inset * 2)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
