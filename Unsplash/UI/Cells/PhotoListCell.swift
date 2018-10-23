@@ -26,4 +26,9 @@ class PhotoListCell: UICollectionViewCell {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.image = nil
+    }
 }
