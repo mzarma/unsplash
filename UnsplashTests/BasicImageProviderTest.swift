@@ -82,26 +82,39 @@ class BasicImageProviderTest: XCTestCase {
         }
     }
     
-    func test_completesWithImage() {
-        var fetchImageCount = 0
+    func test_completesWithCachedImage() {
         var expectedResult: SUT.Output?
-        
-        fetchImage(for: "https://a-mock-url.com") { result in
-            fetchImageCount += 1
+
+        var fetchCallCount = 0
+        let sut = makeSUT()
+        sut.fetchImage(for: "https://a-mock-url.com") { result in
             expectedResult = result
+            fetchCallCount += 1
         }
         
         let expectedImageData = testImage().pngData()!
         fetcher.complete?(.success(expectedImageData))
         
-        XCTAssertEqual(fetchImageCount, 1)
+        XCTAssertEqual(fetchCallCount, 1)
+        XCTAssertEqual(fetcher.requests.count, 1)
+        assertSuccess(
+            expectedResult!,
+            expectedImageData,
+            "Should succeed with image data")
         
-        switch expectedResult! {
-        case .success(let image): XCTAssertEqual(image.pngData(), expectedImageData)
-        case .error(_): XCTFail("Should succeed with image data")
+        sut.fetchImage(for: "https://a-mock-url.com") { result in
+            expectedResult = result
+            fetchCallCount += 1
         }
+        
+        XCTAssertEqual(fetchCallCount, 2)
+        XCTAssertEqual(fetcher.requests.count, 1)
+        assertSuccess(
+            expectedResult!,
+            expectedImageData,
+            "Should succeed without invoking again the fetcher")
     }
-    
+
     // MARK: Helpers
     
     private let fetcher = PhotoFetcherSpy()
@@ -116,6 +129,13 @@ class BasicImageProviderTest: XCTestCase {
     private func fetchImage(for urlString: String, completion: @escaping (SUT.Output) -> Void = { _ in }) {
         let sut = makeSUT()
         sut.fetchImage(for: urlString, completion: completion)
+    }
+    
+    private func assertSuccess(_ result: Result<UIImage, ImageProviderError>, _ imageData: Data, _ message: String) {
+        switch result {
+        case .success(let image): XCTAssertEqual(image.pngData(), imageData)
+        case .error(_): XCTFail("Should succeed without invoking again the fetcher")
+        }
     }
     
     private class PhotoFetcherSpy: PhotoFetcher {
