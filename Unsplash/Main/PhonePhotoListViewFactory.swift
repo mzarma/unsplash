@@ -25,15 +25,10 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
         
         let container = UIViewController()
         let listViewController = makePhotoListView(with: dataSourceDelegate)
-        let searchViewController = makeSearchView(with: dataSourceDelegate, reloadData: listViewController.collectionView.reloadData)
-        
-        PhonePhotoListViewFactory.configure(searchViewController, listViewController, in: container)
-        
-        return container
-    }
-    
-    private func makeSearchView(with dataSourceDelegate: PhotoListDataSourceDelegate, reloadData: @escaping () -> Void) -> SearchViewController {
-        let viewController = SearchViewController { [weak self] term in
+        let searchViewController = SearchViewController { [weak self] term in
+            dataSourceDelegate.photos = []
+            listViewController.collectionView.reloadData()
+            
             let request = URLRequestFactory.search(parameters: SearchParameters(page: 1, term: term))
             self?.searchResultFetcher.fetch(request: request) { result in
                 switch result {
@@ -41,13 +36,16 @@ final class PhonePhotoListViewFactory<S: SearchResultFetcher>: PhotoListViewFact
                     let presentablePhotos = result.photos.map(PhotoPresenter.presentablePhoto)
                     dataSourceDelegate.photos = presentablePhotos
                     DispatchQueue.main.async {
-                        reloadData()
+                        listViewController.collectionView.reloadData()
                     }
                 case .error(_): break
                 }
             }
         }
-        return viewController
+        
+        PhonePhotoListViewFactory.configure(searchViewController, listViewController, in: container)
+        
+        return container
     }
     
     private func makePhotoListView(with dataSourceDelegate: PhotoListDataSourceDelegate) -> PhotoListViewController {

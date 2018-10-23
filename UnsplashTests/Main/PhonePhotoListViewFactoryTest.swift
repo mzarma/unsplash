@@ -96,6 +96,24 @@ class PhonePhotoListViewFactoryTest: XCTestCase {
         XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
         XCTAssertEqual(cell.photoImage, image)
     }
+    
+    func test_photoListViewClearsResults_onNewSearch() {
+        let exp = expectation(description: "Expect to load 2 photo cells")
+        let sut = makeSUT()
+        
+        sut.searchView.clickSearchButton(with: "a term")
+        
+        let photos = [corePhoto(identifier: "an identifier"), corePhoto(identifier: "another identifier")]
+        let searchResult = CoreSearchResult(totalPhotos: 2, totalPages: 1, photos: photos)
+        searchResultFetcher.complete?(.success(searchResult))
+        
+        XCTWaiter().wait(for: [exp], timeout: 1)
+        exp.fulfill()
+        XCTAssertEqual(sut.photoListView.numberOfItems(), 2)
+        
+        sut.searchView.clickSearchButton(with: "a different term")
+        XCTAssertEqual(sut.photoListView.numberOfItems(), 1)
+    }
 
     func test_photoListView_doesNotDelegateSelection_whenNoPhotoCellIsSelected() {
         var photoSelectionCount = 0
