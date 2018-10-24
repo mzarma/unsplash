@@ -34,8 +34,8 @@ class URLRequestFactoryTest: XCTestCase {
         let params2 = params(page: 2, term: "anotherTerm")
         let request2 = SUT.search(parameters: params2)
         
-        XCTAssertEqual(request1.url?.query, "page=4&query=a%20term&client_id=\(accessKey)")
-        XCTAssertEqual(request2.url?.query, "page=2&query=anotherTerm&client_id=\(accessKey)")
+        XCTAssertEqual(request1.url?.query, "page=4&query=a%20term&per_page=20&client_id=\(accessKey)")
+        XCTAssertEqual(request2.url?.query, "page=2&query=anotherTerm&per_page=20&client_id=\(accessKey)")
     }
     
     // Random URLRequest

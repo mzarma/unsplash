@@ -17,6 +17,7 @@ final class URLRequestFactory {
     private static let baseURLString = "https://api.unsplash.com"
     private static let searchPhotosPath = "/search/photos"
     private static let randomPhotoPath = "/photos/random"
+    private static let searchItemsPerPage = "20"
     
     static func search(parameters: SearchParameters) -> URLRequest {
         var components = URLComponents(string: baseURLString)!
@@ -24,8 +25,9 @@ final class URLRequestFactory {
         
         let page = URLQueryItem(name: "page", value: String(parameters.page))
         let term =  URLQueryItem(name: "query", value: parameters.term)
+        let itemsPerPage = URLQueryItem(name: "per_page", value: URLRequestFactory.searchItemsPerPage)
         let key = URLQueryItem(name: "client_id", value: accessKey)
-        components.queryItems = [page, term, key]
+        components.queryItems = [page, term, itemsPerPage, key]
         
         return URLRequest(url: components.url!)
     }
